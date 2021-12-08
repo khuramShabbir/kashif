@@ -76,8 +76,7 @@ Widget carousalSlider (){
 Widget customButton({
   var buttonWidget,
   double borderRadius = 50,
-  double buttonHeight = 50,
-  double buttonWidth = 150,
+  double buttonHeight = 0,
   required Function onClick,
 }) {
   return InkWell(
@@ -86,7 +85,6 @@ Widget customButton({
     },
     child: Container(
         height: buttonHeight,
-        width: buttonWidth,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(borderRadius),
           color: const Color(primaryColor),
@@ -158,7 +156,7 @@ Widget customDetailBar({
   double height = 20,
   double radius = 15,
   Widget? children,
-  String showImageAddress = "assets/Kashif.png",
+  String showImageAddress = "assets/ongoing.png",
   String inspectionType = 'On going inspection',
   String definitionOfService = 'Simple definition of a service',
 }) {

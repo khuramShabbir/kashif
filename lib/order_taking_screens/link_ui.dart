@@ -238,22 +238,22 @@ class _LinkUiState extends State<LinkUi> {
 }
 
 Widget recentPayer(List<Data> dataList) {
-  return Container(
-    color: Colors.red,
+  return SizedBox(
+
     width: Get.width * .9,
     height: Get.height * .36,
     child: SingleChildScrollView(
       child: Column(
           children: List.generate(
         dataList.length,
-        (index) => Container(
+        (index) => SizedBox(
           child: Row(
             children: [
               const SizedBox(
-                width: 10,
+                width: .8,
               ),
               CircleAvatar(
-                radius: 30,
+                radius: 20,
                 backgroundColor:
                     Color((math.Random().nextDouble() * 0xFFFFFF).toInt())
                         .withOpacity(1.0),
@@ -267,11 +267,11 @@ Widget recentPayer(List<Data> dataList) {
               SizedBox(
                 width: Get.width * .25,
               ),
-              const Text("+ 95.00")
+              const Text("+\$95.00",style: TextStyle(color: Colors.orange,fontWeight: FontWeight.bold),)
             ],
           ),
-          color: Color((math.Random().nextDouble() * 0xFFFFFF).toInt())
-              .withOpacity(1.0),
+
+
           height: Get.height * .09,
         ),
       )),

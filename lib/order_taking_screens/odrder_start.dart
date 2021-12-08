@@ -21,7 +21,6 @@ class _StartYourOrderState extends State<StartYourOrder> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -39,7 +38,10 @@ class _StartYourOrderState extends State<StartYourOrder> {
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 15.0),
-            child: InkWell(onTap: (){Get.to(() =>const LinkUi());},
+            child: InkWell(
+              onTap: () {
+                Get.to(() => const LinkUi());
+              },
               child: SvgPicture.asset(
                 'assets/menu.svg',
                 color: Colors.black,
@@ -57,46 +59,48 @@ class _StartYourOrderState extends State<StartYourOrder> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(
-                  flex: 5,
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.only(left: 20.0),
-                        child: Text(
-                          "Welcome !",
-                          style: TextStyle(color: Colors.grey),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.only(left: 20.0),
-                        child: Text(
-                          "Khaled Al-Kayali",
-                          style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      bar(),
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.only(left: 20.0),
+                    child: Text(
+                      "Welcome !",
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.only(left: 20.0),
+                    child: Text(
+                      "Khaled Al-Kayali",
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  bar(),
 
-                      ///
-                      /// /// Carousal Slider /// ///
-                      ///
-                      ///
-                     carousalSlider(),
-                      bar(),
-                    ],
-                  )),
+                  ///
+                  /// /// Carousal Slider /// ///
+                  ///
+                  ///
+                  carousalSlider(),
+                  bar(),
+                ],
+              )),
               Expanded(
-                  flex: 8,
+
+
+
+
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -107,13 +111,13 @@ class _StartYourOrderState extends State<StartYourOrder> {
                             Row(
                               children: [
                                 SizedBox(
-                                  width: Get.width * .12,
+                                  width: Get.width * .1,
                                 ),
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     SizedBox(
-                                      height: Get.height * .03,
+                                      height: Get.height * .01,
                                     ),
                                     const Padding(
                                       padding: EdgeInsets.only(left: 15.0),
@@ -131,7 +135,10 @@ class _StartYourOrderState extends State<StartYourOrder> {
                                     Padding(
                                       padding: const EdgeInsets.only(top: 15.0),
                                       child:
-                                          Image.asset("assets/SeekPng 1.png"),
+                                          Image.asset( "assets/SeekPng 1.png",
+                                              width:Get.width*.5,
+                                            height: Get.height*.2,
+                                             ),
                                     )
                                   ],
                                 ),
@@ -325,7 +332,8 @@ class _StartYourOrderState extends State<StartYourOrder> {
                             ),
                           )),
                     ],
-                  )),
+                  )
+                  ),
             ],
           )),
     );

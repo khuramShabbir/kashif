@@ -18,170 +18,193 @@ class SignInUI extends StatefulWidget {
 class _SignInUIState extends State<SignInUI> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(resizeToAvoidBottomInset: false,
+    return Scaffold(
+        resizeToAvoidBottomInset: false,
         body: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        SizedBox(
-          child: Row(
-            children: [
-              SizedBox(
-                width: Get.width * 0.12,
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  Text(
-                    "Sign in",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
-                  ),
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              child: Row(
+                children: [
                   SizedBox(
-                    height: 50,
+                    width: Get.width * 0.12,
                   ),
-                  Text(
-                    "What's Your Number?",
-                    style: TextStyle(fontSize: 18, color: Colors.grey),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: const [
+                      Text(
+                        "Sign in",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 18),
+                      ),
+                      SizedBox(
+                        height: 50,
+                      ),
+                      Text(
+                        "What's Your Number?",
+                        style: TextStyle(fontSize: 16, color: Colors.grey),
+                      ),
+                    ],
                   ),
                 ],
               ),
-            ],
-          ),
-          height: Get.height * 0.35,
-        ),
-        SizedBox(
-          width: Get.width,
-          child: Row(
-            children: [
-              SizedBox(
-                width: Get.width * 0.15,
-              ),
-              Expanded(
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: Get.height * 0.09,
-                    ),
-                    //TODO: implement on 'onChange'
-                    customInputFormField(
-                      onChange: (value){
-                        logger.e(value);
-                        },
-                        prefixIconList: Row(mainAxisSize: MainAxisSize.min,
-                          children: [
-                            SvgPicture.asset(
-                              'assets/user_outline.svg',color: Colors.black,
-                              width: 25.0,
-                              height: 25.0,
+              height: Get.height * 0.35,
+            ),
+            SizedBox(
+              width: Get.width,
+              child: Row(
+                children: [
+                  SizedBox(
+                    width: Get.width * 0.15,
+                  ),
+                  Expanded(
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: Get.height * 0.09,
+                        ),
+                        //TODO: implement on 'onChange'
+                        customInputFormField(
+                            onChange: (value) {
+                              logger.e(value);
+                            },
+                            prefixIconList: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                SvgPicture.asset(
+                                  'assets/user_outline.svg',
+                                  color: Colors.black,
+                                  width: 25.0,
+                                  height: 25.0,
+                                ),
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                                Container(
+                                  color: Colors.grey,
+                                  width: 1.5,
+                                  height: 20,
+                                )
+                              ],
                             ),
-                           const SizedBox(width: 10,),
-                            Container(
-                              color: Colors.grey,
-                              width: 1.5,
-                              height: 20,
-                            )
-                          ],
+                            hintText: "Create an account here",
+                            fontSize: 13),
+                        SizedBox(
+                          height: Get.height * .01,
                         ),
-                        hintText: "Create an account here",
-                        fontSize: 13),
-                    SizedBox(height:Get.height*.01 ,),
-                    customInputFormField(
-                      //TODO: implement on 'onChange'
-                      onChange: (value){
-                        logger.e(value);
+                        customInputFormField(
+                          //TODO: implement on 'onChange'
+                          onChange: (value) {
+                            logger.e(value);
+                          },
+                          keyboardType: TextInputType.phone,
 
-                      },
-                      keyboardType: TextInputType.phone,
-
-                      prefixIconList: Row(mainAxisSize: MainAxisSize.min,
-                        children: [
-                          SvgPicture.asset(
-                            'assets/smartphone.svg',color: Colors.black,
-                            width: 25.0,
-                            height: 25.0,
+                          prefixIconList: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              SvgPicture.asset(
+                                'assets/smartphone.svg',
+                                color: Colors.black,
+                                width: 25.0,
+                                height: 25.0,
+                              ),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Container(
+                                color: Colors.grey,
+                                width: 1.5,
+                                height: 20,
+                              )
+                            ],
                           ),
-
-                          const SizedBox(width: 10,),
-                          Container(
-                            color: Colors.grey,
-                            width: 1.5,
-                            height: 20,
-                          )
-                        ],
-                      ),
-                      hintText: "Mobile Number",
-                      fontSize: 13,
-                    ),
-                    SizedBox(
-                      height: Get.height * .05,
-                    ),
-                     InkWell(onTap: (){Get.to(() =>const ForgetPasswordUi());},
-                      child:const Text(
-                        "Forget Password?",
-                        style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            decoration: TextDecoration.underline),
-                      ),
-                    ),
-                    SizedBox(
-                      height: Get.height * .05,
-                    ),
-                    customButton(
-                      onClick: () {Get.to(() =>const OtpVerifyCode());},
-                      buttonHeight: Get.height * .07,
-                      buttonWidth: Get.width * 0.4,
-                      buttonWidget: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          Text(
-                            "Sign in ",
-                            style: TextStyle(color: Colors.white, fontSize: 20),
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Icon(
-                            Icons.arrow_forward_outlined,
-                            color: Colors.white,
-                          )
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      height: Get.height * .05,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children:  [
-                       const Text(
-                          'New member ?',
-                          style: TextStyle(color: Colors.grey),
+                          hintText: "Mobile Number",
+                          fontSize: 13,
                         ),
-                       const SizedBox(
-                          width: 10,
+                        SizedBox(
+                          height: Get.height * .05,
                         ),
-                        InkWell(onTap: (){Get.to(() =>const SignUpUi());},
-                          child:const Text(
-                            'Sign up',
+                        InkWell(
+                          onTap: () {
+                            Get.to(() => const ForgetPasswordUi());
+                          },
+                          child: const Text(
+                            "Forget Password?",
                             style: TextStyle(
+                                fontSize: 16,
                                 fontWeight: FontWeight.bold,
                                 decoration: TextDecoration.underline),
                           ),
                         ),
+                        SizedBox(
+                          height: Get.height * .05,
+                        ),
+                        customButton(
+                          onClick: () {
+                            Get.to(() => const OtpVerifyCode());
+                          },
+                          buttonHeight: Get.height * .07,
+                          buttonWidget: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal:25),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: const [
+                                Text(
+                                  "Sign in",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 16),
+                                ),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Icon(
+                                  Icons.arrow_forward_outlined,
+                                  color: Colors.white,
+                                  size: 15,
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: Get.height * .05,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Text(
+                              'New member ?',
+                              style: TextStyle(color: Colors.grey),
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            InkWell(
+                              onTap: () {
+                                Get.to(() => const SignUpUi());
+                              },
+                              child: const Text(
+                                'Sign up',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    decoration: TextDecoration.underline),
+                              ),
+                            ),
+                          ],
+                        )
                       ],
-                    )
-                  ],
-                ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: Get.width * 0.15,
+                  )
+                ],
               ),
-              SizedBox(
-                width: Get.width * 0.15,
-              )
-            ],
-          ),
-          height: Get.height * 0.65,
-        ),
-      ],
-    ));
+              height: Get.height * 0.65,
+            ),
+          ],
+        ));
   }
 }

@@ -12,7 +12,7 @@ class Vehicles extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: Colors.white,
@@ -30,16 +30,17 @@ class Vehicles extends StatelessWidget {
         ],
       ),
       body: SizedBox(
-        height: Get.height * .8,
-        width: Get.width * .9,
-        child: Column(
+        height: Get.height,
+        width: Get.width,
+        child: Column(mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            customDetailBar(width: Get.width * .9, height: Get.height * .1),
-            customDetailBar(width: Get.width * .9, height: Get.height * .1),
-            customDetailBar(width: Get.width * .9, height: Get.height * .1),
-            customDetailBar(width: Get.width * .9, height: Get.height * .1),
-            customDetailBar(width: Get.width * .9, height: Get.height * .1),
+            const SizedBox(height: 20,),
+            customDetailBar(width: Get.width *.9, height: Get.height * .12),
+            customDetailBar(width: Get.width *.9, height: Get.height * .12,showImageAddress: "assets/centerInspection.png"),
+            customDetailBar(width: Get.width *.9, height: Get.height * .12),
+            customDetailBar(width: Get.width *.9, height: Get.height * .12,showImageAddress: "assets/centerInspection.png"),
+            customDetailBar(width: Get.width *.9, height: Get.height * .12,showImageAddress: "assets/centerInspection.png"),
           ],
         ),
       ),

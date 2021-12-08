@@ -79,6 +79,13 @@
             </list>
           </value>
         </entry>
+        <entry key="flutter_otp_text_field">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../../../flutter_windows_2.5.3-stable/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_otp_text_field-1.0.0/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="flutter_rating_bar">
           <value>
             <list>
@@ -267,6 +274,7 @@
       <root url="file://$PROJECT_DIR$/../../../../flutter_windows_2.5.3-stable/flutter/.pub-cache/hosted/pub.dartlang.org/cupertino_icons-1.0.4/lib" />
       <root url="file://$PROJECT_DIR$/../../../../flutter_windows_2.5.3-stable/flutter/.pub-cache/hosted/pub.dartlang.org/fake_async-1.2.0/lib" />
       <root url="file://$PROJECT_DIR$/../../../../flutter_windows_2.5.3-stable/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_lints-1.0.4/lib" />
+      <root url="file://$PROJECT_DIR$/../../../../flutter_windows_2.5.3-stable/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_otp_text_field-1.0.0/lib" />
       <root url="file://$PROJECT_DIR$/../../../../flutter_windows_2.5.3-stable/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_rating_bar-4.0.0/lib" />
       <root url="file://$PROJECT_DIR$/../../../../flutter_windows_2.5.3-stable/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_svg-0.23.0+1/lib" />
       <root url="file://$PROJECT_DIR$/../../../../flutter_windows_2.5.3-stable/flutter/.pub-cache/hosted/pub.dartlang.org/get-4.5.1/lib" />

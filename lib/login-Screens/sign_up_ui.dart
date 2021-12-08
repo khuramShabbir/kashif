@@ -229,7 +229,6 @@ class _SignInUIState extends State<SignUpUi> {
                         customButton(
                           onClick: () {Get.to(() =>const OtpVerifyCode());},
                           buttonHeight: Get.height * .07,
-                          buttonWidth: Get.width * 0.4,
                           buttonWidget: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: const [

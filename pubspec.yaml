@@ -36,6 +36,7 @@ dependencies:
   logger:
   flutter_svg:
   flutter_rating_bar:
+  flutter_otp_text_field: ^1.0.0
 
 
 

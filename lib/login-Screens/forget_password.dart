@@ -35,14 +35,14 @@ class _SignInUIState extends State<ForgetPasswordUi> {
                       Text(
                         "Forgot Password ?",
                         style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 25),
+                            fontWeight: FontWeight.bold, fontSize: 16),
                       ),
                       SizedBox(
                         height: 50,
                       ),
                       Text(
                         "Enter Your email address",
-                        style: TextStyle(fontSize: 18, color: Colors.grey),
+                        style: TextStyle(fontSize: 16, color: Colors.grey),
                       ),
                     ],
                   ),
