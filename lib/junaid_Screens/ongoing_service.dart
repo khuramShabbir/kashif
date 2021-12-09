@@ -70,7 +70,7 @@ class _OnGoingServicesUiState extends State<OnGoingServicesUi> {
                   child: Container(
                     child: Center(child: Text('UPCOMING',style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        color: isTaped?Color(primaryBlueColor):Color(primaryColor).withOpacity(.4) ),)),
+                        color: isTaped?const Color(primaryBlueColor):const Color(primaryColor).withOpacity(.4) ),)),
 
 
                     height: Get.height * .055,
