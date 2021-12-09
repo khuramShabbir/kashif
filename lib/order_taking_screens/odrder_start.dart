@@ -4,6 +4,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:kashif/anas_screens/profile.dart';
+import 'package:kashif/junaid_Screens/ongoing_service.dart';
 import 'package:kashif/junaid_Screens/ongoing_service_screen.dart';
 import 'package:kashif/order_taking_screens/compelet_order.dart';
 import 'package:kashif/order_taking_screens/link_ui.dart';
@@ -319,7 +320,7 @@ class _StartYourOrderState extends State<StartYourOrder> {
                                       child: SvgPicture.asset("assets/Union.svg")),
                                   SvgPicture.asset("assets/Union.svg"),
                                   InkWell(
-                                      onTap: (){Get.to(() =>const OngoingServiceScreen());},
+                                      onTap: (){Get.to(() =>const OnGoingServicesUi());},
 
                                       child: SvgPicture.asset("assets/Union.svg")),
                                   InkWell(

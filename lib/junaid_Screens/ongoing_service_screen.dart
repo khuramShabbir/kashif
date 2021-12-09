@@ -18,13 +18,13 @@ class _OngoingServiceScreenState extends State<OngoingServiceScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
+      body: SizedBox(
         height: Get.height,
         width: Get.width,
         child: SingleChildScrollView(
           child: Column(
             children: [
-              SizedBox(height: 12,),
+              const SizedBox(height: 12,),
               appBar('Ongoing service'),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -43,12 +43,7 @@ class _OngoingServiceScreenState extends State<OngoingServiceScreen> {
                               topLeft: Radius.circular(12),
                               bottomLeft: Radius.circular(12)),
                           border: Border.all(width: 1, color: Colors.blueAccent)
-                          // border: Border(
-                          //   top: BorderSide(width: 2),
-                          //   bottom: BorderSide(width: 2),
-                          //   left: BorderSide(width: 2),
-                          //   right: BorderSide(width: 1)
-                          // )
+
                       ),
                         alignment: Alignment.center,
                         child: const Text(
@@ -66,12 +61,7 @@ class _OngoingServiceScreenState extends State<OngoingServiceScreen> {
                                 topLeft: Radius.circular(12),
                                 bottomLeft: Radius.circular(12)),
                             border: Border.all(width: 1,)
-                          // border: Border(
-                          //   top: BorderSide(width: 2),
-                          //   bottom: BorderSide(width: 2),
-                          //   left: BorderSide(width: 2),
-                          //   right: BorderSide(width: 1)
-                          // )
+
                         ),
                         alignment: Alignment.center,
                         child: const Text(
@@ -95,12 +85,7 @@ class _OngoingServiceScreenState extends State<OngoingServiceScreen> {
                               topRight: Radius.circular(12),
                               bottomRight: Radius.circular(12)),
                           border: Border.all(width: 1)
-                          // border: Border(
-                          //     top: BorderSide(width: 2),
-                          //     bottom: BorderSide(width: 2),
-                          //     left: BorderSide(width: 1),
-                          //     right: BorderSide(width: 2)
-                          // )
+
                       ),
                       alignment: Alignment.center,
                       child: const Text(
@@ -115,12 +100,7 @@ class _OngoingServiceScreenState extends State<OngoingServiceScreen> {
                               topRight: Radius.circular(12),
                               bottomRight: Radius.circular(12)),
                           border: Border.all(width: 1, color: Colors.blueAccent)
-                        // border: Border(
-                        //     top: BorderSide(width: 2),
-                        //     bottom: BorderSide(width: 2),
-                        //     left: BorderSide(width: 1),
-                        //     right: BorderSide(width: 2)
-                        // )
+
                       ),
                       alignment: Alignment.center,
                       child: const Text(
@@ -148,7 +128,7 @@ class _OngoingServiceScreenState extends State<OngoingServiceScreen> {
                       );
                     }
                 ),
-              ) else Container(
+              ) else SizedBox(
                 height: Get.height*0.7,
                 width: Get.width*0.9,
                 child: ListView.builder(
