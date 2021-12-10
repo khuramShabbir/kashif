@@ -2,8 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:kashif/junaid_Screens/car_brand_details_2_ui.dart';
 
 import '../utils.dart';
+import 'car_brand_details.dart';
 
 class OnGoingServicesUi extends StatefulWidget {
   const OnGoingServicesUi({Key? key}) : super(key: key);
@@ -118,13 +120,17 @@ class _OnGoingServicesUiState extends State<OnGoingServicesUi> {
               ],
             ),
 
-            isTaped? customCardView ():Column(children: [Padding(
+            isTaped? InkWell(
+                onTap: (){Get.to(()=>const CarBrandDetailUi());},
+                child: customCardView ()):InkWell(onTap: (){Get.to(()=>const CarBrandUi2());},
+                  child: Column(children: [Padding(
               padding: const EdgeInsets.only(top: 10.0),
               child: customCarCardView(),
             ),Padding(
               padding: const EdgeInsets.only(top: 15.0),
               child: customCarCardView(),
-            )],)
+            )],),
+                )
 
 
 

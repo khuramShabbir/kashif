@@ -6,14 +6,14 @@ import 'package:kashif/utils.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:shape_of_view_null_safe/shape_of_view_null_safe.dart';
 
-class HomeUI extends StatefulWidget {
-  const HomeUI({Key? key}) : super(key: key);
+class HomeUi extends StatefulWidget {
+  const HomeUi({Key? key}) : super(key: key);
 
   @override
-  _HomeUIState createState() => _HomeUIState();
+  _HomeUiState createState() => _HomeUiState();
 }
 
-class _HomeUIState extends State<HomeUI> {
+class _HomeUiState extends State<HomeUi> {
   List<String> assetImages = [
     'assets/splash_bg.png',
     'assets/splash_bg.png',

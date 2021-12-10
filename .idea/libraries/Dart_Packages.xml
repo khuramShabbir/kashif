@@ -170,6 +170,13 @@
             </list>
           </value>
         </entry>
+        <entry key="percent_indicator">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../../../flutter_windows_2.5.3-stable/flutter/.pub-cache/hosted/pub.dartlang.org/percent_indicator-2.1.9+1/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="petitparser">
           <value>
             <list>
@@ -286,6 +293,7 @@
       <root url="file://$PROJECT_DIR$/../../../../flutter_windows_2.5.3-stable/flutter/.pub-cache/hosted/pub.dartlang.org/path-1.8.0/lib" />
       <root url="file://$PROJECT_DIR$/../../../../flutter_windows_2.5.3-stable/flutter/.pub-cache/hosted/pub.dartlang.org/path_drawing-0.5.1+1/lib" />
       <root url="file://$PROJECT_DIR$/../../../../flutter_windows_2.5.3-stable/flutter/.pub-cache/hosted/pub.dartlang.org/path_parsing-0.2.1/lib" />
+      <root url="file://$PROJECT_DIR$/../../../../flutter_windows_2.5.3-stable/flutter/.pub-cache/hosted/pub.dartlang.org/percent_indicator-2.1.9+1/lib" />
       <root url="file://$PROJECT_DIR$/../../../../flutter_windows_2.5.3-stable/flutter/.pub-cache/hosted/pub.dartlang.org/petitparser-4.4.0/lib" />
       <root url="file://$PROJECT_DIR$/../../../../flutter_windows_2.5.3-stable/flutter/.pub-cache/hosted/pub.dartlang.org/provider-6.0.1/lib" />
       <root url="file://$PROJECT_DIR$/../../../../flutter_windows_2.5.3-stable/flutter/.pub-cache/hosted/pub.dartlang.org/shape_of_view_null_safe-2.0.0/lib" />

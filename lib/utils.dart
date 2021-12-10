@@ -9,7 +9,13 @@ import 'package:flutter_svg/flutter_svg.dart';
 const primaryColor = 0xFFFF203840;
 const primaryBlueColor = 0xFF304FFE;
 var barColor = Colors.black.withOpacity(0.2);
+double progressBarPersent = 0.0;
+
 var logger = Logger();
+
+///
+///  Progress Bar///
+///
 
 ///bar///
 ///
@@ -110,14 +116,18 @@ Widget customInputFormField({
   var suffixIcon,
   var prefixIconList,
   String? hintText,
-  double fontSize = 20,
+  double fontSize = 16,
   var textColor = Colors.grey,
+  bool isOutlinedBorder = false,
 }) {
   return TextFormField(
     keyboardType: keyboardType,
     obscureText: obscure,
     onChanged: onChange,
     decoration: InputDecoration(
+      border: isOutlinedBorder
+          ? OutlineInputBorder(borderRadius: BorderRadius.circular(10))
+          : null,
       prefixIcon: prefixIconList,
       suffix: suffixIcon,
       hintText: hintText,
@@ -391,96 +401,121 @@ Widget customCardView() {
 }
 
 Widget customCarCardView() {
-  return
-    Stack(children: [
-       Center(
-         child: Container(
-           height: Get.height * .2,
-           width: Get.width * .8,
-           decoration: BoxDecoration(color: Colors.white, boxShadow: [
-             BoxShadow(
-                 color: Colors.grey.withOpacity(.5),
-                 offset:const Offset(-3, 3),
-                 blurRadius: 5),
-           ]),
-           child: Row(
-             children: [
-               Expanded(
-                 flex: 2,
-                 child: Column(
-                   children: [
-                     Expanded(flex:2,
-                       child: Padding(
-                         padding: const EdgeInsets.only(left:15.0),
-                         child: Column(
-                           crossAxisAlignment: CrossAxisAlignment.start,
-                           children: [
-                             const SizedBox(
-                               height: 15,
-                             ),
-                             const Padding(
-                               padding: EdgeInsets.only(bottom: 8.0),
-                               child: Text(
-                                 'Ford Crown Victoria',
-                                 style: TextStyle(fontWeight: FontWeight.bold),
-                               ),
-                             ),
-                             const Padding(
-                               padding: EdgeInsets.only(bottom: 8.0),
-                               child: Text(
-                                 'AAA - 0000',
-                                 style: TextStyle(
-                                     color: Colors.red, fontWeight: FontWeight.bold),
-                               ),
-                             ),
-                             Row(
-                               children: [
-                                 const Text('******879CG'),
-                                 Padding(
-                                   padding: const EdgeInsets.only(left: 8.0),
-                                   child: Container(
-                                     width: Get.width * .18,
-                                     height: Get.height * .022,
-                                     decoration: BoxDecoration(color: Colors.green.withOpacity(.15),
-                                         borderRadius: BorderRadius.circular(5),
-                                         border: Border.all(color: Colors.green)),
-                                     child: const Center(
-                                       child: Text(
-                                         "CONFIRMED",
-                                         style: TextStyle(
-                                             color: Colors.green, fontSize: 10),
-                                       ),
-                                     ),
-                                   ),
-                                 )
-                               ],
-                             ),
-                           ],
-                         ),
-                       ),
-                     ),
-                     Expanded(
-                       child: Container(
-                         decoration:  BoxDecoration(border: Border.all(width: 1,color: Colors.grey.withOpacity(.3))),
-                         child: Row(
-                           children: [
-                             const Expanded(child: Center(child: Text('re-application',style: TextStyle(color: Color(primaryBlueColor),fontWeight: FontWeight.bold),))),
-                             Container(color: Colors.grey,width: 1),
-                             const  Expanded(child: Center(child: Text('Service report',style: TextStyle(color: Colors.red,fontWeight: FontWeight.bold),))),
-                           ],
-                         ),
-                       ),
-                     )
-                   ],
-                 ),
-               ),
-             ],
-           ),
-         ),
-       ),
-       Align(alignment:Alignment.centerRight,child: Image.asset('assets/car.png',width: Get.width*.45,))
-
-     ],);
+  return Stack(
+    children: [
+      Center(
+        child: Container(
+          height: Get.height * .2,
+          width: Get.width * .8,
+          decoration: BoxDecoration(color: Colors.white, boxShadow: [
+            BoxShadow(
+                color: Colors.grey.withOpacity(.5),
+                offset: const Offset(-3, 3),
+                blurRadius: 5),
+          ]),
+          child: Row(
+            children: [
+              Expanded(
+                flex: 2,
+                child: Column(
+                  children: [
+                    Expanded(
+                      flex: 2,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 15.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const SizedBox(
+                              height: 15,
+                            ),
+                            const Padding(
+                              padding: EdgeInsets.only(bottom: 8.0),
+                              child: Text(
+                                'Ford Crown Victoria',
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                            const Padding(
+                              padding: EdgeInsets.only(bottom: 8.0),
+                              child: Text(
+                                'AAA - 0000',
+                                style: TextStyle(
+                                    color: Colors.red,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                            Row(
+                              children: [
+                                const Text('******879CG'),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 8.0),
+                                  child: Container(
+                                    width: Get.width * .18,
+                                    height: Get.height * .022,
+                                    decoration: BoxDecoration(
+                                        color: Colors.green.withOpacity(.15),
+                                        borderRadius: BorderRadius.circular(5),
+                                        border:
+                                            Border.all(color: Colors.green)),
+                                    child: const Center(
+                                      child: Text(
+                                        "CONFIRMED",
+                                        style: TextStyle(
+                                            color: Colors.green, fontSize: 10),
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Container(
+                        decoration: BoxDecoration(
+                            border: Border.all(
+                                width: 1, color: Colors.grey.withOpacity(.3))),
+                        child: Row(
+                          children: [
+                            const Expanded(
+                                child: Center(
+                                    child: Text(
+                              're-application',
+                              style: TextStyle(
+                                  color: Color(primaryBlueColor),
+                                  fontWeight: FontWeight.bold),
+                            ))),
+                            Container(color: Colors.grey, width: 1),
+                            const Expanded(
+                                child: Center(
+                                    child: Text(
+                              'Service report',
+                              style: TextStyle(
+                                  color: Colors.red,
+                                  fontWeight: FontWeight.bold),
+                            ))),
+                          ],
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+      Align(
+          alignment: Alignment.centerRight,
+          child: Image.asset(
+            'assets/car.png',
+            width: Get.width * .45,
+          ))
+    ],
+  );
 }
 
 Widget confirmButton() {
@@ -529,14 +564,17 @@ Widget carBrand(String carName) {
         ),
         Text(carName),
         Expanded(child: Container()),
-        SvgPicture.asset(
-          'assets/ShareIcon.svg',
-          height: 22,
-        ),
+        SizedBox(
+            width: 20,
+            height: 20,
+            child: Image.asset(
+              "assets/upload.png",
+              fit: BoxFit.cover,
+            )),
         const SizedBox(
           width: 8,
         ),
-        SvgPicture.asset('assets/TimeCalendar.svg')
+        Image.asset("assets/printer.png")
       ],
     ),
   );

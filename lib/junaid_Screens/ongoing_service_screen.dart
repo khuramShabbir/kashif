@@ -2,8 +2,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:kashif/junaid_Screens/report_details_screen.dart';
-import 'package:kashif/junaid_Screens/report_details_screen1.dart';
+import 'package:kashif/junaid_Screens/car_brand_details_2_ui.dart';
+import 'package:kashif/junaid_Screens/car_brand_details.dart';
 
 import '../utils.dart';
 
