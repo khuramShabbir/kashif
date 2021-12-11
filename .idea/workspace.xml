@@ -5,23 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dcbffef9-3b3b-4332-9dfa-79ca0fc78173" name="Default Changelist" comment="ui update on 13/08/2021">
-      <change afterPath="$PROJECT_DIR$/assets/printer.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/scan.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/upload.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/order_taking_screens/ongoing_inspection.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/Edit.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/bank_Riyadh.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/cards.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/mastercard .png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/pay-now.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/pin_location.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/slection.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/visa.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/order_taking_screens/ongoing_inspection_pickup_address.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.packages" beforeDir="false" afterPath="$PROJECT_DIR$/.packages" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/junaid_Screens/ongoing_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/junaid_Screens/ongoing_service.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/junaid_Screens/ongoing_service_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/junaid_Screens/ongoing_service_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/junaid_Screens/report_details_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/junaid_Screens/car_brand_details_2_ui.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/junaid_Screens/report_details_screen1.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/junaid_Screens/car_brand_details.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/order_taking_screens/odrder_start.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/order_taking_screens/odrder_start.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/splash_screen/home_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/splash_screen/home_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/utils.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/utils.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/order_taking_screens/ongoing_inspection.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/order_taking_screens/ongoing_inspection.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,7 +125,14 @@
       <option name="project" value="LOCAL" />
       <updated>1639049864619</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="ui update on 13/08/2021">
+      <created>1639153040057</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1639153040057</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

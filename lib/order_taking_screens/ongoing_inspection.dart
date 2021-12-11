@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:kashif/order_taking_screens/ongoing_inspection_pickup_address.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
-
 import '../utils.dart';
 
 class OngoingInspectionUi extends StatefulWidget {
@@ -16,7 +16,6 @@ class OngoingInspectionUi extends StatefulWidget {
 class _OngoingInspectionUiState extends State<OngoingInspectionUi> {
   double width = .8;
   double height = .06;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -132,7 +131,7 @@ class _OngoingInspectionUiState extends State<OngoingInspectionUi> {
                 height: Get.height * .02,
               ),
               customButton(
-                  onClick: () {},
+                  onClick: () {Get.to(()=>const OngoingInspectionPickUpAdressUi());},
                   buttonHeight: Get.height * .055,
                   buttonWidget: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 30.0),
