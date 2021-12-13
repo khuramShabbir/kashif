@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:kashif/order_taking_screens/google_mape.dart';
+import 'package:kashif/order_taking_screens/stepper_ui.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
 import '../utils.dart';
@@ -47,7 +49,7 @@ class _OngoingInspectionPickUpAdressUiState
           alignment: MainAxisAlignment.center,
           width: Get.width * .6,
           lineHeight: 10.0,
-          percent: progressBarPersent = 0.3,
+          percent: progressBarPersent = 0.5,
           backgroundColor: Colors.grey.withOpacity(.5),
           progressColor: Colors.black,
           padding: const EdgeInsets.all(0),
@@ -68,57 +70,59 @@ class _OngoingInspectionPickUpAdressUiState
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Container(
-                    width: Get.width * .8,
-                    height: Get.height * .1,
-                    decoration: BoxDecoration(
-                        border: Border.all(
-                            color: const Color(primaryColor).withOpacity(.1)),
-                        borderRadius: BorderRadius.circular(15)),
-                    child: Row(
-                      children: [
-                        Expanded(
-                            flex: 2,
-                            child: Align(
-                                alignment: Alignment.topCenter,
-                                child: Padding(
-                                  padding: const EdgeInsets.only(top: 10.0),
-                                  child: SvgPicture.asset(
-                                      "assets/pin_location.svg"),
-                                ))),
-                        Expanded(
-                          flex: 8,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: const [
-                              Text(
-                                'Pick-up Address',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black),
-                              ),
-                              Text(
-                                'B/62,Bhaweshwar Darshan,Altamount',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 10),
-                              ),
-                            ],
+                  InkWell(onTap:(){Get.to(()=>const GooGleMap());},
+                    child: Container(
+                      width: Get.width * .8,
+                      height: Get.height * .1,
+                      decoration: BoxDecoration(
+                          border: Border.all(
+                              color: const Color(primaryColor).withOpacity(.1)),
+                          borderRadius: BorderRadius.circular(15)),
+                      child: Row(
+                        children: [
+                          Expanded(
+                              flex: 2,
+                              child: Align(
+                                  alignment: Alignment.topCenter,
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(top: 10.0),
+                                    child: SvgPicture.asset(
+                                        "assets/pin_location.svg"),
+                                  ))),
+                          Expanded(
+                            flex: 8,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: const [
+                                Text(
+                                  'Pick-up Address',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black),
+                                ),
+                                Text(
+                                  'B/62,Bhaweshwar Darshan,Altamount',
+                                  style: TextStyle(
+                                      color: Colors.black, fontSize: 10),
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                        const Expanded(
-                            flex: 3,
-                            child: Align(
-                                alignment: Alignment.topCenter,
-                                child: Padding(
-                                  padding: EdgeInsets.only(top: 10.0),
-                                  child: Text(
-                                    'CHANGE',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                ))),
-                      ],
+                          const Expanded(
+                              flex: 3,
+                              child: Align(
+                                  alignment: Alignment.topCenter,
+                                  child: Padding(
+                                    padding: EdgeInsets.only(top: 10.0),
+                                    child: Text(
+                                      'CHANGE',
+                                      style:
+                                          TextStyle(fontWeight: FontWeight.bold),
+                                    ),
+                                  ))),
+                        ],
+                      ),
                     ),
                   ),
                   const SizedBox(
@@ -229,9 +233,12 @@ Widget bottomSheet() {
             centerTitle: true,
             elevation: 0,
             backgroundColor: Colors.transparent,
-            leading: const Icon(
-              Icons.arrow_back,
-              color: Colors.white,
+            leading: InkWell(
+              onTap: Get.back,
+              child:const Icon(
+                Icons.arrow_back,
+                color: Colors.white,
+              ),
             ),
             title: const Text(
               "Order Confirmation",
@@ -493,7 +500,7 @@ Widget bottomSheet() {
                           ],
                         ),
                         customButton(
-                            onClick: () {},
+                            onClick: () {Get.to(()=>const StepperUi());},
                             buttonHeight: Get.height * .06,
                             buttonWidget: Padding(
                               padding:

@@ -121,19 +121,30 @@ Widget customInputFormField({
   bool isOutlinedBorder = false,
 }) {
   return TextFormField(
+
     keyboardType: keyboardType,
     obscureText: obscure,
     onChanged: onChange,
     decoration: InputDecoration(
+
+
+      disabledBorder: InputBorder.none,
       border: isOutlinedBorder
-          ? OutlineInputBorder(borderRadius: BorderRadius.circular(10))
+          ? OutlineInputBorder(
+
+
+
+          borderRadius: BorderRadius.circular(10))
           : null,
+
       prefixIcon: prefixIconList,
       suffix: suffixIcon,
       hintText: hintText,
+
       hintStyle: TextStyle(
         fontSize: fontSize,
         color: Colors.grey,
+
       ),
     ),
   );

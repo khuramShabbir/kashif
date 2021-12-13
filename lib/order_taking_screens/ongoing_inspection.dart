@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:kashif/order_taking_screens/ongoing_inspection_pickup_address.dart';
+import 'package:kashif/order_taking_screens/scan_card_example.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import '../utils.dart';
 
@@ -96,15 +97,18 @@ class _OngoingInspectionUiState extends State<OngoingInspectionUi> {
                               onChange: (value) {},
                               hintText: "2FABP7CWI8X13",
                               isOutlinedBorder: true,
-                              suffixIcon: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  SvgPicture.asset(
-                                    "assets/ic_scan.svg",
-                                    height: 20,
-                                  ),
-                                  const Text("  Scan")
-                                ],
+                              suffixIcon: InkWell(
+                                onTap: (){Get.to(()=>const ScanCardExample());},
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    SvgPicture.asset(
+                                      "assets/ic_scan.svg",
+                                      height: 20,
+                                    ),
+                                    const Text("  Scan")
+                                  ],
+                                ),
                               )),
                         ),
                         labelText('Car plate'),

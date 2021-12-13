@@ -38,6 +38,7 @@ dependencies:
   flutter_rating_bar:
   flutter_otp_text_field: ^1.0.0
   percent_indicator: "^2.1.7+2"
+  im_stepper: ^0.1.3
 
 
 
