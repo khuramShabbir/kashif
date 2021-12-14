@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:kashif/utils.dart';
 
 class GooGleMap extends StatefulWidget {
   const GooGleMap({Key? key}) : super(key: key);
@@ -11,6 +12,8 @@ class GooGleMap extends StatefulWidget {
 }
 
 class _GooGleMapState extends State<GooGleMap> {
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,6 +49,22 @@ class _GooGleMapState extends State<GooGleMap> {
       child:const Center(child: Text('TODO : Google Map ')),
 
       ),
+floatingActionButton: FloatingActionButton(onPressed: (){},child: const Icon(Icons.add),backgroundColor: Color(primaryColor),),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar:BottomNavigationBar( items: [
+        BottomNavigationBarItem(icon: SvgPicture.asset('assets/Home_Bottom_Nav_Bar.svg'),label: ""),
+        BottomNavigationBarItem(icon: SvgPicture.asset('assets/Home_Bottom_Nav_Bar.svg'),label: ""),
+        BottomNavigationBarItem(icon: SvgPicture.asset('assets/Home_Bottom_Nav_Bar.svg',color: Colors.transparent,),label: ""),
+        BottomNavigationBarItem(icon: SvgPicture.asset('assets/Home_Bottom_Nav_Bar.svg'),label: ""),
+        BottomNavigationBarItem(icon: SvgPicture.asset('assets/Home_Bottom_Nav_Bar.svg'),label: ""),
+
+
+
+
+      ], )
+        ,
+
+
 
 
 

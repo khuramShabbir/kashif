@@ -4,24 +4,12 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcbffef9-3b3b-4332-9dfa-79ca0fc78173" name="Default Changelist" comment="ui update on 13/08/2021">
-      <change afterPath="$PROJECT_DIR$/assets/carRed.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/carWhite.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/carYellow.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/carYellowOutlined.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/clockRed.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/clockYellow.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/dotYellow.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/googleMap.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/order_taking_screens/center_inspection_ui.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/order_taking_screens/goolemap_for_center_inspection.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
+    <list default="true" id="dcbffef9-3b3b-4332-9dfa-79ca0fc78173" name="Default Changelist" comment="ui update on 14/08/2021">
+      <change afterPath="$PROJECT_DIR$/assets/vehicels.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.packages" beforeDir="false" afterPath="$PROJECT_DIR$/.packages" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/order_taking_screens/google_mape.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/order_taking_screens/google_mape.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/order_taking_screens/goolemap_for_center_inspection.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/order_taking_screens/goolemap_for_center_inspection.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/order_taking_screens/odrder_start.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/order_taking_screens/odrder_start.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/order_taking_screens/ongoing_inspection_pickup_address.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/order_taking_screens/ongoing_inspection_pickup_address.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -152,7 +140,14 @@
       <option name="project" value="LOCAL" />
       <updated>1639393010162</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="ui update on 14/08/2021">
+      <created>1639477086718</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1639477086718</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -173,6 +168,7 @@
     <MESSAGE value="home screen done, login system done" />
     <MESSAGE value="ui update on 12/08/2021" />
     <MESSAGE value="ui update on 13/08/2021" />
-    <option name="LAST_COMMIT_MESSAGE" value="ui update on 13/08/2021" />
+    <MESSAGE value="ui update on 14/08/2021" />
+    <option name="LAST_COMMIT_MESSAGE" value="ui update on 14/08/2021" />
   </component>
 </project>

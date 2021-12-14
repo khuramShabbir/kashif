@@ -23,6 +23,14 @@ class _StartYourOrderState extends State<StartYourOrder> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+
+        onPressed: (){},
+      backgroundColor: const Color(primaryColor),
+          child: const Icon(Icons.add,),),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+
+
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
