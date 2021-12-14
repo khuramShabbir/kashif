@@ -1,26 +1,22 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:kashif/order_taking_screens/google_mape.dart';
-import 'package:kashif/order_taking_screens/stepper_ui.dart';
+import 'package:kashif/order_taking_screens/goolemap_for_center_inspection.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
-
 import '../utils.dart';
+import 'google_mape.dart';
+import 'link_ui.dart';
+import 'ongoing_inspection_pickup_address.dart';
 
-class OngoingInspectionPickUpAdressUi extends StatefulWidget {
-  const OngoingInspectionPickUpAdressUi({Key? key}) : super(key: key);
+class CenterInspectionUi extends StatefulWidget {
+  const CenterInspectionUi({Key? key}) : super(key: key);
 
   @override
-  _OngoingInspectionPickUpAdressUiState createState() =>
-      _OngoingInspectionPickUpAdressUiState();
+  _CenterInspectionUiState createState() => _CenterInspectionUiState();
 }
 
-class _OngoingInspectionPickUpAdressUiState
-    extends State<OngoingInspectionPickUpAdressUi> {
-  bool isSelected = false;
-
+class _CenterInspectionUiState extends State<CenterInspectionUi> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,26 +25,21 @@ class _OngoingInspectionPickUpAdressUiState
         elevation: 0,
         centerTitle: true,
         backgroundColor: Colors.white,
-        leading: InkWell(
-          onTap: () {
-            Get.back();
-          },
-          child: const Icon(
-            Icons.arrow_back,
-            color: Colors.black,
-          ),
+        leading: const Icon(
+          Icons.arrow_back,
+          color: Colors.black,
         ),
         actions: [
           Padding(
-            padding: const EdgeInsets.only(right: 15.0),
-            child: SvgPicture.asset('assets/menu.svg'),
+            padding: const EdgeInsets.only(right: 20.0),
+            child: SvgPicture.asset('assets/bell-ringing.svg'),
           )
         ],
         title: LinearPercentIndicator(
           alignment: MainAxisAlignment.center,
           width: Get.width * .6,
           lineHeight: 10.0,
-          percent: progressBarPersent = 0.5,
+          percent: progressBarPersent = 0.3,
           backgroundColor: Colors.grey.withOpacity(.5),
           progressColor: Colors.black,
           padding: const EdgeInsets.all(0),
@@ -130,43 +121,63 @@ class _OngoingInspectionPickUpAdressUiState
                   const SizedBox(
                     height: 20,
                   ),
-                  SizedBox(
-                    width: Get.width * .8,
-                    height: Get.height * .3,
-                    child: Row(
+                  Container(
+                    height: Get.height * .18,
+                  ),
+                  Container(width: Get.width*.8,
+                    height: Get.height * .15,
+                    decoration: BoxDecoration(
+
+                        border: Border.all(color: Colors.grey.withOpacity(.3))),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 15.0),
+                    child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            timePicker(time: '8:00am - 8:30am',onTap: (){}),
-                            timePicker(onTap: (){},
-                                time: '9:00am - 930am',
-                                timeColor: const Color(primaryBlueColor),
-                                borderColor: const Color(primaryBlueColor)),
-                            timePicker(onTap: (){},
-                              time: '10:00 - 10:30am',
+                      children:  [
+                        const Text("Available Places",style: TextStyle(fontWeight: FontWeight.bold,color: Colors.black),),
+                        Container(width: Get.width*.5,
+                        height: Get.height*.05,
+                          decoration:  BoxDecoration(
+                              borderRadius: BorderRadius.circular(7),
+                              color: const Color(primaryColor)),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                            child: Row(mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Image.asset('assets/carWhite.png'),
+                                Image.asset('assets/clockYellow.png'),
+                                Image.asset('assets/carRed.png'),
+                                Image.asset('assets/carYellow.png'),
+                                Image.asset('assets/clockRed.png'),
+
+
+                              ],
+
+
                             ),
-                            timePicker(time: '11:00 - 1130am',onTap: (){}),
-                          ],
+                          ),
+
+
+
+
                         ),
-                        Column(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            timePicker(time: '8:00am - 8:30am',onTap: (){}),
-                            timePicker(time: '9:00am - 930am',onTap: (){}),
-                            timePicker(time: '10:00 - 10:30am',onTap: (){}),
-                            timePicker(time: '11:00 - 1130am',onTap: (){}),
-                          ],
-                        ),
+
+
+
+
+
                       ],
                     ),
                   ),
-                  SizedBox(
-                    height: Get.height * .1,
+
+
+
                   ),
+
+
+                  SizedBox(height: Get.height*.15,),
+
                   customButton(
                       onClick: () {
                         //TODO: BottomSheet
@@ -180,7 +191,7 @@ class _OngoingInspectionPickUpAdressUiState
                           mainAxisSize: MainAxisSize.min,
                           children: const [
                             Text(
-                              'Book',
+                              'Next',
                               style: TextStyle(color: Colors.white),
                             ),
                             Icon(Icons.arrow_forward, color: Colors.white)
@@ -199,32 +210,6 @@ class _OngoingInspectionPickUpAdressUiState
     );
   }
 }
-
-Widget timePicker({
-  String time = "00:00am",
-  var timeColor = Colors.black,
-  var borderColor = const Color(0x81BBBBB8),
-  required Function onTap,
-}) {
-  return Container(
-    height: Get.height * .055,
-    width: Get.width * .37,
-    decoration: BoxDecoration(
-        border: Border.all(width: 1, color: borderColor),
-        borderRadius: BorderRadius.circular(25)),
-    child: Center(
-        child: InkWell(
-      child: Text(
-        time,
-        style: TextStyle(fontWeight: FontWeight.bold, color: timeColor),
-      ),
-      onTap: () {
-        onTap(value);
-      },
-    )),
-  );
-}
-
 Widget bottomSheet() {
   return Container(
     width: Get.width,
@@ -237,24 +222,24 @@ Widget bottomSheet() {
       children: [
         Expanded(
             child: Padding(
-          padding: const EdgeInsets.only(top: 10.0),
-          child: AppBar(
-            centerTitle: true,
-            elevation: 0,
-            backgroundColor: Colors.transparent,
-            leading: InkWell(
-              onTap: Get.back,
-              child: const Icon(
-                Icons.arrow_back,
-                color: Colors.white,
+              padding: const EdgeInsets.only(top: 10.0),
+              child: AppBar(
+                centerTitle: true,
+                elevation: 0,
+                backgroundColor: Colors.transparent,
+                leading: InkWell(
+                  onTap: Get.back,
+                  child: const Icon(
+                    Icons.arrow_back,
+                    color: Colors.white,
+                  ),
+                ),
+                title: const Text(
+                  "Order Confirmation",
+                  style: TextStyle(color: Colors.white),
+                ),
               ),
-            ),
-            title: const Text(
-              "Order Confirmation",
-              style: TextStyle(color: Colors.white),
-            ),
-          ),
-        )),
+            )),
         Expanded(
             flex: 7,
             child: Container(
@@ -496,7 +481,7 @@ Widget bottomSheet() {
                             Text(
                               "Total Price",
                               style:
-                                  TextStyle(color: Colors.grey.withOpacity(.5)),
+                              TextStyle(color: Colors.grey.withOpacity(.5)),
                             ),
                             const Text(
                               '\$11.20',
@@ -508,12 +493,12 @@ Widget bottomSheet() {
                         ),
                         customButton(
                             onClick: () {
-                              Get.to(() => const StepperUi());
+                              Get.to(() => const GoogleMapForCenterInspectionUi());
                             },
                             buttonHeight: Get.height * .06,
                             buttonWidget: Padding(
                               padding:
-                                  const EdgeInsets.symmetric(horizontal: 25.0),
+                              const EdgeInsets.symmetric(horizontal: 25.0),
                               child: Row(
                                 children: [
                                   Image.asset('assets/pay-now.png'),

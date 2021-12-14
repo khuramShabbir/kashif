@@ -1,4 +1,5 @@
-import 'package:flutter/cupertino.dart';
+// @dart=2.9
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -7,7 +8,10 @@ import 'package:kashif/utils.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
 
+
+
 main() {
+
   runApp(
     const GetMaterialApp(
       debugShowCheckedModeBanner: false,
@@ -16,7 +20,7 @@ main() {
   );
 }
 class ProgressBar extends StatefulWidget {
-  const ProgressBar({Key? key}) : super(key: key);
+  const ProgressBar({key}) : super(key: key);
 
   @override
   _ProgressBarState createState() => _ProgressBarState();

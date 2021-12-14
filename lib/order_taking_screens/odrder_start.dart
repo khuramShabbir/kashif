@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:kashif/anas_screens/profile.dart';
@@ -10,6 +8,7 @@ import 'package:kashif/order_taking_screens/link_ui.dart';
 import 'package:kashif/order_taking_screens/ongoing_inspection.dart';
 import 'package:kashif/order_taking_screens/vehicles.dart';
 import 'package:kashif/utils.dart';
+import 'center_inspection_ui.dart';
 
 
 
@@ -244,14 +243,16 @@ class _StartYourOrderState extends State<StartYourOrder> {
                                                                             Get.height *
                                                                                 .1),
                                                                   ),
-                                                                  customDetailBar(
-                                                                    showImageAddress: "assets/centerInspection.png",
-                                                                      width:
-                                                                          Get.width *
-                                                                              .9,
-                                                                      height:
-                                                                          Get.height *
-                                                                              .1)
+                                                                  InkWell(onTap: (){Get.to(()=>const CenterInspectionUi());},
+                                                                    child: customDetailBar(
+                                                                      showImageAddress: "assets/centerInspection.png",
+                                                                        width:
+                                                                            Get.width *
+                                                                                .9,
+                                                                        height:
+                                                                            Get.height *
+                                                                                .1),
+                                                                  )
                                                                 ]))),
                                                 SizedBox(
                                                   height: Get.height * .04,
