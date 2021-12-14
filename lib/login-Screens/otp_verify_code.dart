@@ -85,7 +85,8 @@ class _OtpVerifyCodeState extends State<OtpVerifyCode> {
                 onClick: () {
                   Get.to(() => const StartYourOrder());
                 },
-                buttonHeight: Get.height * 0.07,
+                buttonHeight: Get.height * .055,
+                buttonWidth: Get.width*.3,
                 buttonWidget: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Row(

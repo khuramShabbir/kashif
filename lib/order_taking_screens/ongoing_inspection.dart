@@ -137,22 +137,20 @@ class _OngoingInspectionUiState extends State<OngoingInspectionUi> {
               customButton(
                   onClick: () {Get.to(()=>const OngoingInspectionPickUpAdressUi());},
                   buttonHeight: Get.height * .055,
-                  buttonWidget: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 30.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: const [
-                        Text(
-                          'Next   ',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        Icon(
-                          Icons.arrow_forward,
-                          color: Colors.white,
-                          size: 18,
-                        )
-                      ],
-                    ),
+                  buttonWidth: Get.width*.3,
+                  buttonWidget: Row(
+                   mainAxisAlignment: MainAxisAlignment.center,
+                    children: const [
+                      Text(
+                        'Next   ',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      Icon(
+                        Icons.arrow_forward,
+                        color: Colors.white,
+                        size: 15,
+                      )
+                    ],
                   ))
             ],
           ),

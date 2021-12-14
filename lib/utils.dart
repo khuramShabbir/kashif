@@ -70,7 +70,8 @@ Widget carousalSlider() {
 Widget customButton({
   var buttonWidget,
   double borderRadius = 50,
-  double buttonHeight = 0,
+  double buttonHeight = 50,
+  double buttonWidth=150,
   required Function onClick,
 }) {
   return InkWell(
@@ -78,7 +79,12 @@ Widget customButton({
       onClick();
     },
     child: Container(
+      /// Please Set values of height and width where`s you want hit this method
+      /// buttonHeight:Get.height*.055,
+      /// buttonWidth:Get.width*.3,
+      ///
         height: buttonHeight,
+        width: buttonWidth,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(borderRadius),
           color: const Color(primaryColor),

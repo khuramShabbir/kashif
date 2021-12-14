@@ -173,17 +173,18 @@ class _OngoingInspectionPickUpAdressUiState
                         Get.bottomSheet(bottomSheet(),
                             isScrollControlled: true);
                       },
-                      buttonHeight: Get.height * .06,
+                      buttonHeight: Get.height * .055,
+                      buttonWidth: Get.width*.3,
                       buttonWidget: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 25.0),
                         child: Row(
-                          mainAxisSize: MainAxisSize.min,
+
                           children: const [
                             Text(
-                              'Book',
-                              style: TextStyle(color: Colors.white),
+                              'Book  ',
+                              style: TextStyle(color: Colors.white,),
                             ),
-                            Icon(Icons.arrow_forward, color: Colors.white)
+                            Icon(Icons.arrow_forward, color: Colors.white,size: 15,)
                           ],
                         ),
                       ))
@@ -510,22 +511,19 @@ Widget bottomSheet() {
                             onClick: () {
                               Get.to(() => const StepperUi());
                             },
-                            buttonHeight: Get.height * .06,
-                            buttonWidget: Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 25.0),
-                              child: Row(
-                                children: [
-                                  Image.asset('assets/pay-now.png'),
-                                  const Padding(
-                                    padding: EdgeInsets.only(left: 15.0),
-                                    child: Text(
-                                      'Pay now',
-                                      style: TextStyle(color: Colors.white),
-                                    ),
-                                  )
-                                ],
-                              ),
+                            buttonHeight: Get.height * .055,
+                            buttonWidth: Get.width*.35,
+                            buttonWidget: Row(mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image.asset('assets/pay-now.png'),
+                                const Padding(
+                                  padding: EdgeInsets.only(left: 15.0),
+                                  child: Text(
+                                    'Pay now',
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                )
+                              ],
                             ))
                       ],
                     ),

@@ -5,11 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dcbffef9-3b3b-4332-9dfa-79ca0fc78173" name="Default Changelist" comment="ui update on 14/08/2021">
-      <change afterPath="$PROJECT_DIR$/assets/vehicels.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/order_taking_screens/google_mape.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/order_taking_screens/google_mape.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/order_taking_screens/goolemap_for_center_inspection.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/order_taking_screens/goolemap_for_center_inspection.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/order_taking_screens/odrder_start.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/order_taking_screens/odrder_start.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/login-Screens/otp_verify_code.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/login-Screens/otp_verify_code.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/login-Screens/sign_in_ui.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/login-Screens/sign_in_ui.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/login-Screens/sign_up_ui.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/login-Screens/sign_up_ui.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/order_taking_screens/center_inspection_ui.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/order_taking_screens/center_inspection_ui.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/order_taking_screens/ongoing_inspection.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/order_taking_screens/ongoing_inspection.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/order_taking_screens/ongoing_inspection_pickup_address.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/order_taking_screens/ongoing_inspection_pickup_address.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/splash_screen/home_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/splash_screen/home_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/utils.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/utils.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,7 +151,14 @@
       <option name="project" value="LOCAL" />
       <updated>1639477086718</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="ui update on 14/08/2021">
+      <created>1639494920655</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1639494920655</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

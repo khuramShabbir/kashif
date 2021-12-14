@@ -132,29 +132,27 @@ class _HomeUiState extends State<HomeUi> {
                       ),
                       customButton(
                         onClick: () => {Get.to(() => const SignInUI())},
-                        buttonWidget: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 25),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: const [
-                              Text(
-                                "Next",
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 16),
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Icon(
-                                Icons.arrow_forward_outlined,
-                                color: Colors.white,
-                                size: 15,
-                              )
-                            ],
-                          ),
+                        buttonWidget: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const [
+                            Text(
+                              "Next",
+                              style: TextStyle(
+                                  color: Colors.white, fontSize: 16),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Icon(
+                              Icons.arrow_forward_outlined,
+                              color: Colors.white,
+                              size: 15,
+                            )
+                          ],
                         ),
                         borderRadius: 50,
-                        buttonHeight: Get.height * .07,
+                        buttonHeight: Get.height * .055,
+                        buttonWidth: Get.width*.3
                       ),
                     ],
                   ))

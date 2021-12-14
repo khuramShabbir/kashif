@@ -144,28 +144,26 @@ class _SignInUIState extends State<SignInUI> {
                           onClick: () {
                             Get.to(() => const OtpVerifyCode());
                           },
-                          buttonHeight: Get.height * .07,
-                          buttonWidget: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal:25),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: const [
-                                Text(
-                                  "Sign in",
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 16),
-                                ),
-                                SizedBox(
-                                  width: 5,
-                                ),
-                                Icon(
-                                  Icons.arrow_forward_outlined,
-                                  color: Colors.white,
-                                  size: 15,
-                                )
-                              ],
-                            ),
+                            buttonWidth:Get.width*.3,
+                          buttonHeight: Get.height*.055,
+                          buttonWidget: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: const [
+                              Text(
+                                "Sign in",
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 16),
+                              ),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              Icon(
+                                Icons.arrow_forward_outlined,
+                                color: Colors.white,
+                                size: 15,
+                              )
+                            ],
                           ),
                         ),
                         SizedBox(
