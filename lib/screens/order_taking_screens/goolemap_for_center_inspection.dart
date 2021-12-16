@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/percent_indicator.dart';
-import '../utils.dart';
+
+import '../../utils.dart';
+
 
 class GoogleMapForCenterInspectionUi extends StatefulWidget {
   const GoogleMapForCenterInspectionUi({Key? key}) : super(key: key);

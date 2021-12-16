@@ -1,13 +1,14 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 
+import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:kashif/order_taking_screens/google_mape.dart';
-import 'package:kashif/order_taking_screens/stepper_ui.dart';
+import 'package:kashif/screens/order_taking_screens/stepper_ui.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
-import '../utils.dart';
+import '../../utils.dart';
+import 'google_mape.dart';
+
+
 
 class OngoingInspectionPickUpAdressUi extends StatefulWidget {
   const OngoingInspectionPickUpAdressUi({Key? key}) : super(key: key);

@@ -1,12 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:im_stepper/stepper.dart';
-import 'package:kashif/test.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
-
-import '../utils.dart';
+import '../../utils.dart';
 import 'order_ended.dart';
 
 class StepperUi extends StatefulWidget {

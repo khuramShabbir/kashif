@@ -1,8 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
-import 'package:kashif/order_taking_screens/odrder_start.dart';
+import 'package:kashif/screens/order_taking_screens/odrder_start.dart';
 import 'package:kashif/utils.dart';
 
 class OtpVerifyCode extends StatefulWidget {
@@ -13,8 +15,28 @@ class OtpVerifyCode extends StatefulWidget {
 }
 
 class _OtpVerifyCodeState extends State<OtpVerifyCode> {
+  int counterTime=30;
+
+
+
+
+
   @override
   Widget build(BuildContext context) {
+
+    Future.delayed(const Duration(seconds: 1), () {
+counterTime--;
+if (counterTime>0){setState(() {
+
+});
+
+
+}
+
+
+
+
+    });
     return Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
@@ -74,10 +96,10 @@ class _OtpVerifyCodeState extends State<OtpVerifyCode> {
             SizedBox(
               height: Get.height * .04,
             ),
-            const Text(
-              'Resend in 00:30',
-              style: TextStyle(color: Colors.grey),
-            ),
+             Text(
+               'Resend in 00:$counterTime',
+               style:const TextStyle(color: Colors.grey),
+             ),
             SizedBox(
               height: Get.height * .04,
             ),

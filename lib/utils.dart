@@ -13,9 +13,7 @@ double progressBarPersent = 0.0;
 
 var logger = Logger();
 
-///
-///  Progress Bar///
-///
+
 
 ///bar///
 ///

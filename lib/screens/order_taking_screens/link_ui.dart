@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dart:math' as math;
 
-import 'package:kashif/order_taking_screens/card_detail.dart';
+import 'card_detail.dart';
+
 
 class LinkUi extends StatefulWidget {
   const LinkUi({Key? key}) : super(key: key);

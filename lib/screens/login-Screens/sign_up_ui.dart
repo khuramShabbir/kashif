@@ -1,25 +1,44 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
-import 'package:kashif/login-Screens/forget_password.dart';
-import 'package:kashif/login-Screens/otp_verify_code.dart';
-import 'package:kashif/login-Screens/sign_up_ui.dart';
 import 'package:kashif/utils.dart';
 
-class SignInUI extends StatefulWidget {
-  const SignInUI({Key? key}) : super(key: key);
+import 'otp_verify_code.dart';
+
+class SignUpUi extends StatefulWidget {
+  const SignUpUi({Key? key}) : super(key: key);
 
   @override
   _SignInUIState createState() => _SignInUIState();
 }
 
-class _SignInUIState extends State<SignInUI> {
+class _SignInUIState extends State<SignUpUi> {
+  bool securePassword=true;
+
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
         resizeToAvoidBottomInset: false,
+        appBar: AppBar(
+          leading: Padding(
+            padding: const EdgeInsets.only(left: 15.0),
+            child: InkWell(
+              onTap: () {
+                Get.back();
+              },
+              child: const Icon(
+                Icons.arrow_back,
+                color: Colors.black,
+              ),
+            ),
+          ),
+          elevation: 0,
+          backgroundColor: Colors.transparent,
+        ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -34,22 +53,22 @@ class _SignInUIState extends State<SignInUI> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: const [
                       Text(
-                        "Sign in",
+                        "Sign up",
                         style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 18),
+                            fontWeight: FontWeight.bold, fontSize: 30),
                       ),
                       SizedBox(
-                        height: 50,
+                        height: 35,
                       ),
                       Text(
-                        "What's Your Number?",
-                        style: TextStyle(fontSize: 16, color: Colors.grey),
+                        "Create an account here",
+                        style: TextStyle(fontSize: 18, color: Colors.grey),
                       ),
                     ],
                   ),
                 ],
               ),
-              height: Get.height * 0.35,
+              height: Get.height * 0.15,
             ),
             SizedBox(
               width: Get.width,
@@ -62,7 +81,7 @@ class _SignInUIState extends State<SignInUI> {
                     child: Column(
                       children: [
                         SizedBox(
-                          height: Get.height * 0.09,
+                          height: Get.height * 0.05,
                         ),
                         //TODO: implement on 'onChange'
                         customInputFormField(
@@ -90,15 +109,13 @@ class _SignInUIState extends State<SignInUI> {
                             ),
                             hintText: "Create an account here",
                             fontSize: 13),
-                        SizedBox(
-                          height: Get.height * .01,
-                        ),
+                        SizedBox(height: Get.height*.02,),
                         customInputFormField(
                           //TODO: implement on 'onChange'
                           onChange: (value) {
                             logger.e(value);
                           },
-                          keyboardType: TextInputType.phone,
+                          keyboardType: TextInputType.number,
 
                           prefixIconList: Row(
                             mainAxisSize: MainAxisSize.min,
@@ -122,46 +139,110 @@ class _SignInUIState extends State<SignInUI> {
                           hintText: "Mobile Number",
                           fontSize: 13,
                         ),
+                        SizedBox(height: Get.height*.02,),
+
+                        //TODO: implement on 'onChange'
+
+                        customInputFormField(
+                            onChange: (value) {
+                              logger.e(value);
+                            },
+                            prefixIconList: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                SvgPicture.asset(
+                                  'assets/email.svg',
+                                  color: Colors.black,
+                                  width: 25.0,
+                                  height: 25.0,
+                                ),
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                                Container(
+                                  color: Colors.grey,
+                                  width: 1.5,
+                                  height: 20,
+                                )
+                              ],
+                            ),
+                            hintText: "Email address",
+                            fontSize: 13),
+                        SizedBox(height: Get.height*.02,),
+
+                        //TODO: implement on 'onChange'
+
+                        customInputFormField(
+                          suffixIcon:InkWell(onTap: (){
+                            setState(() {
+                              securePassword=!securePassword;
+                            });
+
+                          },
+                            child: SvgPicture.asset(
+                              'assets/eye.svg',
+                              color:securePassword?Colors.black:Colors.blue,
+                              width: 25.0,
+                              height: 25.0,
+                            ),
+                          ),
+                          obscure: securePassword,
+                            onChange: (value) {
+                              logger.e(value);
+
+                            },
+                            prefixIconList: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                SvgPicture.asset(
+                                  'assets/lock.svg',
+                                  color: Colors.black,
+                                  width: 25.0,
+                                  height: 25.0,
+                                ),
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                                Container(
+                                  color: Colors.grey,
+                                  width: 1.5,
+                                  height: 20,
+                                )
+                              ],
+                            ),
+                            hintText: "Password",
+                            fontSize: 13,
+                         ),
+
+
                         SizedBox(
                           height: Get.height * .05,
                         ),
-                        InkWell(
-                          onTap: () {
-                            Get.to(() => const ForgetPasswordUi());
-                          },
-                          child: const Text(
-                            "Forget Password?",
-                            style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                decoration: TextDecoration.underline),
-                          ),
+                        const Text(
+                          "By signing up you agree with our Terms of Use",
+                          style: TextStyle(
+                              fontSize: 12,),
                         ),
                         SizedBox(
                           height: Get.height * .05,
                         ),
                         customButton(
-                          onClick: () {
-                            Get.to(() => const OtpVerifyCode());
-                          },
-                            buttonWidth:Get.width*.3,
-                          buttonHeight: Get.height*.055,
+                          onClick: () {Get.to(() =>const OtpVerifyCode());},
+                          buttonHeight: Get.height * .055,
+                          buttonWidth: Get.width*.3,
                           buttonWidget: Row(
-                            mainAxisSize: MainAxisSize.min,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: const [
                               Text(
-                                "Sign in",
+                                "Sign up ",
                                 style: TextStyle(
                                     color: Colors.white, fontSize: 16),
                               ),
-                              SizedBox(
-                                width: 5,
-                              ),
+
+
                               Icon(
                                 Icons.arrow_forward_outlined,
-                                color: Colors.white,
-                                size: 15,
+                                color: Colors.white,size: 15,
                               )
                             ],
                           ),
@@ -171,20 +252,17 @@ class _SignInUIState extends State<SignInUI> {
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Text(
-                              'New member ?',
+                          children:  [
+                           const Text(
+                              'Already a member ?',
                               style: TextStyle(color: Colors.grey),
                             ),
-                            const SizedBox(
+                           const SizedBox(
                               width: 10,
                             ),
-                            InkWell(
-                              onTap: () {
-                                Get.to(() => const SignUpUi());
-                              },
-                              child: const Text(
-                                'Sign up',
+                            InkWell(onTap: (){Get.back();},
+                              child:const Text(
+                                'Sign in',
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     decoration: TextDecoration.underline),

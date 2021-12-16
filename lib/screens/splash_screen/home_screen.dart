@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:kashif/login-Screens/sign_in_ui.dart';
+import 'package:kashif/screens/login-Screens/sign_in_ui.dart';
 import 'package:kashif/utils.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:shape_of_view_null_safe/shape_of_view_null_safe.dart';
