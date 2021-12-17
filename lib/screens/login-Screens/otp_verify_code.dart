@@ -7,6 +7,8 @@ import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:kashif/screens/order_taking_screens/odrder_start.dart';
 import 'package:kashif/utils.dart';
 
+import '../../bottom_navigation_bar.dart';
+
 class OtpVerifyCode extends StatefulWidget {
   const OtpVerifyCode({Key? key}) : super(key: key);
 
@@ -105,7 +107,7 @@ if (counterTime>0){setState(() {
             ),
             customButton(
                 onClick: () {
-                  Get.to(() => const StartYourOrder());
+                  Get.to(() => const CustomBottomNavigationBar());
                 },
                 buttonHeight: Get.height * .055,
                 buttonWidth: Get.width*.3,
