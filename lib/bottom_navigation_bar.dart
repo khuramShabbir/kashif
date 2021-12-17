@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:kashif/screens/order_taking_screens/odrder_start.dart';
 import 'package:kashif/screens_list.dart';
 import 'package:kashif/utils.dart';
 
@@ -15,6 +16,7 @@ class CustomBottomNavigationBar extends StatefulWidget {
 class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
   var list = ScreenSList();
   int initialScreen = 0;
+  bool isSelected=false;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +32,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
             alignment: Alignment.bottomCenter,
             child: SizedBox(
                 width: Get.width,
-                height: Get.height * .13,
+                height: Get.height * .15,
                 child: Stack(
                   children: [
                     Align(
@@ -60,11 +62,13 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
                                       //TODO: Home
                                       onTap: () {
                                         initialScreen = 0;
-                                        setState(() {});
+                                        setState(() {
+                                          !isSelected;
+                                        });
                                         logger.e("Home Screen");
                                       },
                                       child: SvgPicture.asset(
-                                        'assets/Home.svg',
+                                        'assets/Home.svg',color: isSelected?const Color(primaryColor):Colors.grey,
                                       )),
                                   const Text(
                                     'Home',
@@ -79,15 +83,18 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
 
                                 onTap: () {
                                   initialScreen = 1;
-                                  logger.e("Home Screen");
-                                  setState(() {});
+
+                                  setState(() {
+                                    isSelected=true;
+
+                                  });
                                   logger.e('Screen for Vehicles');
                                 },
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     SvgPicture.asset(
-                                      'assets/vec.svg',
+                                      'assets/vec.svg',color: isSelected?Color(primaryColor):Colors.grey,
                                     ),
                                     const Text(
                                       'Vehicles',
@@ -162,7 +169,12 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
                               },
                               child: InkWell(
                                 //TODO: Implement on Button
-                                onTap: () {},
+                                onTap: () {
+
+                                  bottomSheet();
+
+
+                                },
                                 child: Container(
                                   height: Get.width*.17,
                                   width: Get.width*.17,

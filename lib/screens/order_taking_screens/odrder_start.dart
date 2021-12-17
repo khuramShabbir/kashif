@@ -2,12 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:kashif/anas_screens/profile.dart';
-import 'package:kashif/junaid_Screens/ongoing_service.dart';
-import 'package:kashif/screens/order_taking_screens/vehicles.dart';
+
 import 'package:kashif/utils.dart';
 import 'center_inspection_ui.dart';
-import 'compelet_order.dart';
+
 import 'link_ui.dart';
 import 'ongoing_inspection.dart';
 
