@@ -1,5 +1,4 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
@@ -12,6 +11,9 @@ var barColor = Colors.black.withOpacity(0.2);
 double progressBarPersent = 0.0;
 
 var logger = Logger();
+
+
+
 
 
 
@@ -97,6 +99,7 @@ Widget customButton({
 Widget indicator({
   double width = 10,
   double height = 10,
+  var color=const Color(0xFFFEF3C7),
 }) {
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 5),
@@ -104,7 +107,7 @@ Widget indicator({
       height: 10,
       width: width,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(50), color: Colors.white),
+          borderRadius: BorderRadius.circular(50), color:color),
     ),
   );
 }
@@ -121,15 +124,24 @@ Widget customInputFormField({
   var prefixIconList,
   String? hintText,
   double fontSize = 16,
+var autoValidateMode,
+  String? errorText,
+  var validator,
   var textColor = Colors.grey,
   bool isOutlinedBorder = false,
 }) {
   return TextFormField(
 
+autovalidateMode:autoValidateMode,
+    validator: validator,
+
+
     keyboardType: keyboardType,
     obscureText: obscure,
     onChanged: onChange,
     decoration: InputDecoration(
+
+
 
 
       disabledBorder: InputBorder.none,
@@ -269,7 +281,7 @@ Widget confirmedOrder({
               width: Get.width * .2,
             ),
             Container(
-              width: Get.width * .22,
+              width: Get.width * .2,
               height: Get.height * .022,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
@@ -526,8 +538,9 @@ Widget customCarCardView() {
       Align(
           alignment: Alignment.centerRight,
           child: Image.asset(
-            'assets/car.png',
-            width: Get.width * .45,
+            'assets/car_model.png',
+            height: Get.width*.3,
+            width: Get.width * .4,
           ))
     ],
   );

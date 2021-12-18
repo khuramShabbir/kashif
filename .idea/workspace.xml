@@ -5,11 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dcbffef9-3b3b-4332-9dfa-79ca0fc78173" name="Default Changelist" comment="ui update on 17/08/2021">
+      <change afterPath="$PROJECT_DIR$/assets/car_model.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/screen_list.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.packages" beforeDir="false" afterPath="$PROJECT_DIR$/.packages" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/car.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/bottom_navigation_bar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/bottom_navigation_bar.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/junaid_Screens/ongoing_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/junaid_Screens/ongoing_service.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/login-Screens/sign_in_ui.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/login-Screens/sign_in_ui.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/login-Screens/sign_up_ui.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/login-Screens/sign_up_ui.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/order_taking_screens/compelet_order.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/order_taking_screens/compelet_order.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/order_taking_screens/goolemap_for_center_inspection.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/order_taking_screens/goolemap_for_center_inspection.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/screens/order_taking_screens/odrder_start.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/order_taking_screens/odrder_start.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/order_taking_screens/ongoing_inspection.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/order_taking_screens/ongoing_inspection.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/order_taking_screens/ongoing_inspection_pickup_address.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/order_taking_screens/ongoing_inspection_pickup_address.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/screens/order_taking_screens/vehicles.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/order_taking_screens/vehicles.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/test.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/splash_screen/home_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/splash_screen/home_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens_list.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/utils.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/utils.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -175,7 +191,14 @@
       <option name="project" value="LOCAL" />
       <updated>1639747385983</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="ui update on 17/08/2021">
+      <created>1639751316973</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1639751316973</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

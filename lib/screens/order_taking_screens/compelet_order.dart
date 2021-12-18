@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import '../../utils.dart';
@@ -35,9 +33,10 @@ class _CompleteYourOrderState extends State<CompleteYourOrder> {
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 15.0),
-            child: InkWell(onTap: (){
-              Get.to(() =>const LinkUi());
-            },
+            child: InkWell(
+              onTap: () {
+                Get.to(() => const LinkUi());
+              },
               child: SvgPicture.asset(
                 'assets/menu.svg',
                 color: Colors.black,
@@ -52,97 +51,65 @@ class _CompleteYourOrderState extends State<CompleteYourOrder> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
-
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 20.0),
-                    child: Text(
-                      "Welcome !",
-                      style: TextStyle(color: Colors.grey),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 20.0),
-                    child: Text(
-                      "Khaled Al-Kayali",
-                      style: TextStyle(
-                          fontSize: 18, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 3,
-                  ),
-                  bar(),
-
-                  ///
-                  /// /// Carousal Slider /// ///
-                  ///
-                  ///
-                  //TODO: Carousal Slider
-
-                  carousalSlider(),
-                  bar()
-                ],
-              )),
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(
+                height: 10,
+              ),
+              const Padding(
+                padding: EdgeInsets.only(left: 20.0),
+                child: Text(
+                  "Welcome !",
+                  style: TextStyle(color: Colors.grey),
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              const Padding(
+                padding: EdgeInsets.only(left: 20.0),
+                child: Text(
+                  "Khaled Al-Kayali",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+              ),
+              const SizedBox(
+                height: 3,
+              ),
+              bar(),
+              //TODO: Carousal Slider
+              carousalSlider(),
+              bar()
+            ],
+          )),
           Expanded(
-
               child: Column(
-                children: [
-                  Expanded(
-                    flex: 8,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-
-                        confirmedOrder(rating: Row(
-                          children: List.generate(
-                              4,
-                                  (index) => SvgPicture.asset(
+            children: [
+              Expanded(
+                flex: 8,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    confirmedOrder(
+                        rating: Row(
+                      children: List.generate(
+                          4,
+                          (index) => SvgPicture.asset(
                                 'assets/star.svg',
-
                                 height: 12,
                               )),
-                        )),
-                        confirmedOrder(
-                            textColor: Colors.red,
-                            textBorderColor: Colors.red,
-                            checkInTypeText: "ON GOING",
-
-                        )],
+                    )),
+                    confirmedOrder(
+                      textColor: Colors.red,
+                      textBorderColor: Colors.red,
+                      checkInTypeText: "ON GOING",
                     ),
-                  ),
-
-                  //TODO: Bottom Navigation Bar
-                  Expanded(
-                      flex: 2,
-                      child: Padding(
-                        padding: const EdgeInsets.all(15.0),
-                        child: BottomAppBar(
-                          child: Row(
-                            mainAxisAlignment:
-                                MainAxisAlignment.spaceEvenly,
-                            children: [
-                              InkWell(
-                                  child:
-                                  SvgPicture.asset("assets/Union.svg")),
-                              SvgPicture.asset("assets/Union.svg"),
-                              SvgPicture.asset("assets/Union.svg"),
-                              SvgPicture.asset("assets/Union.svg"),
-                              SvgPicture.asset("assets/Union.svg"),
-                            ],
-                          ),
-                        ),
-                      )),
-                ],
-              )),
+                  ],
+                ),
+              ),
+            ],
+          )),
         ],
       ),
     );

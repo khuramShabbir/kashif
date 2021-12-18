@@ -41,7 +41,7 @@ class Vehicles extends StatelessWidget {
             const SizedBox(height: 20,),
             InkWell(
                 onTap: (){
-                  Get.to(()=>const OngoingInspectionPickUpAdressUi());
+                  Get.to(()=>const OngoingInspectionPickUpAddressUi());
 
                 },
                 child: customDetailBar(width: Get.width *.9, height: Get.height * .12)),

@@ -38,20 +38,34 @@ class _HomeUiState extends State<HomeUi> {
             autoPlay: false,
           ),
           items: [
-            Image(
-                width: Get.width,
-                height: Get.height,
-                fit: BoxFit.cover,
-                image: AssetImage(
-                  assetImages[0],
-                )),
-            Image(
-                width: Get.width,
-                height: Get.height,
-                fit: BoxFit.cover,
-                image: AssetImage(
-                  assetImages[1],
-                ))
+            Stack(
+              children: [
+                Image(
+                    width: Get.width,
+                    height: Get.height,
+                    fit: BoxFit.cover,
+                    image: AssetImage(
+                      assetImages[0],
+                    )),
+                Container(
+                  color: Colors.black.withOpacity(.3),
+                )
+              ],
+            ),
+            Stack(
+              children: [
+                Image(
+                    width: Get.width,
+                    height: Get.height,
+                    fit: BoxFit.cover,
+                    image: AssetImage(
+                      assetImages[0],
+                    )),
+                Container(
+                  color: Colors.black.withOpacity(.3),
+                )
+              ],
+            ),
           ],
         ),
         Column(
@@ -67,19 +81,26 @@ class _HomeUiState extends State<HomeUi> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            SizedBox(width: Get.width*.3,
-                                height: Get.height*.2,
-
-
+                            SizedBox(
+                                width: Get.width * .3,
+                                height: Get.height * .2,
                                 child: Image.asset(
-                              "assets/logo.png",
-                             fit: BoxFit.cover,
-                            )),
+                                  "assets/logo.png",
+                                  fit: BoxFit.cover,
+                                )),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                indicator(width: carousalIndex == 0 ? 30 : 10),
-                                indicator(width: carousalIndex == 1 ? 30 : 10)
+                                indicator(
+                                    width: carousalIndex == 0 ? 30 : 10,
+                                    color: carousalIndex == 0
+                                        ? const Color(0xFFFEF3C7)
+                                        : Colors.white),
+                                indicator(
+                                    width: carousalIndex == 1 ? 30 : 10,
+                                    color: carousalIndex == 1
+                                        ? const Color(0xFFFEF3C7)
+                                        : Colors.white)
                               ],
                             )
                           ],
@@ -131,29 +152,28 @@ class _HomeUiState extends State<HomeUi> {
                         ),
                       ),
                       customButton(
-                        onClick: () => {Get.to(() => const SignInUI())},
-                        buttonWidget: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
-                            Text(
-                              "Next",
-                              style: TextStyle(
-                                  color: Colors.white, fontSize: 16),
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Icon(
-                              Icons.arrow_forward_outlined,
-                              color: Colors.white,
-                              size: 15,
-                            )
-                          ],
-                        ),
-                        borderRadius: 50,
-                        buttonHeight: Get.height * .055,
-                        buttonWidth: Get.width*.3
-                      ),
+                          onClick: () => {Get.to(() => const SignInUI())},
+                          buttonWidget: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: const [
+                              Text(
+                                "Next",
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 16),
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Icon(
+                                Icons.arrow_forward_outlined,
+                                color: Colors.white,
+                                size: 15,
+                              )
+                            ],
+                          ),
+                          borderRadius: 50,
+                          buttonHeight: Get.height * .055,
+                          buttonWidth: Get.width * .3),
                     ],
                   ))
             ],

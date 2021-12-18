@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:kashif/screens/order_taking_screens/link_ui.dart';
 import 'package:kashif/screens/order_taking_screens/scan_card_example.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import '../../utils.dart';
@@ -32,7 +33,10 @@ class _OngoingInspectionUiState extends State<OngoingInspectionUi> {
           actions: [
             Padding(
               padding: const EdgeInsets.only(right: 15.0),
-              child: SvgPicture.asset('assets/menu.svg'),
+              child: InkWell(
+                  onTap: (){Get.to(()=>const LinkUi());},
+
+                  child: SvgPicture.asset('assets/menu.svg')),
             )
           ],
           title: LinearPercentIndicator(
@@ -135,7 +139,7 @@ class _OngoingInspectionUiState extends State<OngoingInspectionUi> {
                 height: Get.height * .02,
               ),
               customButton(
-                  onClick: () {Get.to(()=>const OngoingInspectionPickUpAdressUi());},
+                  onClick: () {Get.to(()=>const OngoingInspectionPickUpAddressUi());},
                   buttonHeight: Get.height * .055,
                   buttonWidth: Get.width*.3,
                   buttonWidget: Row(

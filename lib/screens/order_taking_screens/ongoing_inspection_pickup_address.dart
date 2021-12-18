@@ -2,24 +2,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:kashif/screens/order_taking_screens/link_ui.dart';
 import 'package:kashif/screens/order_taking_screens/stepper_ui.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
-
 import '../../utils.dart';
 import 'google_mape.dart';
 
 
 
-class OngoingInspectionPickUpAdressUi extends StatefulWidget {
-  const OngoingInspectionPickUpAdressUi({Key? key}) : super(key: key);
+class OngoingInspectionPickUpAddressUi extends StatefulWidget {
+  const OngoingInspectionPickUpAddressUi({Key? key}) : super(key: key);
 
   @override
-  _OngoingInspectionPickUpAdressUiState createState() =>
-      _OngoingInspectionPickUpAdressUiState();
+  _OngoingInspectionPickUpAddressUiState createState() =>
+      _OngoingInspectionPickUpAddressUiState();
 }
 
-class _OngoingInspectionPickUpAdressUiState
-    extends State<OngoingInspectionPickUpAdressUi> {
+class _OngoingInspectionPickUpAddressUiState
+    extends State<OngoingInspectionPickUpAddressUi> {
   bool isSelected = false;
 
   @override
@@ -42,7 +42,9 @@ class _OngoingInspectionPickUpAdressUiState
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 15.0),
-            child: SvgPicture.asset('assets/menu.svg'),
+            child: InkWell(
+                onTap: (){Get.to(()=>const LinkUi());},
+                child: SvgPicture.asset('assets/menu.svg')),
           )
         ],
         title: LinearPercentIndicator(

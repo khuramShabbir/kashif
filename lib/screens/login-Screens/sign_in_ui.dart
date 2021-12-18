@@ -18,6 +18,10 @@ class SignInUI extends StatefulWidget {
 }
 
 class _SignInUIState extends State<SignInUI> {
+  bool isTrue = false;
+  var userName;
+  var password;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,7 +73,8 @@ class _SignInUIState extends State<SignInUI> {
                         //TODO: implement on 'onChange'
                         customInputFormField(
                             onChange: (value) {
-                              logger.e(value);
+                              userName = value;
+                              logger.e(userName);
                             },
                             prefixIconList: Row(
                               mainAxisSize: MainAxisSize.min,
@@ -98,10 +103,11 @@ class _SignInUIState extends State<SignInUI> {
                         customInputFormField(
                           //TODO: implement on 'onChange'
                           onChange: (value) {
+                            password = value;
+
                             logger.e(value);
                           },
                           keyboardType: TextInputType.phone,
-
                           prefixIconList: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
@@ -144,10 +150,19 @@ class _SignInUIState extends State<SignInUI> {
                         ),
                         customButton(
                           onClick: () {
-                            Get.to(() => const OtpVerifyCode());
+                            if (userName != null && password != null) {
+                              Get.to(() => const OtpVerifyCode());
+                            } else {
+                              Get.defaultDialog(
+                                  title: 'Please Provide Your account detail',
+                                  titleStyle: const TextStyle(color: Colors.red),
+                                  middleText: "Demo mode !",
+                                  middleTextStyle: const TextStyle(
+                                      color: Colors.brown, fontSize: 20));
+                            }
                           },
-                            buttonWidth:Get.width*.3,
-                          buttonHeight: Get.height*.055,
+                          buttonWidth: Get.width * .3,
+                          buttonHeight: Get.height * .055,
                           buttonWidget: Row(
                             mainAxisSize: MainAxisSize.min,
                             mainAxisAlignment: MainAxisAlignment.center,

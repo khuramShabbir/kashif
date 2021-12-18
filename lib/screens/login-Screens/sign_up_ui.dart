@@ -1,12 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:get/get.dart';
+import 'package:kashif/screens/login-Screens/otp_verify_code.dart';
 import 'package:kashif/utils.dart';
 
-import 'otp_verify_code.dart';
+
 
 class SignUpUi extends StatefulWidget {
   const SignUpUi({Key? key}) : super(key: key);
@@ -16,11 +14,15 @@ class SignUpUi extends StatefulWidget {
 }
 
 class _SignInUIState extends State<SignUpUi> {
-  bool securePassword=true;
-
+  var formValidation = FormValidation();
+  bool securePassword = true;
+  bool isNotValid = true;
+  var userName;
+  var mobileNumber;
+  var emailAddress;
+  var password;
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
@@ -83,11 +85,13 @@ class _SignInUIState extends State<SignUpUi> {
                         SizedBox(
                           height: Get.height * 0.05,
                         ),
-                        //TODO: implement on 'onChange'
+                        //TODO: implement on 'onChange' at userName
                         customInputFormField(
                             onChange: (value) {
-                              logger.e(value);
-                            },
+                              userName=value;
+
+
+                              },
                             prefixIconList: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
@@ -109,14 +113,22 @@ class _SignInUIState extends State<SignUpUi> {
                             ),
                             hintText: "Create an account here",
                             fontSize: 13),
-                        SizedBox(height: Get.height*.02,),
+                        SizedBox(
+                          height: Get.height * .02,
+                        ),
                         customInputFormField(
-                          //TODO: implement on 'onChange'
+                          //TODO: implement on 'onChange' at MobileNumber
                           onChange: (value) {
-                            logger.e(value);
-                          },
-                          keyboardType: TextInputType.number,
+                            mobileNumber=value;
+                            },
+                          autoValidateMode: AutovalidateMode.onUserInteraction,
 
+                          validator: (value) {
+                            GetUtils.isPhoneNumber(value);
+                          },
+                  errorText: 'invalid mobile number',
+
+                          keyboardType: TextInputType.number,
                           prefixIconList: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
@@ -139,13 +151,26 @@ class _SignInUIState extends State<SignUpUi> {
                           hintText: "Mobile Number",
                           fontSize: 13,
                         ),
-                        SizedBox(height: Get.height*.02,),
+                        SizedBox(
+                          height: Get.height * .02,
+                        ),
 
-                        //TODO: implement on 'onChange'
+                        //TODO: implement on 'onChange' at Email Address
 
                         customInputFormField(
                             onChange: (value) {
-                              logger.e(value);
+                              emailAddress=value;
+
+
+                            },
+                            errorText: 'invalid email',
+
+                            autoValidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            validator: (value) {
+
+
+
                             },
                             prefixIconList: Row(
                               mainAxisSize: MainAxisSize.min,
@@ -168,52 +193,54 @@ class _SignInUIState extends State<SignUpUi> {
                             ),
                             hintText: "Email address",
                             fontSize: 13),
-                        SizedBox(height: Get.height*.02,),
+                        SizedBox(
+                          height: Get.height * .02,
+                        ),
 
-                        //TODO: implement on 'onChange'
+                        //TODO: implement on 'onChange' at Password
 
                         customInputFormField(
-                          suffixIcon:InkWell(onTap: (){
-                            setState(() {
-                              securePassword=!securePassword;
-                            });
-
-                          },
+                          suffixIcon: InkWell(
+                            onTap: () {
+                              setState(() {
+                                securePassword = !securePassword;
+                              });
+                            },
                             child: SvgPicture.asset(
                               'assets/eye.svg',
-                              color:securePassword?Colors.black:Colors.blue,
+                              color:
+                                  securePassword ? Colors.black : Colors.blue,
                               width: 25.0,
                               height: 25.0,
                             ),
                           ),
                           obscure: securePassword,
-                            onChange: (value) {
-                              logger.e(value);
-
-                            },
-                            prefixIconList: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                SvgPicture.asset(
-                                  'assets/lock.svg',
-                                  color: Colors.black,
-                                  width: 25.0,
-                                  height: 25.0,
-                                ),
-                                const SizedBox(
-                                  width: 10,
-                                ),
-                                Container(
-                                  color: Colors.grey,
-                                  width: 1.5,
-                                  height: 20,
-                                )
-                              ],
-                            ),
-                            hintText: "Password",
-                            fontSize: 13,
-                         ),
-
+                          onChange: (value) {
+                            password=value;
+                            logger.e(value);
+                          },
+                          prefixIconList: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              SvgPicture.asset(
+                                'assets/lock.svg',
+                                color: Colors.black,
+                                width: 25.0,
+                                height: 25.0,
+                              ),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Container(
+                                color: Colors.grey,
+                                width: 1.5,
+                                height: 20,
+                              )
+                            ],
+                          ),
+                          hintText: "Password",
+                          fontSize: 13,
+                        ),
 
                         SizedBox(
                           height: Get.height * .05,
@@ -221,15 +248,37 @@ class _SignInUIState extends State<SignUpUi> {
                         const Text(
                           "By signing up you agree with our Terms of Use",
                           style: TextStyle(
-                              fontSize: 12,),
+                            fontSize: 12,
+                          ),
                         ),
                         SizedBox(
                           height: Get.height * .05,
                         ),
+                        //TODO: SignUp Button
+
                         customButton(
-                          onClick: () {Get.to(() =>const OtpVerifyCode());},
+                          onClick: () {
+                            if(formValidation.isFormOk(
+                               userName,
+                               mobileNumber,
+                               emailAddress,
+                               password,
+                            )){
+
+                              Get.to(()=>const OtpVerifyCode());
+
+                            }
+                            else{
+                              Get.defaultDialog(title: 'incorrect information');
+
+                            }
+
+
+
+
+                          },
                           buttonHeight: Get.height * .055,
-                          buttonWidth: Get.width*.3,
+                          buttonWidth: Get.width * .3,
                           buttonWidget: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: const [
@@ -238,11 +287,10 @@ class _SignInUIState extends State<SignUpUi> {
                                 style: TextStyle(
                                     color: Colors.white, fontSize: 16),
                               ),
-
-
                               Icon(
                                 Icons.arrow_forward_outlined,
-                                color: Colors.white,size: 15,
+                                color: Colors.white,
+                                size: 15,
                               )
                             ],
                           ),
@@ -252,16 +300,19 @@ class _SignInUIState extends State<SignUpUi> {
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children:  [
-                           const Text(
+                          children: [
+                            const Text(
                               'Already a member ?',
                               style: TextStyle(color: Colors.grey),
                             ),
-                           const SizedBox(
+                            const SizedBox(
                               width: 10,
                             ),
-                            InkWell(onTap: (){Get.back();},
-                              child:const Text(
+                            InkWell(
+                              onTap: () {
+                                Get.back();
+                              },
+                              child: const Text(
                                 'Sign in',
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
@@ -282,5 +333,33 @@ class _SignInUIState extends State<SignUpUi> {
             ),
           ],
         ));
+  }
+}
+
+
+class FormValidation {
+  bool isFormOk(
+    String? userName,
+    String? mobileNumber,
+    String? emailAddress,
+    String? password,
+  ) {
+    if (userName!=null && mobileNumber!=null && emailAddress!=null && password != null)
+    {
+      if (GetUtils.isAlphabetOnly(userName) &&
+          GetUtils.isEmail(emailAddress) &&
+          GetUtils.isPhoneNumber(mobileNumber) &&
+          GetUtils.isLengthBetween(password, 6, 20)) {
+        return true;
+      }
+      else{
+        return false;
+      }
+
+    }
+
+    else {
+      return false;
+    }
   }
 }

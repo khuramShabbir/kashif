@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:kashif/screens/order_taking_screens/odrder_start.dart';
-import 'package:kashif/screens_list.dart';
+import 'package:kashif/screen_list.dart';
 import 'package:kashif/utils.dart';
 
 class CustomBottomNavigationBar extends StatefulWidget {
@@ -16,7 +16,7 @@ class CustomBottomNavigationBar extends StatefulWidget {
 class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
   var list = ScreenSList();
   int initialScreen = 0;
-  bool isSelected=false;
+
 
   @override
   Widget build(BuildContext context) {
@@ -37,8 +37,8 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
                   children: [
                     Align(
                       child: Container(
-                        height: Get.height*.08,
-                        width: Get.width*.9,
+                        height: Get.height * .08,
+                        width: Get.width * .9,
                         decoration: BoxDecoration(
                           color: Colors.white,
                           boxShadow: [
@@ -62,17 +62,22 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
                                       //TODO: Home
                                       onTap: () {
                                         initialScreen = 0;
-                                        setState(() {
-                                          !isSelected;
-                                        });
+                                        setState(() {});
                                         logger.e("Home Screen");
                                       },
                                       child: SvgPicture.asset(
-                                        'assets/Home.svg',color: isSelected?const Color(primaryColor):Colors.grey,
+                                        'assets/Home.svg',
+                                        color: initialScreen == 0
+                                            ? const Color(primaryColor)
+                                            : Colors.grey,
                                       )),
-                                  const Text(
+                                  Text(
                                     'Home',
-                                    style: TextStyle(fontSize: 12),
+                                    style: TextStyle(
+                                        fontSize: 12,
+                                        color: initialScreen == 0
+                                            ? const Color(primaryColor)
+                                            : Colors.grey),
                                   )
                                 ],
                               ),
@@ -84,21 +89,26 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
                                 onTap: () {
                                   initialScreen = 1;
 
-                                  setState(() {
-                                    isSelected=true;
-
-                                  });
+                                  setState(() {});
                                   logger.e('Screen for Vehicles');
                                 },
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     SvgPicture.asset(
-                                      'assets/vec.svg',color: isSelected?Color(primaryColor):Colors.grey,
+                                      'assets/vec.svg',
+                                      color: initialScreen == 1
+                                          ? const Color(primaryColor)
+                                          : Colors.grey,
                                     ),
-                                    const Text(
+                                    Text(
                                       'Vehicles',
-                                      style: TextStyle(fontSize: 12),
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        color: initialScreen == 1
+                                            ? const Color(primaryColor)
+                                            : Colors.grey,
+                                      ),
                                     )
                                   ],
                                 ),
@@ -122,10 +132,20 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    SvgPicture.asset('assets/records.svg'),
-                                    const Text(
+                                    SvgPicture.asset(
+                                      'assets/records.svg',
+                                      color: initialScreen == 2
+                                          ? const Color(primaryColor)
+                                          : Colors.grey,
+                                    ),
+                                    Text(
                                       'Records',
-                                      style: TextStyle(fontSize: 12),
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        color: initialScreen == 2
+                                            ? const Color(primaryColor)
+                                            : Colors.grey,
+                                      ),
                                     )
                                   ],
                                 ),
@@ -143,10 +163,21 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                   Image.asset('assets/profile.png',height: 30,),
-                                    const Text(
+                                    Image.asset(
+                                      'assets/profile.png',
+                                      height: 30,
+                                      color: initialScreen == 3
+                                          ? const Color(primaryColor)
+                                          : Colors.grey,
+                                    ),
+                                    Text(
                                       'Profile',
-                                      style: TextStyle(fontSize: 12),
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        color: initialScreen == 3
+                                            ? const Color(primaryColor)
+                                            : Colors.grey,
+                                      ),
                                     )
                                   ],
                                 ),
@@ -159,7 +190,6 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
                     Column(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -170,14 +200,11 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
                               child: InkWell(
                                 //TODO: Implement on Button
                                 onTap: () {
-
                                   bottomSheet();
-
-
                                 },
                                 child: Container(
-                                  height: Get.width*.17,
-                                  width: Get.width*.17,
+                                  height: Get.width * .17,
+                                  width: Get.width * .17,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(50),
                                       color: const Color(primaryColor)),
@@ -191,7 +218,9 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
                             ),
                           ],
                         ),
-                        SizedBox(height:Get.height*.035 ,),
+                        SizedBox(
+                          height: Get.height * .035,
+                        ),
                       ],
                     ),
                   ],

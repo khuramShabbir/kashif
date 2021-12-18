@@ -101,7 +101,7 @@ class _OnGoingServicesUiState extends State<OnGoingServicesUi> {
                   child: Container(
                     child: Center(child: Text('PAST',style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        color: isTaped?Color(primaryColor).withOpacity(.4):Color(primaryBlueColor) ),)),
+                        color: isTaped?const Color(primaryColor).withOpacity(.4):const Color(primaryBlueColor) ),)),
                     height: Get.height * .055,
                     width: Get.width * .4,
                     decoration: BoxDecoration(

@@ -1,11 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-
 import 'package:kashif/utils.dart';
 import 'center_inspection_ui.dart';
-
 import 'link_ui.dart';
 import 'ongoing_inspection.dart';
 
@@ -17,6 +14,7 @@ class StartYourOrder extends StatefulWidget {
 }
 
 class _StartYourOrderState extends State<StartYourOrder> {
+  bool isTaped=true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,16 +22,7 @@ class _StartYourOrderState extends State<StartYourOrder> {
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
-          leading: Padding(
-            padding: const EdgeInsets.only(left: 15.0),
-            child: InkWell(
-              onTap: Get.back,
-              child: const Icon(
-                Icons.arrow_back_outlined,
-                color: Colors.black,
-              ),
-            ),
-          ),
+
           actions: [
             Padding(
               padding: const EdgeInsets.only(right: 15.0),
@@ -54,54 +43,61 @@ class _StartYourOrderState extends State<StartYourOrder> {
         body: SizedBox(
           height: Get.height,
           width: Get.width,
-          child: Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      width: Get.width * .05,
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10.0),
-                          child: Text(
-                            "Welcome!",
-                            style:
-                                TextStyle(color: Colors.grey.withOpacity(.5)),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    width: Get.width * .06,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10.0),
+                        child: Text(
+                          "Welcome!",
+                          style:
+                              TextStyle(color: Colors.grey.withOpacity(.5)),
+                        ),
+                      ),
+                      const Padding(
+                        padding: EdgeInsets.all(10.0),
+                        child: Text(
+                          "Khaled Al-Kayali",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
-                        const Padding(
-                          padding: EdgeInsets.all(10.0),
-                          child: Text(
-                            "Khaled Al-Kayali",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ],
-                    )
-                  ],
-                ),
-                bar(),
-                carousalSlider(),
-                bar(),
-                SizedBox(
-                  height: Get.height * .04,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      width: Get.width * .1,
-                    ),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+              bar(),
+              carousalSlider(),
+              bar(),
+              SizedBox(
+                height: Get.height * .04,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    width: Get.width * .1,
+                  ),
+                  InkWell(onTap: (){
+isTaped=!isTaped;
+setState(() {
+
+});
+
+
+                  },
+                    child:isTaped?
                     Column(
 
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -134,60 +130,80 @@ class _StartYourOrderState extends State<StartYourOrder> {
                                     width: Get.width * .6,
                                     height: Get.height * .28,
                                   )),
-                               Align(alignment: Alignment.bottomRight,
-                                 child: Padding(
-                                   padding: const EdgeInsets.only(bottom: 15.0,right: 8.0),
-                                   child: Container(
-                            width: Get.width * .45,
-                            height: Get.height * 0.07,
-                            decoration: BoxDecoration(
-                              gradient: const LinearGradient(
-                                      begin: Alignment.centerRight,
-                                      end: Alignment.centerLeft,
-                                      colors: [
-                                        Color(0xFFDADDDE),
-                                        Colors.transparent
-                                      ]),
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            child: Align(
-                              alignment: Alignment.centerRight,
-                              child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        right: 10, top: 10.0, bottom: 10),
+                              Align(alignment: Alignment.bottomRight,
+                                child: Container(
+                                  width: Get.width * .45,
+                                  height: Get.height * 0.07,
+                                  decoration: BoxDecoration(
+                                    gradient: const LinearGradient(
+                                        begin: Alignment.centerRight,
+                                        end: Alignment.centerLeft,
+                                        colors: [
+                                          Color(0xFFDADDDE),
+                                          Colors.transparent
+                                        ]),
+                                    borderRadius: BorderRadius.circular(15),
+                                  ),
+                                  child: Align(
+                                    alignment: Alignment.centerRight,
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          right: 10, top: 10.0, bottom: 10),
 
 
-                                    child: InkWell(
-                                      onTap: (){
-                                        bottomSheet();
+                                      child: InkWell(
+                                        onTap: (){
+                                          bottomSheet();
 
 
-                                      },
+                                        },
 
-                                      child: Container(
-                                        child: const Center(
-                                            child: Text("Order Now")),
-                                        width: Get.width * .27,
-                                        decoration: BoxDecoration(
-                                            color:  Colors.white,
-                                            borderRadius:
-                                            BorderRadius.circular(8)),
+                                        child: Container(
+                                          child: const Center(
+                                              child: Text("Order Now")),
+                                          width: Get.width * .27,
+                                          decoration: BoxDecoration(
+                                              color:  Colors.white,
+                                              borderRadius:
+                                              BorderRadius.circular(8)),
+                                        ),
                                       ),
                                     ),
-                              ),
-                            ),
-                          ),
-                                 ),
-                               )
+                                  ),
+                                ),
+                              )
                             ],
                           ),
                         )
                       ],
-                    )
-                  ],
-                )
-              ],
-            ),
+                    ):
+                    Column(
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            confirmedOrder(
+                                rating: Row(
+                                  children: List.generate(
+                                      4,
+                                          (index) => SvgPicture.asset(
+                                        'assets/star.svg',
+                                        height: 12,
+                                      )),
+                                )),
+                            confirmedOrder(
+                              textColor: Colors.red,
+                              textBorderColor: Colors.red,
+                              checkInTypeText: "ON GOING",
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              )
+            ],
           ),
         )
     );
@@ -311,8 +327,6 @@ Future bottomSheet(){
         ],
       ),
     ));
-
-
-
-
 }
+
+

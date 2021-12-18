@@ -32,13 +32,13 @@ dependencies:
   get:
   provider:
   shape_of_view_null_safe:
-  carousel_slider: ^4.0.0
+  carousel_slider:
   logger:
   flutter_svg:
   flutter_rating_bar:
-  flutter_otp_text_field: ^1.0.0
-  percent_indicator: "^2.1.7+2"
-  im_stepper: ^0.1.3
+  flutter_otp_text_field:
+  percent_indicator:
+
 
 
 
