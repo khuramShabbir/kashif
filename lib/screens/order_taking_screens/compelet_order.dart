@@ -77,10 +77,10 @@ class _CompleteYourOrderState extends State<CompleteYourOrder> {
               const SizedBox(
                 height: 3,
               ),
-              bar(),
+              lineBar(),
               //TODO: Carousal Slider
               carousalSlider(),
-              bar()
+              lineBar()
             ],
           )),
           Expanded(

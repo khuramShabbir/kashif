@@ -166,7 +166,7 @@ class _SignInUIState extends State<SignInUI> {
 
                           },
                           buttonWidth: Get.width * .3,
-                          buttonHeight: Get.height * .055,
+                          buttonHeight: Get.height * .065,
                           buttonWidget: Row(
                             mainAxisSize: MainAxisSize.min,
                             mainAxisAlignment: MainAxisAlignment.center,

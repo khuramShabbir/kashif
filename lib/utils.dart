@@ -16,7 +16,7 @@ var logger = Logger();
 ///
 ///
 ///
-Widget bar() => Padding(
+Widget lineBar() => Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15.0),
       child: Container(
         height: 1,
@@ -62,13 +62,12 @@ Widget carousalSlider() {
 ///
 ///
 
-Widget customButton({
-  var buttonWidget,
-  double borderRadius = 50,
-  double buttonHeight = 50,
-  double buttonWidth = 150,
-  required Function onClick,
-}) {
+Widget customButton(
+    {var buttonWidget,
+    double borderRadius = 50,
+    double buttonHeight = 65,
+    double buttonWidth = 150,
+    required Function onClick}) {
   return InkWell(
     onTap: () {
       onClick();
@@ -290,7 +289,7 @@ Widget confirmedOrder({
             rating
           ],
         )),
-        bar()
+        lineBar()
       ],
     ),
   );

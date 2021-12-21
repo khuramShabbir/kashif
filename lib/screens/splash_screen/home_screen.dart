@@ -147,11 +147,11 @@ class _HomeUiState extends State<HomeUi> {
                               onTap: () {
                                 Get.to(() => const SignInUI());
                               },
-                              child: const Text(
+                              child: Text(
                                 "skip",
                                 style: TextStyle(
                                   color: Colors.grey,
-                                  fontSize: 16,
+                                  fontSize: Get.height *0.03,
                                 ),
                               ),
                             ),
@@ -160,11 +160,11 @@ class _HomeUiState extends State<HomeUi> {
                               onClick: () => {Get.to(() => const SignInUI())},
                               buttonWidget: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
-                                children: const [
+                                children:  [
                                   Text(
                                     "Next",
                                     style: TextStyle(
-                                        color: Colors.white, fontSize: 16),
+                                        color: Colors.white, fontSize: Get.height *0.03),
                                   ),
                                   SizedBox(
                                     width: 10,
@@ -177,7 +177,7 @@ class _HomeUiState extends State<HomeUi> {
                                 ],
                               ),
                               borderRadius: 50,
-                              buttonHeight: Get.height * .055,
+                              buttonHeight: Get.height * .06,
                               buttonWidth: Get.width * .3),
                         ],
                       ))

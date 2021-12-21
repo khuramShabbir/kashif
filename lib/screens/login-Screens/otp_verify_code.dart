@@ -7,7 +7,7 @@ import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:kashif/screens/order_taking_screens/odrder_start.dart';
 import 'package:kashif/utils.dart';
 
-import '../../bottom_navigation_bar.dart';
+import '../../DashBoardScreen.dart';
 
 class OtpVerifyCode extends StatefulWidget {
   const OtpVerifyCode({Key? key}) : super(key: key);
@@ -17,27 +17,15 @@ class OtpVerifyCode extends StatefulWidget {
 }
 
 class _OtpVerifyCodeState extends State<OtpVerifyCode> {
-  int counterTime=30;
-
-
-
-
+  int counterTime = 30;
 
   @override
   Widget build(BuildContext context) {
-
     Future.delayed(const Duration(seconds: 1), () {
-counterTime--;
-if (counterTime>0){setState(() {
-
-});
-
-
-}
-
-
-
-
+      counterTime--;
+      if (counterTime > 0) {
+        setState(() {});
+      }
     });
     return Scaffold(
         resizeToAvoidBottomInset: false,
@@ -81,8 +69,6 @@ if (counterTime>0){setState(() {
             ),
             //TODO: Implement On OTP Field
 
-
-
             OtpTextField(
               cursorColor: Colors.transparent,
               numberOfFields: 4,
@@ -92,25 +78,22 @@ if (counterTime>0){setState(() {
               onSubmit: (String verificationCode) {}, // end onSubmit
             ),
 
-
-
-
             SizedBox(
               height: Get.height * .04,
             ),
-             Text(
-               'Resend in 00:$counterTime',
-               style:const TextStyle(color: Colors.grey),
-             ),
+            Text(
+              'Resend in 00:$counterTime',
+              style: const TextStyle(color: Colors.grey),
+            ),
             SizedBox(
               height: Get.height * .04,
             ),
             customButton(
                 onClick: () {
-                  Get.to(() => const CustomBottomNavigationBar());
+                  Get.to(() => const DashBoardScreen());
                 },
-                buttonHeight: Get.height * .055,
-                buttonWidth: Get.width*.3,
+                buttonHeight: Get.height * .068,
+                buttonWidth: Get.width * .3,
                 buttonWidget: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Row(
@@ -130,7 +113,6 @@ if (counterTime>0){setState(() {
                   ),
                 ))
           ],
-        )
-    );
+        ));
   }
 }
