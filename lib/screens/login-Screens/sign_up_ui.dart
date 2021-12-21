@@ -258,7 +258,7 @@ class _SignInUIState extends State<SignUpUi> {
 
                         customButton(
                           onClick: () {
-                            if(formValidation.isFormOk(
+                           /* if(formValidation.isFormOk(
                                userName,
                                mobileNumber,
                                emailAddress,
@@ -272,8 +272,8 @@ class _SignInUIState extends State<SignUpUi> {
                               Get.defaultDialog(title: 'incorrect information');
 
                             }
-
-
+*/
+                            Get.to(()=>const OtpVerifyCode());
 
 
                           },

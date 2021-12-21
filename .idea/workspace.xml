@@ -4,8 +4,32 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcbffef9-3b3b-4332-9dfa-79ca0fc78173" name="Default Changelist" comment="ui update on 18/08/2021">
+    <list default="true" id="dcbffef9-3b3b-4332-9dfa-79ca0fc78173" name="Default Changelist" comment="ui update on 20/08/2021">
+      <change afterPath="$PROJECT_DIR$/.flutter-plugins" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/.idea/modules/android.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.packages" beforeDir="false" afterPath="$PROJECT_DIR$/.packages" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/anas_screens/profile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/anas_screens/profile.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screen_list.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screen_list.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/login-Screens/sign_in_ui.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/login-Screens/sign_in_ui.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/login-Screens/sign_up_ui.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/login-Screens/sign_up_ui.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/order_taking_screens/google_mape.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/order_taking_screens/google_mape.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/splash_screen/home_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/splash_screen/home_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/test.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/utils.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/utils.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -185,7 +209,14 @@
       <option name="project" value="LOCAL" />
       <updated>1639846094621</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="ui update on 20/08/2021">
+      <created>1639994029833</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1639994029833</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -210,6 +241,7 @@
     <MESSAGE value="ui update on 16/08/2021" />
     <MESSAGE value="ui update on 17/08/2021" />
     <MESSAGE value="ui update on 18/08/2021" />
-    <option name="LAST_COMMIT_MESSAGE" value="ui update on 18/08/2021" />
+    <MESSAGE value="ui update on 20/08/2021" />
+    <option name="LAST_COMMIT_MESSAGE" value="ui update on 20/08/2021" />
   </component>
 </project>

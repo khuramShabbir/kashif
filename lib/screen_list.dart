@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-
 import 'package:kashif/screens/order_taking_screens/center_inspection_ui.dart';
 import 'package:kashif/screens/order_taking_screens/compelet_order.dart';
 import 'package:kashif/screens/order_taking_screens/odrder_start.dart';

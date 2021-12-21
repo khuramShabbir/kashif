@@ -12,11 +12,6 @@ double progressBarPersent = 0.0;
 
 var logger = Logger();
 
-
-
-
-
-
 ///bar///
 ///
 ///
@@ -71,7 +66,7 @@ Widget customButton({
   var buttonWidget,
   double borderRadius = 50,
   double buttonHeight = 50,
-  double buttonWidth=150,
+  double buttonWidth = 150,
   required Function onClick,
 }) {
   return InkWell(
@@ -79,10 +74,11 @@ Widget customButton({
       onClick();
     },
     child: Container(
-      /// Please Set values of height and width where`s you want hit this method
-      /// buttonHeight:Get.height*.055,
-      /// buttonWidth:Get.width*.3,
-      ///
+
+        /// Please Set values of height and width where`s you want hit this method
+        /// buttonHeight:Get.height*.055,
+        /// buttonWidth:Get.width*.3,
+        ///
         height: buttonHeight,
         width: buttonWidth,
         decoration: BoxDecoration(
@@ -99,15 +95,15 @@ Widget customButton({
 Widget indicator({
   double width = 10,
   double height = 10,
-  var color=const Color(0xFFFEF3C7),
+  var color = const Color(0xFFFEF3C7),
 }) {
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 5),
     child: Container(
       height: 10,
       width: width,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(50), color:color),
+      decoration:
+          BoxDecoration(borderRadius: BorderRadius.circular(50), color: color),
     ),
   );
 }
@@ -124,43 +120,31 @@ Widget customInputFormField({
   var prefixIconList,
   String? hintText,
   double fontSize = 16,
-var autoValidateMode,
+  var autoValidateMode,
   String? errorText,
   var validator,
+  TextEditingController? textEditingController,
   var textColor = Colors.grey,
   bool isOutlinedBorder = false,
 }) {
   return TextFormField(
-
-autovalidateMode:autoValidateMode,
+    autovalidateMode: autoValidateMode,
+    controller: textEditingController,
     validator: validator,
-
-
     keyboardType: keyboardType,
     obscureText: obscure,
     onChanged: onChange,
     decoration: InputDecoration(
-
-
-
-
       disabledBorder: InputBorder.none,
       border: isOutlinedBorder
-          ? OutlineInputBorder(
-
-
-
-          borderRadius: BorderRadius.circular(10))
+          ? OutlineInputBorder(borderRadius: BorderRadius.circular(10))
           : null,
-
       prefixIcon: prefixIconList,
       suffix: suffixIcon,
       hintText: hintText,
-
       hintStyle: TextStyle(
         fontSize: fontSize,
         color: Colors.grey,
-
       ),
     ),
   );
@@ -539,7 +523,7 @@ Widget customCarCardView() {
           alignment: Alignment.centerRight,
           child: Image.asset(
             'assets/car_model.png',
-            height: Get.width*.3,
+            height: Get.width * .3,
             width: Get.width * .4,
           ))
     ],

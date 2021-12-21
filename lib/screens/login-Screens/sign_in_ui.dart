@@ -70,7 +70,7 @@ class _SignInUIState extends State<SignInUI> {
                         SizedBox(
                           height: Get.height * 0.09,
                         ),
-                        //TODO: implement on 'onChange'
+                        //TODO: implement on onChange'
                         customInputFormField(
                             onChange: (value) {
                               userName = value;
@@ -150,7 +150,7 @@ class _SignInUIState extends State<SignInUI> {
                         ),
                         customButton(
                           onClick: () {
-                            if (userName != null && password != null) {
+                           /* if (userName != null && password != null) {
                               Get.to(() => const OtpVerifyCode());
                             } else {
                               Get.defaultDialog(
@@ -159,7 +159,11 @@ class _SignInUIState extends State<SignInUI> {
                                   middleText: "Demo mode !",
                                   middleTextStyle: const TextStyle(
                                       color: Colors.brown, fontSize: 20));
-                            }
+                            }*/
+
+                            Get.to(() => const OtpVerifyCode());
+
+
                           },
                           buttonWidth: Get.width * .3,
                           buttonHeight: Get.height * .055,
@@ -223,3 +227,4 @@ class _SignInUIState extends State<SignInUI> {
         ));
   }
 }
+

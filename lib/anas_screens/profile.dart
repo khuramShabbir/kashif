@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:flutter_svg/svg.dart';
 import 'payment.dart';
@@ -11,22 +12,22 @@ class Profile extends StatefulWidget {
   _ProfileState createState() => _ProfileState();
 }
 
-  class _ProfileState extends State<Profile> {
+class _ProfileState extends State<Profile> {
   ///black Container FUNCTION
-  Widget blackContainer({double height=17, double width=3.7, String text = "Log Out "}){
-    return  Container(
-      height:Get.height/height,
-      width:Get.width/width,
-      child: Center(child: Text(text,style: const TextStyle(
-          color: Colors.white
-      ),)),
+  Widget blackContainer(
+      {double height = 17, double width = 3.7, String text = "Log Out "}) {
+    return Container(
+      height: Get.height / height,
+      width: Get.width / width,
+      child: Center(
+          child: Text(
+        text,
+        style: const TextStyle(color: Colors.white),
+      )),
       decoration: BoxDecoration(
           color: Colors.blueGrey.shade900,
-          borderRadius: const BorderRadius.all(Radius.circular(20))
-      ),
+          borderRadius: const BorderRadius.all(Radius.circular(20))),
     );
-
-
   }
 
   /// CONTAINER FUNCTION
@@ -72,8 +73,8 @@ class Profile extends StatefulWidget {
                             ),
                             Text(
                               kaya,
-                              style:
-                                  const TextStyle(color: Colors.black, fontSize: 15),
+                              style: const TextStyle(
+                                  color: Colors.black, fontSize: 15),
                             )
                           ],
                         ),
@@ -82,8 +83,7 @@ class Profile extends StatefulWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 17.0, bottom: 10),
-                    child:
-                        SvgPicture.asset("assets/Edit.svg"),
+                    child: SvgPicture.asset("assets/Edit.svg"),
                   ),
                 ],
               ),
@@ -106,7 +106,99 @@ class Profile extends StatefulWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Column(
+          appBar: AppBar(
+            elevation: 0,
+            centerTitle: true,
+            backgroundColor: Colors.white,
+            leading: const Icon(
+              Icons.arrow_back,
+              color: Colors.black,
+            ),
+            actions: [
+              Padding(
+                padding: const EdgeInsets.only(right: 20.0),
+                child: SvgPicture.asset('assets/bell-ringing.svg'),
+              )
+            ],
+            title: const Text(
+              'Profile',
+              style: TextStyle(color: Colors.black),
+            ),
+          ),
+          body: Row(
+            children: [
+              SizedBox(
+                width: Get.width * .07,
+              ),
+              Column(
+                children: [
+                  profileDetail(),
+                  profileDetail(svgImageAddress: 'assets/phone (Stroke).svg',labelText: 'Phone number',text: ''),
+                  profileDetail(),
+                  profileDetail(),
+                  profileDetail(),
+                  profileDetail(),
+                ],
+              )
+            ],
+          )
+
+
+          ),
+    );
+  }
+}
+
+Widget profileDetail({
+  String svgImageAddress = "assets/user.svg",
+  String labelText = 'Name',
+  String text = 'Khaled al-Kayali',
+}) {
+  return SizedBox(
+    width: Get.width * .9,
+    height: Get.height * .08,
+
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        SvgPicture.asset(svgImageAddress),
+        Padding(
+          padding: const EdgeInsets.only(left: 15.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Expanded(child: SizedBox()),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 5.0),
+                child: Text(
+                  labelText,
+                  style: const TextStyle(color: Colors.grey,fontSize: 13),
+                ),
+              ),
+              Text(text,style: const TextStyle(fontWeight: FontWeight.bold),),
+              const Expanded(child: SizedBox()),
+            ],
+          ),
+        ),
+        const Expanded(child: SizedBox()),
+
+        Padding(
+          padding: const EdgeInsets.only(right: 15.0),
+          child: SvgPicture.asset('assets/Edit.svg'),
+        )
+
+
+
+      ],
+    ),
+  );
+}
+
+
+
+
+
+/*Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
 
@@ -171,8 +263,4 @@ class Profile extends StatefulWidget {
                ),)
 
           ],
-        ),
-      ),
-    );
-  }
-}
+        ),*/

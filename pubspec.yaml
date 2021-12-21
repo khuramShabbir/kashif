@@ -38,10 +38,10 @@ dependencies:
   flutter_rating_bar:
   flutter_otp_text_field:
   percent_indicator:
-
-
-
-
+  google_maps_flutter:
+#  permission:
+  permission_handler:
+  geolocator: ^8.0.1
 
 
   # The following adds the Cupertino Icons font to your application.
