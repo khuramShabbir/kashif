@@ -151,7 +151,7 @@ class _HomeUiState extends State<HomeUi> {
                                 "skip",
                                 style: TextStyle(
                                   color: Colors.grey,
-                                  fontSize: Get.height *0.03,
+                                  fontSize: Get.height *0.02,
                                 ),
                               ),
                             ),
@@ -164,12 +164,12 @@ class _HomeUiState extends State<HomeUi> {
                                   Text(
                                     "Next",
                                     style: TextStyle(
-                                        color: Colors.white, fontSize: Get.height *0.03),
+                                        color: Colors.white, fontSize: Get.height *0.02),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 10,
                                   ),
-                                  Icon(
+                                  const Icon(
                                     Icons.arrow_forward_outlined,
                                     color: Colors.white,
                                     size: 15,
@@ -178,7 +178,7 @@ class _HomeUiState extends State<HomeUi> {
                               ),
                               borderRadius: 50,
                               buttonHeight: Get.height * .06,
-                              buttonWidth: Get.width * .3),
+                              buttonWidth: Get.width * .4),
                         ],
                       ))
                 ],

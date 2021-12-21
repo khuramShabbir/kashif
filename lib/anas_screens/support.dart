@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-
 import 'contactus.dart';
 import 'profile.dart';
 import 'supportscreen2.dart';

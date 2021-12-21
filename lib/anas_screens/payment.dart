@@ -10,14 +10,14 @@ import 'package:kashif/anas_screens/supportscreen3.dart';
 import 'profile.dart';
 import 'scan.dart';
 
-class PaymentM extends StatefulWidget {
-  const PaymentM({Key? key}) : super(key: key);
+class PaymentMethod extends StatefulWidget {
+  const PaymentMethod({Key? key}) : super(key: key);
 
   @override
-  _PaymentMState createState() => _PaymentMState();
+  _PaymentMethodState createState() => _PaymentMethodState();
 }
 
-class _PaymentMState extends State<PaymentM> {
+class _PaymentMethodState extends State<PaymentMethod> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(

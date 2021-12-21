@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:kashif/screens/order_taking_screens/odrder_start.dart';
 import 'package:kashif/screen_list.dart';
+import 'package:kashif/screens/order_taking_screens/center_inspection_ui.dart';
+import 'package:kashif/screens/order_taking_screens/ongoing_inspection.dart';
 import 'package:kashif/utils.dart';
 
 class DashBoardScreen extends StatefulWidget {
@@ -17,7 +18,6 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
   var list = ScreenSList();
   int initialScreen = 0;
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,19 +25,17 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
         children: [
           Column(children: [
             Expanded(
-              child: Container(
+              child: SizedBox(
                 width: Get.width,
-                color: Colors.red,
-                // height: Get.height,
-                // child: list.screensList[initialScreen],
+
+
                 child: list.screensList[initialScreen],
               ),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Container(
-                // height: Get.height * .15,
-                // width: Get.width * .95,
+
                 decoration: BoxDecoration(
                   color: Colors.white,
                   boxShadow: [
@@ -210,16 +208,18 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30),
                     color: Colors.white),
-                child: Container(
-                  height: Get.width * .17,
-                  width: Get.width * .17,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
-                      color: const Color(primaryColor)),
-                  child: const Icon(
-                    Icons.add,
-                    size: 32,
-                    color: Colors.white,
+                child: InkWell(onTap: (){Get.to(()=>bottomSheet());},
+                  child: Container(
+                    height: Get.width * .17,
+                    width: Get.width * .17,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
+                        color: const Color(primaryColor)),
+                    child: const Icon(
+                      Icons.add,
+                      size: 32,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ),
@@ -231,23 +231,93 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
     );
   }
 }
-// Padding(
-// padding: const EdgeInsets.all(8.0),
-// child: Container(
-// decoration: BoxDecoration(
-// borderRadius: BorderRadius.circular(30),
-// color: Colors.white),
-// child: Container(
-// height: Get.width * .17,
-// width: Get.width * .17,
-// decoration: BoxDecoration(
-// borderRadius: BorderRadius.circular(50),
-// color: const Color(primaryColor)),
-// child: const Icon(
-// Icons.add,
-// size: 32,
-// color: Colors.white,
-// ),
-// ),
-// ),
-// )
+Future bottomSheet() {
+  return Get.bottomSheet(Container(
+    height: Get.height / 2,
+    decoration: const BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(25), topRight: Radius.circular(25))),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        SizedBox(
+          height: Get.height * .03,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: const [
+            Padding(
+              padding: EdgeInsets.only(left: 15.0),
+              child: Icon(
+                Icons.arrow_back_outlined,
+                color: Colors.black,
+              ),
+            ),
+            Text("Efhes Services",
+                style: (TextStyle(
+                  fontSize: 21,
+                ))),
+            SizedBox()
+          ],
+        ),
+        SizedBox(
+          height: Get.height * .03,
+        ),
+
+        /// list of Services in bottomBar Sheet ///
+
+        Expanded(
+            child: SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          Get.to(const OngoingInspectionUi());
+                        },
+                        child: customDetailBar(
+                            showImageAddress: 'assets/ongoing.png',
+                            width: Get.width * .9,
+                            height: Get.height * .1),
+                      ),
+                      InkWell(
+                        onTap: () {
+                          Get.to(() => const CenterInspectionUi());
+                        },
+                        child: customDetailBar(
+                            showImageAddress: "assets/centerInspection.png",
+                            width: Get.width * .9,
+                            height: Get.height * .1),
+                      )
+                    ]))),
+        SizedBox(
+          height: Get.height * .04,
+        ),
+        InkWell(
+          onTap: () {
+            Get.to(() => const OngoingInspectionUi());
+          },
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              Text(
+                "To order more than one car ?",
+                style: TextStyle(color: Colors.grey),
+              ),
+              Text(
+                " order now",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
+        ),
+        SizedBox(
+          height: Get.height * .09,
+        )
+      ],
+    ),
+  ));
+}

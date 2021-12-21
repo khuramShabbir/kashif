@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:kashif/screens/login-Screens/otp_verify_code.dart';
@@ -53,18 +54,18 @@ class _SignInUIState extends State<SignUpUi> {
                   Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
+                    children: [
                       Text(
                         "Sign up",
                         style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 30),
+                            fontWeight: FontWeight.bold, fontSize: Get.width*.055),
                       ),
                       SizedBox(
-                        height: 35,
+                        height: Get.width*.08,
                       ),
                       Text(
                         "Create an account here",
-                        style: TextStyle(fontSize: 18, color: Colors.grey),
+                        style: TextStyle(fontSize:Get.width*.04, color: Colors.grey),
                       ),
                     ],
                   ),
@@ -200,6 +201,8 @@ class _SignInUIState extends State<SignUpUi> {
                         //TODO: implement on 'onChange' at Password
 
                         customInputFormField(
+                            keyboardType: TextInputType.text,
+
                           suffixIcon: InkWell(
                             onTap: () {
                               setState(() {
@@ -209,7 +212,7 @@ class _SignInUIState extends State<SignUpUi> {
                             child: SvgPicture.asset(
                               'assets/eye.svg',
                               color:
-                                  securePassword ? Colors.black : Colors.blue,
+                                  securePassword ? Colors.grey : const Color(primaryColor),
                               width: 25.0,
                               height: 25.0,
                             ),
@@ -248,6 +251,7 @@ class _SignInUIState extends State<SignUpUi> {
                         const Text(
                           "By signing up you agree with our Terms of Use",
                           style: TextStyle(
+                            color: Color(primaryColor),
                             fontSize: 12,
                           ),
                         ),
@@ -278,7 +282,7 @@ class _SignInUIState extends State<SignUpUi> {
 
                           },
                           buttonHeight: Get.height * .055,
-                          buttonWidth: Get.width * .3,
+                          buttonWidth: Get.width * .4,
                           buttonWidget: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: const [
@@ -315,6 +319,7 @@ class _SignInUIState extends State<SignUpUi> {
                               child: const Text(
                                 'Sign in',
                                 style: TextStyle(
+                                  color: Color(primaryColor),
                                     fontWeight: FontWeight.bold,
                                     decoration: TextDecoration.underline),
                               ),

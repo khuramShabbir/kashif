@@ -1,10 +1,7 @@
 import 'dart:async';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
-import 'package:kashif/screens/order_taking_screens/odrder_start.dart';
 import 'package:kashif/utils.dart';
 
 import '../../DashBoardScreen.dart';
@@ -45,10 +42,10 @@ class _OtpVerifyCodeState extends State<OtpVerifyCode> {
           centerTitle: true,
           backgroundColor: Colors.transparent,
           elevation: 0,
-          title: const Text(
+          title:  Text(
             "Verify Code",
             style: TextStyle(
-                color: Colors.black, fontWeight: FontWeight.bold, fontSize: 18),
+                color: Colors.black, fontWeight: FontWeight.bold, fontSize: Get.width*.05),
           ),
         ),
         body: Column(
@@ -56,13 +53,13 @@ class _OtpVerifyCodeState extends State<OtpVerifyCode> {
             SizedBox(
               height: Get.height * .06,
             ),
-            const Text(
+            Text(
               'A Code hase been sent to',
-              style: TextStyle(color: Colors.grey),
+              style: TextStyle(color: Colors.grey,fontSize: Get.width*.04),
             ),
-            const Text(
+            Text(
               '+966  555  555  555 via SMS',
-              style: TextStyle(color: Colors.grey),
+              style: TextStyle(color: Colors.grey, fontSize: Get.width*.04),
             ),
             SizedBox(
               height: Get.height * .06,
@@ -83,7 +80,7 @@ class _OtpVerifyCodeState extends State<OtpVerifyCode> {
             ),
             Text(
               'Resend in 00:$counterTime',
-              style: const TextStyle(color: Colors.grey),
+              style:  TextStyle(color: Colors.grey, fontSize: Get.width*.04),
             ),
             SizedBox(
               height: Get.height * .04,
@@ -93,7 +90,7 @@ class _OtpVerifyCodeState extends State<OtpVerifyCode> {
                   Get.to(() => const DashBoardScreen());
                 },
                 buttonHeight: Get.height * .068,
-                buttonWidth: Get.width * .3,
+                buttonWidth: Get.width * .4,
                 buttonWidget: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Row(

@@ -38,18 +38,18 @@ class _SignInUIState extends State<SignInUI> {
                   Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
+                    children:  [
                       Text(
                         "Sign in",
                         style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 18),
+                            fontWeight: FontWeight.bold, fontSize: Get.width*.06),
                       ),
-                      SizedBox(
+                     const SizedBox(
                         height: 50,
                       ),
                       Text(
                         "What's Your Number?",
-                        style: TextStyle(fontSize: 16, color: Colors.grey),
+                        style: TextStyle(fontSize: Get.width*.04, color: Colors.grey),
                       ),
                     ],
                   ),
@@ -137,10 +137,10 @@ class _SignInUIState extends State<SignInUI> {
                           onTap: () {
                             Get.to(() => const ForgetPasswordUi());
                           },
-                          child: const Text(
+                          child:  Text(
                             "Forget Password?",
                             style: TextStyle(
-                                fontSize: 16,
+                                fontSize: Get.width*.04,
                                 fontWeight: FontWeight.bold,
                                 decoration: TextDecoration.underline),
                           ),
@@ -165,21 +165,21 @@ class _SignInUIState extends State<SignInUI> {
 
 
                           },
-                          buttonWidth: Get.width * .3,
-                          buttonHeight: Get.height * .065,
+                            buttonHeight: Get.height * .06,
+                            buttonWidth: Get.width * .4,
                           buttonWidget: Row(
                             mainAxisSize: MainAxisSize.min,
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children: const [
+                            children:  [
                               Text(
                                 "Sign in",
                                 style: TextStyle(
-                                    color: Colors.white, fontSize: 16),
+                                    color: Colors.white, fontSize:Get.width*.04),
                               ),
-                              SizedBox(
+                             const SizedBox(
                                 width: 5,
                               ),
-                              Icon(
+                             const Icon(
                                 Icons.arrow_forward_outlined,
                                 color: Colors.white,
                                 size: 15,
@@ -204,9 +204,10 @@ class _SignInUIState extends State<SignInUI> {
                               onTap: () {
                                 Get.to(() => const SignUpUi());
                               },
-                              child: const Text(
+                              child:  Text(
                                 'Sign up',
                                 style: TextStyle(
+                                  fontSize: Get.width*.04,
                                     fontWeight: FontWeight.bold,
                                     decoration: TextDecoration.underline),
                               ),

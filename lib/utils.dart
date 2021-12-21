@@ -127,6 +127,7 @@ Widget customInputFormField({
   bool isOutlinedBorder = false,
 }) {
   return TextFormField(
+
     autovalidateMode: autoValidateMode,
     controller: textEditingController,
     validator: validator,
