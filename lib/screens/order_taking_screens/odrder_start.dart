@@ -79,7 +79,8 @@ class _StartYourOrderState extends State<StartYourOrder> {
             SizedBox(
               height: Get.height * .04,
             ),
-            Expanded(child: Row(
+            Expanded(
+                child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 SizedBox(
@@ -92,114 +93,107 @@ class _StartYourOrderState extends State<StartYourOrder> {
                   },
                   child: isTaped
                       ? Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        'cash-back SR 100',
-                        style: TextStyle(fontSize: 12),
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.only(top: 4.0),
-                        child: Text(
-                          'Your Next Order',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 15),
-                        ),
-                      ),
-                      SizedBox(
-                        height: Get.height * .02,
-                      ),
-                      SizedBox(
-                        width: Get.width * .8,
-                        height: Get.height * .25,
-                        child: Stack(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            const Text(
+                              'cash-back SR 100',
+                              style: TextStyle(fontSize: 12),
+                            ),
+                            const Padding(
+                              padding: EdgeInsets.only(top: 4.0),
+                              child: Text(
+                                'Your Next Order',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 15),
+                              ),
+                            ),
                             SizedBox(
-                                width: Get.width * .6,
-                                height: Get.height * .28,
-                                child: Image.asset(
-                                  'assets/SeekPng 1.png',
-                                  width: Get.width * .6,
-                                  height: Get.height * .28,
-                                )),
-                            Align(
-                              alignment: Alignment.bottomRight,
-                              child: Container(
-                                width: Get.width * .45,
-                                height: Get.height * 0.07,
-                                decoration: BoxDecoration(
-                                  gradient: const LinearGradient(
-                                      begin: Alignment.centerRight,
-                                      end: Alignment.centerLeft,
-                                      colors: [
-                                        Color(0xFFDADDDE),
-                                        Colors.transparent
-                                      ]),
-                                  borderRadius:
-                                  BorderRadius.circular(15),
-                                ),
-                                child: Align(
-                                  alignment: Alignment.centerRight,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        right: 10,
-                                        top: 10.0,
-                                        bottom: 10),
-                                    child: InkWell(
-                                      onTap: () {
-                                        bottomSheet();
-                                      },
-                                      child: Container(
-                                        child: const Center(
-                                            child: Text("Order Now")),
-                                        width: Get.width * .27,
-                                        decoration: BoxDecoration(
-                                            color: Colors.white,
-                                            borderRadius:
-                                            BorderRadius.circular(
-                                                8)),
+                              height: Get.height * .02,
+                            ),
+                            SizedBox(
+                              width: Get.width * .8,
+                              height: Get.height * .25,
+                              child: Stack(
+                                children: [
+                                  SizedBox(
+                                      width: Get.width * .6,
+                                      height: Get.height * .28,
+                                      child: Image.asset(
+                                        'assets/SeekPng 1.png',
+                                        width: Get.width * .6,
+                                        height: Get.height * .28,
+                                      )),
+                                  Align(
+                                    alignment: Alignment.bottomRight,
+                                    child: Container(
+                                      width: Get.width * .45,
+                                      height: Get.height * 0.07,
+                                      decoration: BoxDecoration(
+                                        gradient: const LinearGradient(
+                                            begin: Alignment.centerRight,
+                                            end: Alignment.centerLeft,
+                                            colors: [
+                                              Color(0xFFDADDDE),
+                                              Colors.transparent
+                                            ]),
+                                        borderRadius: BorderRadius.circular(15),
+                                      ),
+                                      child: Align(
+                                        alignment: Alignment.centerRight,
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(
+                                              right: 10, top: 10.0, bottom: 10),
+                                          child: InkWell(
+                                            onTap: () {
+                                              Get.bottomSheet(bottomSheet(),
+                                                  isScrollControlled: true);
+                                            },
+                                            child: Container(
+                                              child: const Center(
+                                                  child: Text("Order Now")),
+                                              width: Get.width * .27,
+                                              decoration: BoxDecoration(
+                                                  color: Colors.white,
+                                                  borderRadius:
+                                                      BorderRadius.circular(8)),
+                                            ),
+                                          ),
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ),
+                                  )
+                                ],
                               ),
                             )
                           ],
-                        ),
-                      )
-                    ],
-                  )
+                        )
                       : Column(
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          confirmedOrder(
-                              rating: Row(
-                                children: List.generate(
-                                    4,
-                                        (index) => SvgPicture.asset(
-                                      'assets/star.svg',
-                                      height: 12,
-                                    )),
-                              )),
-                          confirmedOrder(
-                            textColor: Colors.red,
-                            textBorderColor: Colors.red,
-                            checkInTypeText: "ON GOING",
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                confirmedOrder(
+                                    rating: Row(
+                                  children: List.generate(
+                                      4,
+                                      (index) => SvgPicture.asset(
+                                            'assets/star.svg',
+                                            height: 12,
+                                          )),
+                                )),
+                                confirmedOrder(
+                                  textColor: Colors.red,
+                                  textBorderColor: Colors.red,
+                                  checkInTypeText: "ON GOING",
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                 )
               ],
             ))
-         
           ],
         ));
   }
 }
-
-

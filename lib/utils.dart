@@ -10,7 +10,7 @@ const primaryColor = Color(0xFFFF203840);
 
 const primaryBlueColor = 0xFF304FFE;
 var barColor = Colors.black.withOpacity(0.2);
-double progressBarPersent = 0.0;
+double progressBarPersent = 0.0; // should be > 1
 
 var logger = Logger();
 
@@ -18,7 +18,8 @@ var logger = Logger();
 ///
 ///
 ///
-Widget lineBar() => Padding(
+Widget lineBar() =>
+    Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15.0),
       child: Container(
         height: 1,
@@ -29,7 +30,7 @@ Widget lineBar() => Padding(
 /// pickup Address///
 ///
 
-Widget pickupAddress(){
+Widget pickupAddress() {
   return
     Container(
       width: Get.width * .8,
@@ -84,11 +85,8 @@ Widget pickupAddress(){
     )
 
 
-
-    ;
-
+  ;
 }
-
 
 
 /// Carousal Slider///
@@ -107,7 +105,8 @@ Widget carousalSlider() {
         ),
         items: List.generate(
             5,
-            (index) => Stack(
+                (index) =>
+                Stack(
                   children: [
                     SizedBox(
                         width: Get.width * .9,
@@ -129,29 +128,32 @@ Widget carousalSlider() {
 ///
 ///
 
-Widget customButton(
-    {var buttonWidget,
-    double borderRadius = 50,
-    double buttonHeight = 0.06,
-    double buttonWidth = .4,
-    required Function onClick}) {
+Widget customButton({
+  var buttonWidget,
+  double borderRadius = 50,
+  double buttonHeight = 0.06,
+  double buttonWidth = .4,
+  required Function onClick}) {
   return InkWell(
     onTap: () {
       onClick();
     },
     child: Container(
 
-        /// Please Set values of height and width where`s you want hit this method
-        ///   buttonHeight: Get.height * .06,
-        ///   buttonWidth: Get.width * .4
-        ///
+      /// Please Set values of height and width where`s you want hit this method
+      ///   buttonHeight: Get.height * .06,
+      ///   buttonWidth: Get.width * .4
+      ///
         height: Get.height * buttonHeight,
         width: Get.width * buttonWidth,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(borderRadius),
-          color:primaryColor ,
+          color: primaryColor,
         ),
-        child: buttonWidget),
+        child: Padding(padding:const EdgeInsets.symmetric(horizontal: 20,) ,
+child: buttonWidget,
+
+        )),
   );
 }
 
@@ -169,7 +171,7 @@ Widget indicator({
       height: 10,
       width: width,
       decoration:
-          BoxDecoration(borderRadius: BorderRadius.circular(50), color: color),
+      BoxDecoration(borderRadius: BorderRadius.circular(50), color: color),
     ),
   );
 }
@@ -216,7 +218,6 @@ Widget customInputFormField({
     ),
   );
 }
-
 
 
 Widget customDetailBar({
@@ -293,7 +294,6 @@ Widget customDetailBar({
 }
 
 
-
 Widget confirmedOrder({
   var textBorderColor = Colors.green,
   var textColor = Colors.green,
@@ -309,43 +309,44 @@ Widget confirmedOrder({
       children: [
         Expanded(
             child: Row(
-          children: [
-            SizedBox(
-              width: Get.width * .03,
-            ),
-            Text(
-              inspectionTypeText,
-              style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(
-              width: Get.width * .2,
-            ),
-            Container(
-              width: Get.width * .2,
-              height: Get.height * .022,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5),
-                  border: Border.all(color: textBorderColor)),
-              child: Center(
-                child: Text(
-                  checkInTypeText,
-                  style: TextStyle(color: textColor, fontSize: 12),
+              children: [
+                SizedBox(
+                  width: Get.width * .03,
                 ),
-              ),
-            )
-          ],
-        )),
+                Text(
+                  inspectionTypeText,
+                  style: const TextStyle(
+                      fontSize: 15, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(
+                  width: Get.width * .2,
+                ),
+                Container(
+                  width: Get.width * .2,
+                  height: Get.height * .022,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      border: Border.all(color: textBorderColor)),
+                  child: Center(
+                    child: Text(
+                      checkInTypeText,
+                      style: TextStyle(color: textColor, fontSize: 12),
+                    ),
+                  ),
+                )
+              ],
+            )),
         Expanded(
             child: Row(
-          children: [
-            SizedBox(
-              width: Get.width * .03,
-            ),
-            Text(typeCode),
-            SizedBox(width: Get.width * .05),
-            rating
-          ],
-        )),
+              children: [
+                SizedBox(
+                  width: Get.width * .03,
+                ),
+                Text(typeCode),
+                SizedBox(width: Get.width * .05),
+                rating
+              ],
+            )),
         lineBar()
       ],
     ),
@@ -355,7 +356,7 @@ Widget confirmedOrder({
 /// Status Button///
 ///
 Widget statusButton({
-  String statusText='CONFIRMED',
+  String statusText = 'CONFIRMED',
 
 
 }) {
@@ -365,11 +366,13 @@ Widget statusButton({
         borderRadius: BorderRadius.circular(4),
         border: Border.all(width: 1, color: Colors.green)),
     alignment: Alignment.center,
-    child:  Padding(
-      padding:const EdgeInsets.symmetric(horizontal: 2),
+    child: Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 2),
       child: Text(
         statusText,
-        style:TextStyle(color: Colors.green,fontWeight: FontWeight.bold,fontSize: Get.width*.03),
+        style: TextStyle(color: Colors.green,
+            fontWeight: FontWeight.bold,
+            fontSize: Get.width * .03),
       ),
     ),
   );
@@ -384,7 +387,7 @@ Widget bottomSheet() {
     width: Get.width,
     height: Get.height * .77,
     decoration: const BoxDecoration(
-        color:primaryColor,
+        color: primaryColor,
         borderRadius: BorderRadius.only(
             topLeft: Radius.circular(25), topRight: Radius.circular(25))),
     child: Column(
@@ -441,7 +444,7 @@ Widget bottomSheet() {
                                 Text(
                                   'Riyadh',
                                   style: TextStyle(
-                                      color:primaryColor,
+                                      color: primaryColor,
                                       fontWeight: FontWeight.bold),
                                 ),
                                 Text(
@@ -489,7 +492,7 @@ Widget bottomSheet() {
                           width: 25,
                           decoration: BoxDecoration(
                               border: Border.all(
-                                  width: 1.5, color:primaryColor),
+                                  width: 1.5, color: primaryColor),
                               borderRadius: BorderRadius.circular(50)),
                         ),
                         Padding(
@@ -601,7 +604,7 @@ Widget bottomSheet() {
                             Text(
                               '\$9.00',
                               style: TextStyle(
-                                  color:primaryColor, fontSize: 12),
+                                  color: primaryColor, fontSize: 12),
                             ),
                           ],
                         ),
@@ -616,7 +619,7 @@ Widget bottomSheet() {
                             Text(
                               '\$0.90',
                               style: TextStyle(
-                                  color:primaryColor, fontSize: 12),
+                                  color: primaryColor, fontSize: 12),
                             ),
                           ],
                         ),
@@ -626,12 +629,12 @@ Widget bottomSheet() {
                             Text(
                               'Delivery fee',
                               style: TextStyle(
-                                  color:primaryColor, fontSize: 12),
+                                  color: primaryColor, fontSize: 12),
                             ),
                             Text(
                               '\$2.00',
                               style: TextStyle(
-                                  color:primaryColor, fontSize: 12),
+                                  color: primaryColor, fontSize: 12),
                             ),
                           ],
                         ),
@@ -662,10 +665,12 @@ Widget bottomSheet() {
                         ),
                         customButton(
                             onClick: () {
-                              Get.to(() => const GoogleMapForCenterInspectionUi());
+                              Get
+                                  .to(() => const GoogleMapForCenterInspectionUi());
                             },
 
-                            buttonWidget: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            buttonWidget: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 Image.asset('assets/pay-now.png'),
                                 const Padding(
@@ -712,91 +717,93 @@ Widget customCardView() {
             children: [
               Expanded(
                   child: Column(
-                children: [
-                  Row(
                     children: [
-                      const Text(
-                        'Full car inspection',
-                        style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold),
-                      ),
-                      Expanded(child: Container()),
-                      statusButton()
-                    ],
-                  ),
-                  Row(
-                    children: const [
-                      Text(
-                        'Full car inspection',
-                        style: TextStyle(fontSize: 15),
-                      ),
-                      SizedBox(
-                        width: 8,
-                      ),
-                      Text('#number??')
-                    ],
-                  )
-                ],
-              )),
-              Expanded(
-                  child: Column(
-                children: [
-                  /// 5star ratting
-                  Row(
-                    children: [
-                      RatingBar.builder(
-                        initialRating: 3,
-                        itemSize: 18,
-                        minRating: 1,
-                        direction: Axis.horizontal,
-                        allowHalfRating: true,
-                        itemCount: 5,
-                        itemPadding:
-                            const EdgeInsets.symmetric(horizontal: 1.0),
-                        itemBuilder: (context, _) => const Icon(
-                          Icons.star,
-                          color: Colors.amber,
-                        ),
-                        onRatingUpdate: (rating) {},
-                      ),
-                    ],
-                  ),
-
-                  Row(
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
-                          Text(
-                            'Date',
+                      Row(
+                        children: [
+                          const Text(
+                            'Full car inspection',
                             style: TextStyle(
                                 fontSize: 18, fontWeight: FontWeight.bold),
                           ),
-                          Text(
-                            '21st Sept 2021, monday',
-                            style: TextStyle(fontSize: 15),
-                          ),
+                          Expanded(child: Container()),
+                          statusButton()
                         ],
                       ),
-                      Expanded(child: Container()),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                      Row(
                         children: const [
                           Text(
-                            'PICK-UP-TIME',
-                            style: TextStyle(
-                                fontSize: 15, fontWeight: FontWeight.bold),
+                            'Full car inspection',
+                            style: TextStyle(fontSize: 15),
                           ),
-                          Text(
-                            '9:00-9:30am',
-                            style: TextStyle(),
+                          SizedBox(
+                            width: 8,
                           ),
+                          Text('#number??')
                         ],
                       )
                     ],
-                  ),
-                ],
-              ))
+                  )),
+              Expanded(
+                  child: Column(
+                    children: [
+
+                      /// 5star ratting
+                      Row(
+                        children: [
+                          RatingBar.builder(
+                            initialRating: 3,
+                            itemSize: 18,
+                            minRating: 1,
+                            direction: Axis.horizontal,
+                            allowHalfRating: true,
+                            itemCount: 5,
+                            itemPadding:
+                            const EdgeInsets.symmetric(horizontal: 1.0),
+                            itemBuilder: (context, _) =>
+                            const Icon(
+                              Icons.star,
+                              color: Colors.amber,
+                            ),
+                            onRatingUpdate: (rating) {},
+                          ),
+                        ],
+                      ),
+
+                      Row(
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: const [
+                              Text(
+                                'Date',
+                                style: TextStyle(
+                                    fontSize: 18, fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                '21st Sept 2021, monday',
+                                style: TextStyle(fontSize: 15),
+                              ),
+                            ],
+                          ),
+                          Expanded(child: Container()),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: const [
+                              Text(
+                                'PICK-UP-TIME',
+                                style: TextStyle(
+                                    fontSize: 15, fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                '9:00-9:30am',
+                                style: TextStyle(),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                    ],
+                  ))
             ],
           ),
         )),
@@ -860,7 +867,7 @@ Widget customCarCardView() {
                                         color: Colors.green.withOpacity(.15),
                                         borderRadius: BorderRadius.circular(5),
                                         border:
-                                            Border.all(color: Colors.green)),
+                                        Border.all(color: Colors.green)),
                                     child: const Center(
                                       child: Text(
                                         "CONFIRMED",
@@ -886,20 +893,20 @@ Widget customCarCardView() {
                             const Expanded(
                                 child: Center(
                                     child: Text(
-                              're-application',
-                              style: TextStyle(
-                                  color: Color(primaryBlueColor),
-                                  fontWeight: FontWeight.bold),
-                            ))),
+                                      're-application',
+                                      style: TextStyle(
+                                          color: Color(primaryBlueColor),
+                                          fontWeight: FontWeight.bold),
+                                    ))),
                             Container(color: Colors.grey, width: 1),
                             const Expanded(
                                 child: Center(
                                     child: Text(
-                              'Service report',
-                              style: TextStyle(
-                                  color: Colors.red,
-                                  fontWeight: FontWeight.bold),
-                            ))),
+                                      'Service report',
+                                      style: TextStyle(
+                                          color: Colors.red,
+                                          fontWeight: FontWeight.bold),
+                                    ))),
                           ],
                         ),
                       ),
@@ -921,7 +928,6 @@ Widget customCarCardView() {
     ],
   );
 }
-
 
 
 Widget appBar(String text) {
@@ -970,7 +976,6 @@ Widget carBrand(String carName) {
 }
 
 
-
 Widget carReports(String text1, String text2, String text3, String text4) {
   late bool internalOrder = true;
   late bool seatsDirty = false;
@@ -981,89 +986,88 @@ Widget carReports(String text1, String text2, String text3, String text4) {
         children: [
           internalOrder
               ? const Icon(
-                  Icons.check_circle,
-                  color: Colors.greenAccent,
-                )
+            Icons.check_circle,
+            color: Colors.greenAccent,
+          )
               : const Icon(
-                  Icons.info_outline,
-                  color: Colors.redAccent,
-                ),
+            Icons.info_outline,
+            color: Colors.redAccent,
+          ),
           const SizedBox(width: 8),
           internalOrder
               ? Text(
-                  text1,
-                  style: const TextStyle(
-                      fontWeight: FontWeight.bold, fontSize: 18),
-                )
+            text1,
+            style: const TextStyle(
+                fontWeight: FontWeight.bold, fontSize: 18),
+          )
               : Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      text1,
-                      style: const TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 18),
-                    ),
-                    Text(
-                      text2,
-                      style: const TextStyle(color: Colors.redAccent),
-                    )
-                  ],
-                )
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                text1,
+                style: const TextStyle(
+                    fontWeight: FontWeight.bold, fontSize: 18),
+              ),
+              Text(
+                text2,
+                style: const TextStyle(color: Colors.redAccent),
+              )
+            ],
+          )
         ],
       ),
       Row(
         children: [
           seatsDirty
               ? const Icon(
-                  Icons.check_circle,
-                  color: Colors.greenAccent,
-                )
+            Icons.check_circle,
+            color: Colors.greenAccent,
+          )
               : const Icon(
-                  Icons.info_outline,
-                  color: Colors.redAccent,
-                ),
+            Icons.info_outline,
+            color: Colors.redAccent,
+          ),
           const SizedBox(width: 8),
           seatsDirty
               ? Text(
-                  text3,
-                  style: const TextStyle(
-                      fontWeight: FontWeight.bold, fontSize: 18),
-                )
+            text3,
+            style: const TextStyle(
+                fontWeight: FontWeight.bold, fontSize: 18),
+          )
               : Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      text3,
-                      style: const TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 18),
-                    ),
-                    Text(
-                      text4,
-                      style: const TextStyle(color: Colors.redAccent),
-                    )
-                  ],
-                )
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                text3,
+                style: const TextStyle(
+                    fontWeight: FontWeight.bold, fontSize: 18),
+              ),
+              Text(
+                text4,
+                style: const TextStyle(color: Colors.redAccent),
+              )
+            ],
+          )
         ],
       ),
     ],
   );
 }
 
-Widget carSetting(
-  String t1,
-  String t2,
-  String t3,
-  String t4,
-  String t5,
-  String t6,
-  String t7,
-  String t8,
-  String t9,
-  String t10,
-  String t11,
-  String t12,
-  String t13,
-  String t14) {
+Widget carSetting(String t1,
+    String t2,
+    String t3,
+    String t4,
+    String t5,
+    String t6,
+    String t7,
+    String t8,
+    String t9,
+    String t10,
+    String t11,
+    String t12,
+    String t13,
+    String t14) {
   return Column(
     children: [
       Padding(

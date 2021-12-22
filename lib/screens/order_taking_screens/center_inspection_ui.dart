@@ -6,7 +6,6 @@ import 'package:percent_indicator/linear_percent_indicator.dart';
 import '../../utils.dart';
 import 'google_mape.dart';
 
-
 class CenterInspectionUi extends StatefulWidget {
   const CenterInspectionUi({Key? key}) : super(key: key);
 
@@ -124,7 +123,8 @@ class _CenterInspectionUiState extends State<CenterInspectionUi> {
                   customButton(
                       onClick: () {
                         //TODO: BottomSheet
-                        bottomSheet();
+                        Get.bottomSheet(bottomSheet(),
+                            isScrollControlled: true);
                       },
                       buttonWidget: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
