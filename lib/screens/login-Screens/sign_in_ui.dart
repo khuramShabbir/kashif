@@ -162,11 +162,8 @@ class _SignInUIState extends State<SignInUI> {
                             }*/
 
                             Get.to(() => const OtpVerifyCode());
+                            },
 
-
-                          },
-                            buttonHeight: Get.height * .06,
-                            buttonWidth: Get.width * .4,
                           buttonWidget: Row(
                             mainAxisSize: MainAxisSize.min,
                             mainAxisAlignment: MainAxisAlignment.center,

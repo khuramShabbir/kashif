@@ -85,8 +85,7 @@ class _ProfileState extends State<Profile> {
                             'Log Out',
                             style: TextStyle(color: Colors.white),
                           )),
-                          buttonWidth: Get.width * .3,
-                          buttonHeight: Get.height * .065,
+
                           borderRadius: 18),
                     ),
                     const Expanded(

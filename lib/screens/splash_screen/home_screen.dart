@@ -158,27 +158,29 @@ class _HomeUiState extends State<HomeUi> {
                           ),
                           customButton(
                               onClick: () => {Get.to(() => const SignInUI())},
-                              buttonWidget: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children:  [
-                                  Text(
-                                    "Next",
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: Get.height *0.02),
-                                  ),
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  const Icon(
-                                    Icons.arrow_forward_outlined,
-                                    color: Colors.white,
-                                    size: 15,
-                                  )
-                                ],
+                              buttonWidget: Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children:  [
+                                    Text(
+                                      "Next",
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: Get.height *0.02),
+                                    ),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    const Icon(
+                                      Icons.arrow_forward_outlined,
+                                      color: Colors.white,
+                                      size: 15,
+                                    )
+                                  ],
+                                ),
                               ),
                               borderRadius: 50,
-                              buttonHeight: Get.height * .06,
-                              buttonWidth: Get.width * .4),
+                             ),
                         ],
                       ))
                 ],

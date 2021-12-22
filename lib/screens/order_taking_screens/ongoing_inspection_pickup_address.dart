@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -7,8 +6,6 @@ import 'package:kashif/screens/order_taking_screens/stepper_ui.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import '../../utils.dart';
 import 'google_mape.dart';
-
-
 
 class OngoingInspectionPickUpAddressUi extends StatefulWidget {
   const OngoingInspectionPickUpAddressUi({Key? key}) : super(key: key);
@@ -43,7 +40,9 @@ class _OngoingInspectionPickUpAddressUiState
           Padding(
             padding: const EdgeInsets.only(right: 15.0),
             child: InkWell(
-                onTap: (){Get.to(()=>const LinkUi());},
+                onTap: () {
+                  Get.to(() => const LinkUi());
+                },
                 child: SvgPicture.asset('assets/menu.svg')),
           )
         ],
@@ -74,14 +73,14 @@ class _OngoingInspectionPickUpAddressUiState
                 children: [
                   InkWell(
                     onTap: () {
-                      Get.to(() => const GooGleMap());
+                      Get.to(() => const GooGleMapUi());
                     },
                     child: Container(
                       width: Get.width * .8,
                       height: Get.height * .1,
                       decoration: BoxDecoration(
                           border: Border.all(
-                              color: const Color(primaryColor).withOpacity(.1)),
+                              color: primaryColor.withOpacity(.1)),
                           borderRadius: BorderRadius.circular(15)),
                       child: Row(
                         children: [
@@ -143,25 +142,27 @@ class _OngoingInspectionPickUpAddressUiState
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            timePicker(time: '8:00am - 8:30am',onTap: (){}),
-                            timePicker(onTap: (){},
+                            timePicker(time: '8:00am - 8:30am', onTap: () {}),
+                            timePicker(
+                                onTap: () {},
                                 time: '9:00am - 930am',
                                 timeColor: const Color(primaryBlueColor),
                                 borderColor: const Color(primaryBlueColor)),
-                            timePicker(onTap: (){},
+                            timePicker(
+                              onTap: () {},
                               time: '10:00 - 10:30am',
                             ),
-                            timePicker(time: '11:00 - 1130am',onTap: (){}),
+                            timePicker(time: '11:00 - 1130am', onTap: () {}),
                           ],
                         ),
                         Column(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            timePicker(time: '8:00am - 8:30am',onTap: (){}),
-                            timePicker(time: '9:00am - 930am',onTap: (){}),
-                            timePicker(time: '10:00 - 10:30am',onTap: (){}),
-                            timePicker(time: '11:00 - 1130am',onTap: (){}),
+                            timePicker(time: '8:00am - 8:30am', onTap: () {}),
+                            timePicker(time: '9:00am - 930am', onTap: () {}),
+                            timePicker(time: '10:00 - 10:30am', onTap: () {}),
+                            timePicker(time: '11:00 - 1130am', onTap: () {}),
                           ],
                         ),
                       ],
@@ -176,18 +177,23 @@ class _OngoingInspectionPickUpAddressUiState
                         Get.bottomSheet(bottomSheet(),
                             isScrollControlled: true);
                       },
-                      buttonHeight: Get.height * .055,
-                      buttonWidth: Get.width*.3,
+
                       buttonWidget: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 25.0),
                         child: Row(
-
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: const [
                             Text(
-                              'Book  ',
-                              style: TextStyle(color: Colors.white,),
+                              'Book',
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
                             ),
-                            Icon(Icons.arrow_forward, color: Colors.white,size: 15,)
+                            Icon(
+                              Icons.arrow_forward,
+                              color: Colors.white,
+                              size: 15,
+                            )
                           ],
                         ),
                       ))
@@ -234,7 +240,7 @@ Widget bottomSheet() {
     width: Get.width,
     height: Get.height * .77,
     decoration: const BoxDecoration(
-        color: Color(primaryColor),
+        color: primaryColor,
         borderRadius: BorderRadius.only(
             topLeft: Radius.circular(25), topRight: Radius.circular(25))),
     child: Column(
@@ -291,18 +297,18 @@ Widget bottomSheet() {
                                 Text(
                                   'Riyadh',
                                   style: TextStyle(
-                                      color: Color(primaryColor),
+                                      color: primaryColor,
                                       fontWeight: FontWeight.bold),
                                 ),
                                 Text(
                                   '29846264 HH',
                                   style: TextStyle(
-                                      color: Color(primaryColor), fontSize: 12),
+                                      color: primaryColor, fontSize: 12),
                                 ),
                                 Text(
                                   'Saudi Arabia Riyadh',
                                   style: TextStyle(
-                                      color: Color(primaryColor), fontSize: 12),
+                                      color: primaryColor, fontSize: 12),
                                 ),
                               ],
                             ),
@@ -339,7 +345,7 @@ Widget bottomSheet() {
                           width: 25,
                           decoration: BoxDecoration(
                               border: Border.all(
-                                  width: 1.5, color: const Color(primaryColor)),
+                                  width: 1.5, color:primaryColor),
                               borderRadius: BorderRadius.circular(50)),
                         ),
                         Padding(
@@ -351,7 +357,7 @@ Widget bottomSheet() {
                               const Text(
                                 'Cash',
                                 style: TextStyle(
-                                    color: Color(primaryColor),
+                                    color: primaryColor,
                                     fontWeight: FontWeight.bold),
                               ),
                               Text(
@@ -391,7 +397,7 @@ Widget bottomSheet() {
                           width: 25,
                           decoration: BoxDecoration(
                               border: Border.all(
-                                  width: 1.5, color: const Color(primaryColor)),
+                                  width: 1.5, color:primaryColor),
                               borderRadius: BorderRadius.circular(50)),
                         ),
                         Padding(
@@ -403,7 +409,7 @@ Widget bottomSheet() {
                               const Text(
                                 'Credit Card',
                                 style: TextStyle(
-                                    color: Color(primaryColor),
+                                    color: primaryColor,
                                     fontWeight: FontWeight.bold),
                               ),
                               Text(
@@ -446,12 +452,12 @@ Widget bottomSheet() {
                             Text(
                               'Subtotal',
                               style: TextStyle(
-                                  color: Color(primaryColor), fontSize: 12),
+                                  color: primaryColor, fontSize: 12),
                             ),
                             Text(
                               '\$9.00',
                               style: TextStyle(
-                                  color: Color(primaryColor), fontSize: 12),
+                                  color: primaryColor, fontSize: 12),
                             ),
                           ],
                         ),
@@ -461,12 +467,12 @@ Widget bottomSheet() {
                             Text(
                               'Tax(10%)',
                               style: TextStyle(
-                                  color: Color(primaryColor), fontSize: 12),
+                                  color: primaryColor, fontSize: 12),
                             ),
                             Text(
                               '\$0.90',
                               style: TextStyle(
-                                  color: Color(primaryColor), fontSize: 12),
+                                  color: primaryColor, fontSize: 12),
                             ),
                           ],
                         ),
@@ -476,12 +482,12 @@ Widget bottomSheet() {
                             Text(
                               'Delivery fee',
                               style: TextStyle(
-                                  color: Color(primaryColor), fontSize: 12),
+                                  color: primaryColor, fontSize: 12),
                             ),
                             Text(
                               '\$2.00',
                               style: TextStyle(
-                                  color: Color(primaryColor), fontSize: 12),
+                                  color: primaryColor, fontSize: 12),
                             ),
                           ],
                         ),
@@ -505,7 +511,7 @@ Widget bottomSheet() {
                             const Text(
                               '\$11.20',
                               style: TextStyle(
-                                  color: Color(primaryColor),
+                                  color: primaryColor,
                                   fontWeight: FontWeight.bold),
                             )
                           ],
@@ -514,9 +520,9 @@ Widget bottomSheet() {
                             onClick: () {
                               Get.to(() => const StepperUi());
                             },
-                            buttonHeight: Get.height * .055,
-                            buttonWidth: Get.width*.35,
-                            buttonWidget: Row(mainAxisAlignment: MainAxisAlignment.center,
+
+                            buttonWidget: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Image.asset('assets/pay-now.png'),
                                 const Padding(

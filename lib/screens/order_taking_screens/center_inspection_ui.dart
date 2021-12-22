@@ -1,15 +1,12 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-
+import 'package:kashif/screens/order_taking_screens/car_brand_scan_ui.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
-
 import '../../utils.dart';
 import 'google_mape.dart';
 import 'goolemap_for_center_inspection.dart';
-import 'link_ui.dart';
-import 'ongoing_inspection_pickup_address.dart';
+
 
 class CenterInspectionUi extends StatefulWidget {
   const CenterInspectionUi({Key? key}) : super(key: key);
@@ -27,9 +24,12 @@ class _CenterInspectionUiState extends State<CenterInspectionUi> {
         elevation: 0,
         centerTitle: true,
         backgroundColor: Colors.white,
-        leading: const Icon(
-          Icons.arrow_back,
-          color: Colors.black,
+        leading: InkWell(
+          onTap: (){Get.to(()=>const CarBrandScanUi());},
+          child: const Icon(
+            Icons.arrow_back,
+            color: Colors.black,
+          ),
         ),
         actions: [
           Padding(
@@ -64,61 +64,9 @@ class _CenterInspectionUiState extends State<CenterInspectionUi> {
                 children: [
                   InkWell(
                     onTap: () {
-                      Get.to(() => const GooGleMap());
+                      Get.to(() => const GooGleMapUi());
                     },
-                    child: Container(
-                      width: Get.width * .8,
-                      height: Get.height * .1,
-                      decoration: BoxDecoration(
-                          border: Border.all(
-                              color: const Color(primaryColor).withOpacity(.1)),
-                          borderRadius: BorderRadius.circular(15)),
-                      child: Row(
-                        children: [
-                          Expanded(
-                              flex: 2,
-                              child: Align(
-                                  alignment: Alignment.topCenter,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(top: 10.0),
-                                    child: SvgPicture.asset(
-                                        "assets/pin_location.svg"),
-                                  ))),
-                          Expanded(
-                            flex: 8,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: const [
-                                Text(
-                                  'Pick-up Address',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
-                                ),
-                                Text(
-                                  'B/62,Bhaweshwar Darshan,Altamount',
-                                  style: TextStyle(
-                                      color: Colors.black, fontSize: 10),
-                                ),
-                              ],
-                            ),
-                          ),
-                          const Expanded(
-                              flex: 3,
-                              child: Align(
-                                  alignment: Alignment.topCenter,
-                                  child: Padding(
-                                    padding: EdgeInsets.only(top: 10.0),
-                                    child: Text(
-                                      'CHANGE',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ))),
-                        ],
-                      ),
-                    ),
+                    child: pickupAddress(),
                   ),
                   const SizedBox(
                     height: 20,
@@ -141,7 +89,7 @@ class _CenterInspectionUiState extends State<CenterInspectionUi> {
                         height: Get.height*.05,
                           decoration:  BoxDecoration(
                               borderRadius: BorderRadius.circular(7),
-                              color: const Color(primaryColor)),
+                              color:primaryColor),
                           child: Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 8.0),
                             child: Row(mainAxisSize: MainAxisSize.max,
@@ -178,7 +126,7 @@ class _CenterInspectionUiState extends State<CenterInspectionUi> {
                   ),
 
 
-                  SizedBox(height: Get.height*.15,),
+                  SizedBox(height: Get.height*.12,),
 
                   customButton(
                       onClick: () {
@@ -186,13 +134,12 @@ class _CenterInspectionUiState extends State<CenterInspectionUi> {
                         Get.bottomSheet(bottomSheet(),
                             isScrollControlled: true);
                       },
-                      buttonHeight: Get.height * .055,
-                      buttonWidth: Get.width*.3,
-                      buttonWidget: Row(mainAxisAlignment: MainAxisAlignment.center,
-                        mainAxisSize: MainAxisSize.min,
+
+                      buttonWidget: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+
                         children: const [
                           Text(
-                            'Next  ',
+                            'Next',
                             style: TextStyle(color: Colors.white),
                           ),
                           Icon(Icons.arrow_forward, color: Colors.white,size: 15,)
@@ -215,7 +162,7 @@ Widget bottomSheet() {
     width: Get.width,
     height: Get.height * .77,
     decoration: const BoxDecoration(
-        color: Color(primaryColor),
+        color:primaryColor,
         borderRadius: BorderRadius.only(
             topLeft: Radius.circular(25), topRight: Radius.circular(25))),
     child: Column(
@@ -272,18 +219,18 @@ Widget bottomSheet() {
                                 Text(
                                   'Riyadh',
                                   style: TextStyle(
-                                      color: Color(primaryColor),
+                                      color:primaryColor,
                                       fontWeight: FontWeight.bold),
                                 ),
                                 Text(
                                   '29846264 HH',
                                   style: TextStyle(
-                                      color: Color(primaryColor), fontSize: 12),
+                                      color: primaryColor, fontSize: 12),
                                 ),
                                 Text(
                                   'Saudi Arabia Riyadh',
                                   style: TextStyle(
-                                      color: Color(primaryColor), fontSize: 12),
+                                      color: primaryColor, fontSize: 12),
                                 ),
                               ],
                             ),
@@ -320,7 +267,7 @@ Widget bottomSheet() {
                           width: 25,
                           decoration: BoxDecoration(
                               border: Border.all(
-                                  width: 1.5, color: const Color(primaryColor)),
+                                  width: 1.5, color:primaryColor),
                               borderRadius: BorderRadius.circular(50)),
                         ),
                         Padding(
@@ -332,7 +279,7 @@ Widget bottomSheet() {
                               const Text(
                                 'Cash',
                                 style: TextStyle(
-                                    color: Color(primaryColor),
+                                    color: primaryColor,
                                     fontWeight: FontWeight.bold),
                               ),
                               Text(
@@ -372,7 +319,7 @@ Widget bottomSheet() {
                           width: 25,
                           decoration: BoxDecoration(
                               border: Border.all(
-                                  width: 1.5, color: const Color(primaryColor)),
+                                  width: 1.5, color: primaryColor),
                               borderRadius: BorderRadius.circular(50)),
                         ),
                         Padding(
@@ -384,7 +331,7 @@ Widget bottomSheet() {
                               const Text(
                                 'Credit Card',
                                 style: TextStyle(
-                                    color: Color(primaryColor),
+                                    color: primaryColor,
                                     fontWeight: FontWeight.bold),
                               ),
                               Text(
@@ -427,12 +374,12 @@ Widget bottomSheet() {
                             Text(
                               'Subtotal',
                               style: TextStyle(
-                                  color: Color(primaryColor), fontSize: 12),
+                                  color: primaryColor, fontSize: 12),
                             ),
                             Text(
                               '\$9.00',
                               style: TextStyle(
-                                  color: Color(primaryColor), fontSize: 12),
+                                  color:primaryColor, fontSize: 12),
                             ),
                           ],
                         ),
@@ -442,12 +389,12 @@ Widget bottomSheet() {
                             Text(
                               'Tax(10%)',
                               style: TextStyle(
-                                  color: Color(primaryColor), fontSize: 12),
+                                  color: primaryColor, fontSize: 12),
                             ),
                             Text(
                               '\$0.90',
                               style: TextStyle(
-                                  color: Color(primaryColor), fontSize: 12),
+                                  color:primaryColor, fontSize: 12),
                             ),
                           ],
                         ),
@@ -457,12 +404,12 @@ Widget bottomSheet() {
                             Text(
                               'Delivery fee',
                               style: TextStyle(
-                                  color: Color(primaryColor), fontSize: 12),
+                                  color:primaryColor, fontSize: 12),
                             ),
                             Text(
                               '\$2.00',
                               style: TextStyle(
-                                  color: Color(primaryColor), fontSize: 12),
+                                  color:primaryColor, fontSize: 12),
                             ),
                           ],
                         ),
@@ -486,7 +433,7 @@ Widget bottomSheet() {
                             const Text(
                               '\$11.20',
                               style: TextStyle(
-                                  color: Color(primaryColor),
+                                  color: primaryColor,
                                   fontWeight: FontWeight.bold),
                             )
                           ],
@@ -495,9 +442,8 @@ Widget bottomSheet() {
                             onClick: () {
                               Get.to(() => const GoogleMapForCenterInspectionUi());
                             },
-                            buttonHeight: Get.height * .055,
-                            buttonWidth: Get.width*.35,
-                            buttonWidget: Row(mainAxisAlignment: MainAxisAlignment.center,
+
+                            buttonWidget: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 Image.asset('assets/pay-now.png'),
                                 const Padding(

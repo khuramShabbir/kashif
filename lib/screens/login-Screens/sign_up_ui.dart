@@ -212,7 +212,7 @@ class _SignInUIState extends State<SignUpUi> {
                             child: SvgPicture.asset(
                               'assets/eye.svg',
                               color:
-                                  securePassword ? Colors.grey : const Color(primaryColor),
+                                  securePassword ? Colors.grey : primaryColor,
                               width: 25.0,
                               height: 25.0,
                             ),
@@ -251,7 +251,7 @@ class _SignInUIState extends State<SignUpUi> {
                         const Text(
                           "By signing up you agree with our Terms of Use",
                           style: TextStyle(
-                            color: Color(primaryColor),
+                            color: primaryColor,
                             fontSize: 12,
                           ),
                         ),
@@ -281,8 +281,7 @@ class _SignInUIState extends State<SignUpUi> {
 
 
                           },
-                          buttonHeight: Get.height * .055,
-                          buttonWidth: Get.width * .4,
+
                           buttonWidget: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: const [
@@ -319,7 +318,7 @@ class _SignInUIState extends State<SignUpUi> {
                               child: const Text(
                                 'Sign in',
                                 style: TextStyle(
-                                  color: Color(primaryColor),
+                                  color: primaryColor,
                                     fontWeight: FontWeight.bold,
                                     decoration: TextDecoration.underline),
                               ),

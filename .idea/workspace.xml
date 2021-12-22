@@ -5,26 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dcbffef9-3b3b-4332-9dfa-79ca0fc78173" name="Default Changelist" comment="ui update on 21/08/2021">
-      <change afterPath="$PROJECT_DIR$/assets/Location.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/Work.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.flutter-plugins" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/screens/order_taking_screens/car_brand_scan_ui.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/Message.svg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/Message.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/chat.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/work.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/kashif.iml" beforeDir="false" afterPath="$PROJECT_DIR$/kashif.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/CheckIcon.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Kashif.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/ic_scan.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/splash_bd_demo.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/DashBoardScreen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/DashBoardScreen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/anas_screens/payment.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/anas_screens/payment.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/anas_screens/profile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/anas_screens/profile.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/anas_screens/support.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/anas_screens/support.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/junaid_Screens/ongoing_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/junaid_Screens/ongoing_service.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/login-Screens/forget_password.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/login-Screens/forget_password.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/screens/login-Screens/otp_verify_code.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/login-Screens/otp_verify_code.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/screens/login-Screens/sign_in_ui.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/login-Screens/sign_in_ui.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/screens/login-Screens/sign_up_ui.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/login-Screens/sign_up_ui.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/order_taking_screens/vehicles.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/order_taking_screens/vehicles.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/order_taking_screens/center_inspection_ui.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/order_taking_screens/center_inspection_ui.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/order_taking_screens/google_mape.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/order_taking_screens/google_mape.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/order_taking_screens/goolemap_for_center_inspection.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/order_taking_screens/goolemap_for_center_inspection.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/order_taking_screens/ongoing_inspection.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/order_taking_screens/ongoing_inspection.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/order_taking_screens/ongoing_inspection_pickup_address.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/order_taking_screens/ongoing_inspection_pickup_address.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/order_taking_screens/order_ended.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/order_taking_screens/order_ended.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/screens/splash_screen/home_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/splash_screen/home_screen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/utils.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/utils.dart" afterDir="false" />
     </list>
@@ -220,7 +220,14 @@
       <option name="project" value="LOCAL" />
       <updated>1640085089870</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="ui update on 21/08/2021">
+      <created>1640107487166</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1640107487166</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

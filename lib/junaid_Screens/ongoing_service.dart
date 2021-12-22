@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:kashif/junaid_Screens/car_brand_details_2_ui.dart';
-
 import '../utils.dart';
 import 'car_brand_details.dart';
 
@@ -16,7 +16,7 @@ class OnGoingServicesUi extends StatefulWidget {
 
 class _OnGoingServicesUiState extends State<OnGoingServicesUi> {
   int color = 0xFF304FFE;
-  bool isTaped = false;
+  bool isTaped = true;
 
   @override
   Widget build(BuildContext context) {
@@ -70,11 +70,15 @@ class _OnGoingServicesUiState extends State<OnGoingServicesUi> {
                     setState(() {});
                   },
                   child: Container(
-                    child: Center(child: Text('UPCOMING',style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: isTaped?const Color(primaryBlueColor):const Color(primaryColor).withOpacity(.4) ),)),
-
-
+                    child: Center(
+                        child: Text(
+                      'UPCOMING',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: isTaped
+                              ? const Color(primaryBlueColor)
+                              : primaryColor.withOpacity(.4)),
+                    )),
                     height: Get.height * .055,
                     width: Get.width * .4,
                     decoration: BoxDecoration(
@@ -85,23 +89,29 @@ class _OnGoingServicesUiState extends State<OnGoingServicesUi> {
                             topLeft: Radius.circular(8),
                             bottomLeft: Radius.circular(8)),
                         border: Border.all(
-                            width: 1.5, color: isTaped
-                            ? const Color(primaryBlueColor)
-                            : const Color(primaryColor).withOpacity(.3),)),
+                          width: 1.5,
+                          color: isTaped
+                              ? const Color(primaryBlueColor)
+                              : primaryColor.withOpacity(.3),
+                        )),
                   ),
                 ),
                 InkWell(
                   onTap: () {
                     isTaped = false;
                     logger.e('Past');
-                    setState(() {
-
-                    });
+                    setState(() {});
                   },
                   child: Container(
-                    child: Center(child: Text('PAST',style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: isTaped?const Color(primaryColor).withOpacity(.4):const Color(primaryBlueColor) ),)),
+                    child: Center(
+                        child: Text(
+                      'PAST',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: isTaped
+                              ? primaryColor.withOpacity(.4)
+                              : const Color(primaryBlueColor)),
+                    )),
                     height: Get.height * .055,
                     width: Get.width * .4,
                     decoration: BoxDecoration(
@@ -112,32 +122,271 @@ class _OnGoingServicesUiState extends State<OnGoingServicesUi> {
                             topRight: Radius.circular(8),
                             bottomRight: Radius.circular(8)),
                         border: Border.all(
-                            width: 1.5, color: isTaped
-                            ? const Color(primaryColor).withOpacity(.3)
-                            : const Color(primaryBlueColor),)),
+                          width: 1.5,
+                          color: isTaped
+                              ? primaryColor.withOpacity(.3)
+                              : const Color(primaryBlueColor),
+                        )),
                   ),
                 ),
               ],
             ),
-
-            isTaped? InkWell(
-                onTap: (){Get.to(()=>const CarBrandDetailUi());},
-                child: customCardView ()):InkWell(onTap: (){Get.to(()=>const CarBrandUi2());},
-                  child: Column(children: [Padding(
-              padding: const EdgeInsets.only(top: 10.0),
-              child: customCarCardView(),
-            ),Padding(
-              padding: const EdgeInsets.only(top: 15.0),
-              child: customCarCardView(),
-            )],),
-                )
+            isTaped
+                ? InkWell(
+                    onTap: () {
+                      Get.to(() => const CarBrandDetailUi());
+                    },
+                    child: ListView.builder(
+                        scrollDirection: Axis.vertical,
+                        shrinkWrap: true,
 
 
+                        itemCount: 1,
+                        itemBuilder: (context,index){
+                      return upcomingDetail();
 
 
+
+                    }))
+                : InkWell(
+                    onTap: () {
+                      Get.to(() => const CarBrandUi2());
+                    },
+                    child: ListView.builder(
+                        itemCount: 2,
+                        scrollDirection: Axis.vertical,
+                        shrinkWrap: true,
+                        itemBuilder: (context,index){
+                          return
+                            pastDetail();
+
+
+                        }),
+                  )
           ],
         ),
       ),
     );
   }
+}
+
+Widget upcomingDetail() {
+  return Padding(
+    padding: EdgeInsets.only(top: Get.height*.03,left: Get.width*.1,right: Get.width*.1),
+    child: SizedBox(
+        width: Get.width * 0.8,
+        height: Get.height * 0.3,
+
+        child: Padding(
+          padding: EdgeInsets.all(Get.width*.03),
+          child: Column(
+            children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+               Text(
+                'Full car inspection',
+                style: TextStyle(
+                    fontSize: Get.width*.04, fontWeight: FontWeight.bold),
+              ),
+
+              statusButton()
+            ],
+          ),
+          SizedBox(
+            height: Get.height*.01,),
+          Row(
+            children:  [
+              Text(
+                'Ford Crown Victoria',
+                style: TextStyle(fontSize: Get.width*.035,color: Colors.grey,fontWeight: FontWeight.w500),
+              ),
+              SizedBox(
+                width: Get.width*.05,
+              ),
+              Text('#00678',style: TextStyle(color: Colors.grey,fontSize: Get.width*.035,fontWeight: FontWeight.w500),)
+            ],
+          ),
+          SizedBox(
+            height: Get.height*.0,),
+             const Expanded(
+               child: SizedBox(),),
+          /// 5star ratting
+          Row(
+            children: [
+              RatingBar.builder(
+                initialRating: 3,
+                itemSize: 18,
+                minRating: 1,
+                direction: Axis.horizontal,
+                allowHalfRating: true,
+                itemCount: 5,
+                itemPadding:
+                const EdgeInsets.symmetric(horizontal: 1.0),
+                itemBuilder: (context, _) => const Icon(
+                  Icons.star,
+                  color: Colors.amber,
+                ),
+                onRatingUpdate: (rating) {},
+              ),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'DATE',
+                style: TextStyle(color: Colors.grey,
+                    fontSize: Get.width*.035, fontWeight: FontWeight.bold),
+              ),
+              Text(
+                'PICK-UP TIME',
+                style: TextStyle(fontSize: Get.width*.035,color: Colors.grey,fontWeight: FontWeight.bold),
+              ),
+
+
+            ],
+          ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children:const [
+                  Text(
+                    '21ST Sept 2021, Monday',
+                    style: TextStyle(color: Colors.grey,
+                        fontSize: 13, fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    '9:00-9:30am',
+                    style: TextStyle(color: Colors.grey,fontSize:13),
+                  ),
+                ],
+              )
+
+
+            ],
+          ),
+        )),
+  );
+}
+
+Widget pastDetail() {
+  return Padding(
+    padding:EdgeInsets.only(top: Get.height*.02),
+    child: Stack(
+      children: [
+        Center(
+          child: Container(
+            height: Get.height * .2,
+            width: Get.width * .8,
+            decoration: BoxDecoration(color: Colors.white, boxShadow: [
+              BoxShadow(
+                  color: Colors.grey.withOpacity(.5),
+                  offset: const Offset(-3, 3),
+                  blurRadius: 5),
+            ]),
+            child: Row(
+              children: [
+                Expanded(
+                  flex: 2,
+                  child: Column(
+                    children: [
+                      Expanded(
+                        flex: 2,
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 15.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const SizedBox(
+                                height: 15,
+                              ),
+                              const Padding(
+                                padding: EdgeInsets.only(bottom: 8.0),
+                                child: Text(
+                                  'Ford Crown Victoria',
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                              const Padding(
+                                padding: EdgeInsets.only(bottom: 8.0),
+                                child: Text(
+                                  'AAA - 0000',
+                                  style: TextStyle(
+                                      color: Colors.red,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                              Row(
+                                children: [
+                                  const Text('******879CG'),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 8.0),
+                                    child: Container(
+                                      width: Get.width * .18,
+                                      height: Get.height * .022,
+                                      decoration: BoxDecoration(
+                                          color: Colors.green.withOpacity(.15),
+                                          borderRadius: BorderRadius.circular(5),
+                                          border:
+                                              Border.all(color: Colors.green)),
+                                      child: const Center(
+                                        child: Text(
+                                          "CONFIRMED",
+                                          style: TextStyle(
+                                              color: Colors.green, fontSize: 10),
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: Container(
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                  width: 1, color: Colors.grey.withOpacity(.3))),
+                          child: Row(
+                            children: [
+                              const Expanded(
+                                  child: Center(
+                                      child: Text(
+                                're-application',
+                                style: TextStyle(
+                                    color: Color(primaryBlueColor),
+                                    fontWeight: FontWeight.bold),
+                              ))),
+                              Container(color: Colors.grey, width: 1),
+                              const Expanded(
+                                  child: Center(
+                                      child: Text(
+                                'Service report',
+                                style: TextStyle(
+                                    color: Colors.red,
+                                    fontWeight: FontWeight.bold),
+                              ))),
+                            ],
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        Align(
+            alignment: Alignment.centerRight,
+            child: Image.asset(
+              'assets/car_model.png',
+              height: Get.width * .3,
+              width: Get.width * .4,
+            ))
+      ],
+    ),
+  );
 }

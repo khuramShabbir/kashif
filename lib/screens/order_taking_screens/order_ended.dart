@@ -98,7 +98,7 @@ class _OrderEndedState extends State<OrderEnded> {
                         'Your Order has ended',
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: Color(primaryColor)),
+                            color: primaryColor),
                       ),
                       SizedBox(
                         height: Get.height * .05,
@@ -154,10 +154,10 @@ class _OrderEndedState extends State<OrderEnded> {
                                 children: const [
                                   Text('Check-in Time',
                                       style: TextStyle(
-                                          color: Color(primaryColor))),
+                                          color: primaryColor)),
                                   Text('Check-out Time (Est)',
                                       style: TextStyle(
-                                          color: Color(primaryColor))),
+                                          color: primaryColor)),
                                 ],
                               ),
                             ),
@@ -226,11 +226,11 @@ class _OrderEndedState extends State<OrderEnded> {
                             onClick: () {
                               ratingDialog();
                             },
-                            buttonHeight: Get.height * .05,
+
                             buttonWidget: Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 25.0),
+                              padding: const EdgeInsets.symmetric(horizontal: 25.0),
                               child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 children: const [
                                   Padding(
                                     padding: EdgeInsets.only(right: 15.0),
@@ -239,7 +239,7 @@ class _OrderEndedState extends State<OrderEnded> {
                                       style: TextStyle(color: Colors.white),
                                     ),
                                   ),
-                                  Icon(Icons.arrow_forward, color: Colors.white)
+                                  Icon(Icons.arrow_forward, color: Colors.white,size: 18,)
                                 ],
                               ),
                             ))

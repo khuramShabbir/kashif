@@ -65,7 +65,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                               child: SvgPicture.asset(
                                 'assets/Home.svg',
                                 color: initialScreen == 0
-                                    ? const Color(primaryColor)
+                                    ? primaryColor
                                     : Colors.grey,
                               )),
                           Text(
@@ -73,7 +73,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                             style: TextStyle(
                                 fontSize: 12,
                                 color: initialScreen == 0
-                                    ? const Color(primaryColor)
+                                    ? primaryColor
                                     : Colors.grey),
                           )
                         ],
@@ -95,7 +95,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                             SvgPicture.asset(
                               'assets/vec.svg',
                               color: initialScreen == 1
-                                  ? const Color(primaryColor)
+                                  ?primaryColor
                                   : Colors.grey,
                             ),
                             Text(
@@ -103,7 +103,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                               style: TextStyle(
                                 fontSize: 12,
                                 color: initialScreen == 1
-                                    ? const Color(primaryColor)
+                                    ? primaryColor
                                     : Colors.grey,
                               ),
                             )
@@ -145,7 +145,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                             SvgPicture.asset(
                               'assets/records.svg',
                               color: initialScreen == 2
-                                  ? const Color(primaryColor)
+                                  ? primaryColor
                                   : Colors.grey,
                             ),
                             Text(
@@ -153,7 +153,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                               style: TextStyle(
                                 fontSize: 12,
                                 color: initialScreen == 2
-                                    ? const Color(primaryColor)
+                                    ?primaryColor
                                     : Colors.grey,
                               ),
                             )
@@ -177,7 +177,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                               'assets/profile.png',
                               height: 30,
                               color: initialScreen == 3
-                                  ? const Color(primaryColor)
+                                  ? primaryColor
                                   : Colors.grey,
                             ),
                             Text(
@@ -185,7 +185,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                               style: TextStyle(
                                 fontSize: 12,
                                 color: initialScreen == 3
-                                    ? const Color(primaryColor)
+                                    ? primaryColor
                                     : Colors.grey,
                               ),
                             )
@@ -208,13 +208,18 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30),
                     color: Colors.white),
-                child: InkWell(onTap: (){Get.to(()=>bottomSheet());},
+                child: InkWell(onTap: (){
+
+
+                  bottomSheet();
+                  },
+
                   child: Container(
                     height: Get.width * .17,
                     width: Get.width * .17,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(50),
-                        color: const Color(primaryColor)),
+                        color: primaryColor),
                     child: const Icon(
                       Icons.add,
                       size: 32,

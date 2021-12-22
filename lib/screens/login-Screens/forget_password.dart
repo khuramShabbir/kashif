@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -99,13 +99,12 @@ class _SignInUIState extends State<ForgetPasswordUi> {
                           onTap: () {
                             Get.to(() =>const OtpVerifyCode());
                           },
-                          child: customRoundButton(
-                              radius: Get.width * .1,
-                              child: const Icon(
-                                Icons.arrow_forward_outlined,
-                                color: Colors.white,
-                                size: 30,
-                              )),
+                          child:
+                          CircleAvatar(
+                            backgroundColor: primaryColor,
+                            child:const Icon(Icons.arrow_forward,color: Colors.white,),
+                            radius: Get.width*.085,
+                          ),
                         )
                       ],
                     ),

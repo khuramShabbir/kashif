@@ -5,14 +5,14 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:geolocator/geolocator.dart';
 
-class GooGleMap extends StatefulWidget {
-  const GooGleMap({Key? key}) : super(key: key);
+class GooGleMapUi extends StatefulWidget {
+  const GooGleMapUi({Key? key}) : super(key: key);
 
   @override
-  _GooGleMapState createState() => _GooGleMapState();
+  _GooGleMapUiState createState() => _GooGleMapUiState();
 }
 
-class _GooGleMapState extends State<GooGleMap> {
+class _GooGleMapUiState extends State<GooGleMapUi> {
   static const CameraPosition _kGooglePlex = CameraPosition(
       target: LatLng(37.42796133580664, -122.085749655962), zoom: 14.4746);
 
@@ -66,21 +66,27 @@ class _GooGleMapState extends State<GooGleMap> {
             ),
           ],
         ),
-        body: SizedBox(
-            width: Get.width,
-            height: Get.height,
-            child: GoogleMap(
-              initialCameraPosition: _kGooglePlex,
-              mapType: mapTypes,
-              myLocationEnabled: true,
-              zoomControlsEnabled: true,
-              myLocationButtonEnabled: true,
-              onMapCreated: (GoogleMapController googleMapController) {
-                this.googleMapController = googleMapController;
-                setState(() {});
-              },
-            )));
+        body: googleMap());
   }
+
+  Widget googleMap(){
+    return SizedBox(
+        width: Get.width,
+        height: Get.height,
+        child: GoogleMap(
+          initialCameraPosition: _kGooglePlex,
+          mapType: mapTypes,
+          myLocationEnabled: true,
+          zoomControlsEnabled: true,
+          myLocationButtonEnabled: true,
+          onMapCreated: (GoogleMapController googleMapController) {
+            this.googleMapController = googleMapController;
+            setState(() {});
+          },
+        ));
+
+  }
+
 
   void checkPermissions() async {
     PermissionStatus request = await Permission.location.request();

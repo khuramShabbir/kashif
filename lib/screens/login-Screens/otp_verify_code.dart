@@ -89,8 +89,7 @@ class _OtpVerifyCodeState extends State<OtpVerifyCode> {
                 onClick: () {
                   Get.to(() => const DashBoardScreen());
                 },
-                buttonHeight: Get.height * .068,
-                buttonWidth: Get.width * .4,
+
                 buttonWidget: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Row(

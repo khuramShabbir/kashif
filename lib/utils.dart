@@ -5,7 +5,8 @@ import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-const primaryColor = 0xFFFF203840;
+const primaryColor = Color(0xFFFF203840);
+
 const primaryBlueColor = 0xFF304FFE;
 var barColor = Colors.black.withOpacity(0.2);
 double progressBarPersent = 0.0;
@@ -23,6 +24,71 @@ Widget lineBar() => Padding(
         color: barColor,
       ),
     );
+
+/// pickup Address///
+///
+
+Widget pickupAddress(){
+  return
+    Container(
+      width: Get.width * .8,
+      height: Get.height * .1,
+      decoration: BoxDecoration(
+
+          borderRadius: BorderRadius.circular(15)),
+      child: Row(
+        children: [
+          Expanded(
+              flex: 2,
+              child: Align(
+                  alignment: Alignment.topCenter,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 10.0),
+                    child:
+                    SvgPicture.asset("assets/pin_location.svg"),
+                  ))),
+          Expanded(
+            flex: 8,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: const [
+                Text(
+                  'Pick-up Address',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black),
+                ),
+                Text(
+                  'B/62,Bhaweshwar Darshan,Altamount',
+                  style:
+                  TextStyle(color: Colors.black, fontSize: 10),
+                ),
+              ],
+            ),
+          ),
+          const Expanded(
+              flex: 3,
+              child: Align(
+                  alignment: Alignment.topCenter,
+                  child: Padding(
+                    padding: EdgeInsets.only(top: 10.0),
+                    child: Text(
+                      'CHANGE',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ))),
+        ],
+      ),
+    )
+
+
+
+    ;
+
+}
+
+
 
 /// Carousal Slider///
 ///
@@ -65,8 +131,8 @@ Widget carousalSlider() {
 Widget customButton(
     {var buttonWidget,
     double borderRadius = 50,
-    double buttonHeight = 65,
-    double buttonWidth = 150,
+    double buttonHeight = 0.06,
+    double buttonWidth = .4,
     required Function onClick}) {
   return InkWell(
     onTap: () {
@@ -75,14 +141,14 @@ Widget customButton(
     child: Container(
 
         /// Please Set values of height and width where`s you want hit this method
-        /// buttonHeight:Get.height*.055,
-        /// buttonWidth:Get.width*.3,
+        ///   buttonHeight: Get.height * .06,
+        ///   buttonWidth: Get.width * .4
         ///
-        height: buttonHeight,
-        width: buttonWidth,
+        height: Get.height * buttonHeight,
+        width: Get.width * buttonWidth,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(borderRadius),
-          color: const Color(primaryColor),
+          color:primaryColor ,
         ),
         child: buttonWidget),
   );
@@ -150,15 +216,7 @@ Widget customInputFormField({
   );
 }
 
-Widget customRoundButton({double radius = 50, var child}) {
-  return CircleAvatar(
-    backgroundColor: const Color(
-      primaryColor,
-    ),
-    child: child,
-    radius: radius,
-  );
-}
+
 
 Widget customDetailBar({
   double width = 400,
@@ -296,6 +354,30 @@ Widget confirmedOrder({
   );
 }
 
+/// Status Button///
+///
+Widget statusButton({
+  String statusText='CONFIRMED',
+
+
+}) {
+  return Container(
+
+    decoration: BoxDecoration(color: Colors.greenAccent.withOpacity(.2),
+        borderRadius: BorderRadius.circular(4),
+        border: Border.all(width: 1, color: Colors.green)),
+    alignment: Alignment.center,
+    child:  Padding(
+      padding:const EdgeInsets.symmetric(horizontal: 2),
+      child: Text(
+        statusText,
+        style:TextStyle(color: Colors.green,fontWeight: FontWeight.bold,fontSize: Get.width*.03),
+      ),
+    ),
+  );
+}
+
+
 /// Junaid Utils ///
 ///
 
@@ -329,7 +411,7 @@ Widget customCardView() {
                             fontSize: 18, fontWeight: FontWeight.bold),
                       ),
                       Expanded(child: Container()),
-                      confirmButton()
+                      statusButton()
                     ],
                   ),
                   Row(
@@ -530,22 +612,7 @@ Widget customCarCardView() {
   );
 }
 
-Widget confirmButton() {
-  return Container(
-    height: 20,
-    decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(4),
-        border: Border.all(width: 1, color: Colors.greenAccent)),
-    alignment: Alignment.center,
-    child: const Padding(
-      padding: EdgeInsets.symmetric(horizontal: 4),
-      child: Text(
-        'CONFIRMED',
-        style: TextStyle(color: Colors.greenAccent),
-      ),
-    ),
-  );
-}
+
 
 Widget appBar(String text) {
   return Padding(
@@ -592,57 +659,7 @@ Widget carBrand(String carName) {
   );
 }
 
-// Widget carReportDetails (String icon, String text, ){
-//   bool _expanded = false;
-//
-//   return
-//     Column(
-//       children: [
-//         Container(
-//           child: ExpansionPanelList(
-//             elevation: 0,
-//             children: [
-//               ExpansionPanel(
-//                 headerBuilder: (context, isExpanded) {
-//                   return Container(
-//                     height: 50,
-//                     width: Get.width,
-//                     decoration: BoxDecoration(
-//                         color: grey,
-//                         borderRadius: BorderRadius.circular(4)
-//                     ),
-//                     child: Padding(
-//                       padding: const EdgeInsets.only(left: 12.0),
-//                       child: Row(
-//                         children: [
-//                           SvgPicture.asset('assets/TimeCalendar.svg'),
-//                           SizedBox(width: 8),
-//                           Text('avcdf'),
-//                           Expanded(child: Container()),
-//                           Icon(Icons.check_circle,color: Colors.greenAccent,),
-//                         ],
-//                       ),
-//                     ),
-//                   );
-//                 },
-//                 body:ListTile(
-//                   title: Text('Description text',style: TextStyle(color: Colors.black)),
-//                 ),
-//                 isExpanded: _expanded,
-//                 canTapOnHeader: true,
-//               ),
-//             ],
-//             dividerColor: Colors.grey,
-//             expansionCallback: (panelIndex, isExpanded) {
-//               _expanded = !_expanded;
-//               setState(() {
-//               });
-//             },
-//           ),
-//         ),
-//       ],
-//     );
-// }
+
 
 Widget carReports(String text1, String text2, String text3, String text4) {
   late bool internalOrder = true;
@@ -736,8 +753,7 @@ Widget carSetting(
   String t11,
   String t12,
   String t13,
-  String t14,
-) {
+  String t14) {
   return Column(
     children: [
       Padding(
