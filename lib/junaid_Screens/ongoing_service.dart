@@ -132,22 +132,19 @@ class _OnGoingServicesUiState extends State<OnGoingServicesUi> {
               ],
             ),
             isTaped
-                ? InkWell(
-                    onTap: () {
-                      Get.to(() => const CarBrandDetailUi());
-                    },
+                ? Expanded(
                     child: ListView.builder(
                         scrollDirection: Axis.vertical,
                         shrinkWrap: true,
-
-
-                        itemCount: 1,
-                        itemBuilder: (context,index){
-                      return upcomingDetail();
-
-
-
-                    }))
+                        itemCount: 50,
+                        itemBuilder: (context, index) {
+                          return InkWell(
+                              onTap: () {
+                                Get.to(() => const CarBrandDetailUi());
+                              },
+                              child: upcomingDetail());
+                        }),
+                  )
                 : InkWell(
                     onTap: () {
                       Get.to(() => const CarBrandUi2());
@@ -156,11 +153,8 @@ class _OnGoingServicesUiState extends State<OnGoingServicesUi> {
                         itemCount: 2,
                         scrollDirection: Axis.vertical,
                         shrinkWrap: true,
-                        itemBuilder: (context,index){
-                          return
-                            pastDetail();
-
-
+                        itemBuilder: (context, index) {
+                          return pastDetail();
                         }),
                   )
           ],
@@ -172,106 +166,117 @@ class _OnGoingServicesUiState extends State<OnGoingServicesUi> {
 
 Widget upcomingDetail() {
   return Padding(
-    padding: EdgeInsets.only(top: Get.height*.03,left: Get.width*.1,right: Get.width*.1),
-    child: SizedBox(
-        width: Get.width * 0.8,
-        height: Get.height * 0.3,
-
-        child: Padding(
-          padding: EdgeInsets.all(Get.width*.03),
-          child: Column(
-            children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-               Text(
-                'Full car inspection',
-                style: TextStyle(
-                    fontSize: Get.width*.04, fontWeight: FontWeight.bold),
-              ),
-
-              statusButton()
-            ],
-          ),
-          SizedBox(
-            height: Get.height*.01,),
-          Row(
-            children:  [
-              Text(
-                'Ford Crown Victoria',
-                style: TextStyle(fontSize: Get.width*.035,color: Colors.grey,fontWeight: FontWeight.w500),
-              ),
-              SizedBox(
-                width: Get.width*.05,
-              ),
-              Text('#00678',style: TextStyle(color: Colors.grey,fontSize: Get.width*.035,fontWeight: FontWeight.w500),)
-            ],
-          ),
-          SizedBox(
-            height: Get.height*.0,),
-             const Expanded(
-               child: SizedBox(),),
-          /// 5star ratting
-          Row(
-            children: [
-              RatingBar.builder(
-                initialRating: 3,
-                itemSize: 18,
-                minRating: 1,
-                direction: Axis.horizontal,
-                allowHalfRating: true,
-                itemCount: 5,
-                itemPadding:
-                const EdgeInsets.symmetric(horizontal: 1.0),
-                itemBuilder: (context, _) => const Icon(
-                  Icons.star,
-                  color: Colors.amber,
+    padding: const EdgeInsets.symmetric(horizontal: 25,vertical: 10),
+    child: Container(
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: Colors.grey.withOpacity(0.2))),
+      child: Padding(
+        padding: EdgeInsets.all(Get.width * .03),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Full car inspection',
+                  style: TextStyle(
+                      fontSize: Get.width * .04, fontWeight: FontWeight.bold),
                 ),
-                onRatingUpdate: (rating) {},
-              ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'DATE',
-                style: TextStyle(color: Colors.grey,
-                    fontSize: Get.width*.035, fontWeight: FontWeight.bold),
-              ),
-              Text(
-                'PICK-UP TIME',
-                style: TextStyle(fontSize: Get.width*.035,color: Colors.grey,fontWeight: FontWeight.bold),
-              ),
-
-
-            ],
-          ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children:const [
-                  Text(
-                    '21ST Sept 2021, Monday',
-                    style: TextStyle(color: Colors.grey,
-                        fontSize: 13, fontWeight: FontWeight.bold),
+                statusButton()
+              ],
+            ),
+            SizedBox(
+              height: Get.height * .01,
+            ),
+            Row(
+              children: [
+                Text(
+                  'Ford Crown Victoria',
+                  style: TextStyle(
+                      fontSize: Get.width * .035,
+                      color: Colors.grey,
+                      fontWeight: FontWeight.w500),
+                ),
+                SizedBox(
+                  width: Get.width * .05,
+                ),
+                Text(
+                  '#00678',
+                  style: TextStyle(
+                      color: Colors.grey,
+                      fontSize: Get.width * .035,
+                      fontWeight: FontWeight.w500),
+                )
+              ],
+            ),
+            SizedBox(
+              height: Get.height * .08,
+            ),
+            /// 5star ratting
+            Row(
+              children: [
+                RatingBar.builder(
+                  initialRating: 3,
+                  itemSize: 18,
+                  minRating: 1,
+                  direction: Axis.horizontal,
+                  allowHalfRating: true,
+                  itemCount: 5,
+                  itemPadding: const EdgeInsets.symmetric(horizontal: 1.0),
+                  itemBuilder: (context, _) => const Icon(
+                    Icons.star,
+                    color: Colors.amber,
                   ),
-                  Text(
-                    '9:00-9:30am',
-                    style: TextStyle(color: Colors.grey,fontSize:13),
-                  ),
-                ],
-              )
-
-
-            ],
-          ),
-        )),
+                  onRatingUpdate: (rating) {},
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'DATE',
+                  style: TextStyle(
+                      color: Colors.grey,
+                      fontSize: Get.width * .035,
+                      fontWeight: FontWeight.bold),
+                ),
+                Text(
+                  'PICK-UP TIME',
+                  style: TextStyle(
+                      fontSize: Get.width * .035,
+                      color: Colors.grey,
+                      fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: const [
+                Text(
+                  '21ST Sept 2021, Monday',
+                  style: TextStyle(
+                      color: Colors.grey,
+                      fontSize: 13,
+                      fontWeight: FontWeight.bold),
+                ),
+                Text(
+                  '9:00-9:30am',
+                  style: TextStyle(color: Colors.grey, fontSize: 13),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    ),
   );
 }
 
 Widget pastDetail() {
   return Padding(
-    padding:EdgeInsets.only(top: Get.height*.02),
+    padding: EdgeInsets.only(top: Get.height * .02),
     child: Stack(
       children: [
         Center(
@@ -326,14 +331,16 @@ Widget pastDetail() {
                                       height: Get.height * .022,
                                       decoration: BoxDecoration(
                                           color: Colors.green.withOpacity(.15),
-                                          borderRadius: BorderRadius.circular(5),
+                                          borderRadius:
+                                              BorderRadius.circular(5),
                                           border:
                                               Border.all(color: Colors.green)),
                                       child: const Center(
                                         child: Text(
                                           "CONFIRMED",
                                           style: TextStyle(
-                                              color: Colors.green, fontSize: 10),
+                                              color: Colors.green,
+                                              fontSize: 10),
                                         ),
                                       ),
                                     ),
@@ -348,7 +355,8 @@ Widget pastDetail() {
                         child: Container(
                           decoration: BoxDecoration(
                               border: Border.all(
-                                  width: 1, color: Colors.grey.withOpacity(.3))),
+                                  width: 1,
+                                  color: Colors.grey.withOpacity(.3))),
                           child: Row(
                             children: [
                               const Expanded(
