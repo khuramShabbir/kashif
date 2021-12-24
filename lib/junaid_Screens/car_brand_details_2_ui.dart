@@ -20,11 +20,16 @@ class _CarBrandUi2State extends State<CarBrandUi2> {
         elevation: 0,
         centerTitle: true,
         backgroundColor: Colors.white,
-        leading: Padding(
-          padding: const EdgeInsets.only(left: 15.0),
-          child: Icon(Icons.arrow_back,color: Colors.black,),
+        leading: InkWell(
+          onTap: (){
+            Get.back();
+          },
+          child: const Padding(
+            padding: EdgeInsets.only(left: 15.0),
+            child: Icon(Icons.arrow_back,color: Colors.black,),
+          ),
         ),
-        title: Text('Report detail',style: TextStyle(color: Colors.black),),
+        title: const Text('Report detail',style: TextStyle(color: Colors.black),),
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 15.0),

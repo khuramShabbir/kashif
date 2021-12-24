@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:kashif/utils.dart';
 
-import '../../DashBoardScreen.dart';
+import '../../dashboardscreen.dart';
 
 class OtpVerifyCode extends StatefulWidget {
   const OtpVerifyCode({Key? key}) : super(key: key);

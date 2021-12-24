@@ -35,6 +35,7 @@ class _CarBrandDetailUiState extends State<CarBrandDetailUi> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       body: SizedBox(
         height: Get.height,
         width: Get.width,

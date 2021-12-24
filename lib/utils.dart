@@ -210,6 +210,7 @@ Widget customInputFormField({
       border: isOutlinedBorder
           ? OutlineInputBorder(borderRadius: BorderRadius.circular(10))
           : null,
+      contentPadding: EdgeInsets.symmetric(horizontal: 10),
       prefixIcon: prefixIconList,
       suffix: suffixIcon,
       hintText: hintText,

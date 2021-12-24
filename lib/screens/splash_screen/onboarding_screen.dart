@@ -6,14 +6,14 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:shape_of_view_null_safe/shape_of_view_null_safe.dart';
 
 
-class HomeUi extends StatefulWidget {
-  const HomeUi({Key? key}) : super(key: key);
+class OnboardingScreen extends StatefulWidget {
+  const OnboardingScreen({Key? key}) : super(key: key);
 
   @override
-  _HomeUiState createState() => _HomeUiState();
+  _OnboardingScreenState createState() => _OnboardingScreenState();
 }
 
-class _HomeUiState extends State<HomeUi> {
+class _OnboardingScreenState extends State<OnboardingScreen> {
   List<String> assetImages = [
     'assets/splash_bg.png',
     'assets/splash_bg.png',
@@ -156,7 +156,7 @@ class _HomeUiState extends State<HomeUi> {
                               ),
                             ),
                           ),
-                          customButton(
+                          customButton(buttonWidth: 0.35,
                               onClick: () => {Get.to(() => const SignInUI())},
                               buttonWidget: Padding(
                                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -167,9 +167,6 @@ class _HomeUiState extends State<HomeUi> {
                                       "Next",
                                       style: TextStyle(
                                           color: Colors.white, fontSize: Get.height *0.02),
-                                    ),
-                                    const SizedBox(
-                                      width: 10,
                                     ),
                                     const Icon(
                                       Icons.arrow_forward_outlined,

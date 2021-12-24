@@ -152,19 +152,7 @@ class _StepperUiState extends State<StepperUi> {
                       TopSheet.show(
                           context: context,
                           direction: TopSheetDirection.TOP,
-                          child:
-
-
-
-
-
-
-
-
-
-
-
-                        /* ListTile(
+                          child: ListTile(
                             leading: const Icon(
                               Icons.arrow_back,
                               color: Colors.black,
@@ -187,7 +175,7 @@ class _StepperUiState extends State<StepperUi> {
                                       bottomLeft: Radius.circular(20),
                                       bottomRight: Radius.circular(20))),
                             ),
-                          )*/);
+                          ));
                     }),
                   ),
                 ],

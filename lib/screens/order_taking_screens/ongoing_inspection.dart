@@ -26,9 +26,12 @@ class _OngoingInspectionUiState extends State<OngoingInspectionUi> {
           elevation: 0,
           centerTitle: true,
           backgroundColor: Colors.white,
-          leading: const Icon(
-            Icons.arrow_back,
-            color: Colors.black,
+          leading: InkWell(
+            onTap: (){Get.back();},
+            child: const Icon(
+              Icons.arrow_back,
+              color: Colors.black,
+            ),
           ),
           actions: [
             Padding(
@@ -49,7 +52,7 @@ class _OngoingInspectionUiState extends State<OngoingInspectionUi> {
             padding: const EdgeInsets.all(0),
           ),
         ),
-        body: SingleChildScrollView                           (
+        body: SingleChildScrollView (
           child: Column(
             children: [
               Padding(
@@ -60,44 +63,30 @@ class _OngoingInspectionUiState extends State<OngoingInspectionUi> {
                     SizedBox(
                       width: Get.width * .1,
                     ),
-                    Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        labelText('Car Brand:'),
-                        SizedBox(
-                          width: Get.width * width,
-                          height: Get.height * height,
-                          child: customInputFormField(
+                    SizedBox(
+                      width: Get.width * width,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          labelText('Car Brand:'),
+                          customInputFormField(
                               hintText: "Ford",
                               isOutlinedBorder: true,
                               onChange: (carBrand) {
                                 logger.e(carBrand);
                               }),
-                        ),
-                        labelText('Car Model:'),
-                        SizedBox(
-                          width: Get.width * width,
-                          height: Get.height * height,
-                          child: customInputFormField(
+                          labelText('Car Model:'),
+                          customInputFormField(
                               hintText: "Crown Victoria",
                               isOutlinedBorder: true,
                               onChange: (value) {}),
-                        ),
-                        labelText('Manufacture year:'),
-                        SizedBox(
-                          width: Get.width * width,
-                          height: Get.height * height,
-                          child: customInputFormField(
+                          labelText('Manufacture year:'),
+                          customInputFormField(
                               hintText: "2011",
                               isOutlinedBorder: true,
                               onChange: (value) {}),
-                        ),
-                        labelText('vin:'),
-                        SizedBox(
-                          width: Get.width * width,
-                          height: Get.height * height,
-                          child: customInputFormField(
+                          labelText('vin:'),
+                          customInputFormField(
                               onChange: (value) {},
                               hintText: "2FABP7CWI8X13",
                               isOutlinedBorder: true,
@@ -114,20 +103,14 @@ class _OngoingInspectionUiState extends State<OngoingInspectionUi> {
                                   ],
                                 ),
                               )),
-                        ),
-                        labelText('Car plate'),
-                        SizedBox(
-                          width: Get.width * width,
-                          height: Get.height * height,
-                          child: customInputFormField(
+                          labelText('Car plate'),
+
+                          customInputFormField(
                               hintText: "AAA - 0000",
                               isOutlinedBorder: true,
                               onChange: (value) {}),
-                        ),
-                        SizedBox(
-                          height: Get.height * .1,
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                     SizedBox(
                       width: Get.width * .1,
@@ -136,11 +119,11 @@ class _OngoingInspectionUiState extends State<OngoingInspectionUi> {
                 ),
               ),
               SizedBox(
-                height: Get.height * .02,
+                height: Get.height * .05,
               ),
               customButton(
+                buttonWidth: 0.30,
                   onClick: () {Get.to(()=>const OngoingInspectionPickUpAddressUi());},
-
                   buttonWidget: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 15.0),
                     child: Row(
@@ -166,10 +149,10 @@ class _OngoingInspectionUiState extends State<OngoingInspectionUi> {
 
 labelText(String text) {
   return Padding(
-    padding: const EdgeInsets.symmetric(vertical: 7),
+    padding: const EdgeInsets.only(top:20,bottom: 5),
     child: Text(
       text,
-      style: const TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
+      style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
     ),
   );
 }
