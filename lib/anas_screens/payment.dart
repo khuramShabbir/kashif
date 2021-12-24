@@ -1,14 +1,11 @@
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:kashif/anas_screens/scan_tempelet.dart';
 import 'package:kashif/anas_screens/support.dart';
 import 'package:kashif/anas_screens/supportscreen3.dart';
-
 import 'profile.dart';
-import 'scan.dart';
+
 
 class PaymentMethod extends StatefulWidget {
   const PaymentMethod({Key? key}) : super(key: key);
@@ -31,7 +28,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
                   children: [
                     InkWell(
                       onTap: (){
-                        Get.back(result: Profile());
+                        Get.back(result: const Profile());
                       },
                       child: SvgPicture.asset(
                         "assets/leftarrow.svg",

@@ -145,8 +145,8 @@ class _StartYourOrderState extends State<StartYourOrder> {
                                               right: 10, top: 10.0, bottom: 10),
                                           child: InkWell(
                                             onTap: () {
-                                              Get.bottomSheet(bottomSheet(),
-                                                  isScrollControlled: true);
+
+                                                 bottomSheetStartOrder();
                                             },
                                             child: Container(
                                               child: const Center(

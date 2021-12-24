@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kashif/anas_screens/scan.dart';
@@ -35,7 +34,7 @@ class _ScanTemplateState extends State<ScanTemplate> {
           ),
           Padding(
             padding: const EdgeInsets.all(35.0),
-            child: InkWell(onTap: (){Get.to(Scan());},child: Image.asset("assets/card-atm.png")),
+            child: InkWell(onTap: (){Get.to(const Scan());},child: Image.asset("assets/card-atm.png")),
           ),
           const SizedBox(
             height: 18,

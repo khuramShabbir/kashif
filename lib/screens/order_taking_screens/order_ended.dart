@@ -7,8 +7,6 @@ import 'package:percent_indicator/linear_percent_indicator.dart';
 import '../../utils.dart';
 import 'link_ui.dart';
 
-
-
 class OrderEnded extends StatefulWidget {
   const OrderEnded({Key? key}) : super(key: key);
 
@@ -97,8 +95,7 @@ class _OrderEndedState extends State<OrderEnded> {
                       const Text(
                         'Your Order has ended',
                         style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: primaryColor),
+                            fontWeight: FontWeight.bold, color: primaryColor),
                       ),
                       SizedBox(
                         height: Get.height * .05,
@@ -153,11 +150,9 @@ class _OrderEndedState extends State<OrderEnded> {
                                     MainAxisAlignment.spaceBetween,
                                 children: const [
                                   Text('Check-in Time',
-                                      style: TextStyle(
-                                          color: primaryColor)),
+                                      style: TextStyle(color: primaryColor)),
                                   Text('Check-out Time (Est)',
-                                      style: TextStyle(
-                                          color: primaryColor)),
+                                      style: TextStyle(color: primaryColor)),
                                 ],
                               ),
                             ),
@@ -226,11 +221,12 @@ class _OrderEndedState extends State<OrderEnded> {
                             onClick: () {
                               ratingDialog();
                             },
-
                             buttonWidget: Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 15.0),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 children: const [
                                   Padding(
                                     padding: EdgeInsets.only(right: 15.0),
@@ -239,7 +235,11 @@ class _OrderEndedState extends State<OrderEnded> {
                                       style: TextStyle(color: Colors.white),
                                     ),
                                   ),
-                                  Icon(Icons.arrow_forward, color: Colors.white,size: 18,)
+                                  Icon(
+                                    Icons.arrow_forward,
+                                    color: Colors.white,
+                                    size: 18,
+                                  )
                                 ],
                               ),
                             ))

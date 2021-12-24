@@ -2,7 +2,9 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
+import 'package:kashif/screens/order_taking_screens/center_inspection_ui.dart';
 import 'package:kashif/screens/order_taking_screens/goolemap_for_center_inspection.dart';
+import 'package:kashif/screens/order_taking_screens/ongoing_inspection.dart';
 import 'package:logger/logger.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -692,6 +694,137 @@ Widget bottomSheet() {
     ),
   );
 }
+/// Bottom Sheet for start order
+///
+///
+Future bottomSheetStartOrder(){
+  return
+
+    Get.bottomSheet(Container(
+      height: Get.height / 2,
+      decoration: const BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+              topLeft:
+              Radius.circular(25),
+              topRight:
+              Radius.circular(25))),
+      child: Column(
+        crossAxisAlignment:
+        CrossAxisAlignment.center,
+        children: [
+          SizedBox(
+            height: Get.height * .03,
+          ),
+          Row(
+            mainAxisAlignment:
+            MainAxisAlignment
+                .spaceBetween,
+            children:  [
+              Padding(
+                padding:const EdgeInsets.only(
+                    left: 15.0),
+                child: InkWell(
+                  onTap: (){
+                    Get.back();
+                  },
+                  child:const Icon(
+                    Icons
+                        .arrow_back_outlined,
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+             const Text("Efhes Services",
+                  style: (TextStyle(
+                    fontSize: 21,fontWeight: FontWeight.bold
+                  ))),
+             const SizedBox()
+            ],
+          ),
+          SizedBox(
+            height: Get.height * .03,
+          ),
+
+          /// list of Services in bottomBar Sheet ///
+
+          Expanded(
+              child:
+              SingleChildScrollView(
+                  scrollDirection:
+                  Axis.vertical,
+                  child: Column(
+                      mainAxisSize:
+                      MainAxisSize
+                          .max,
+                      mainAxisAlignment:
+                      MainAxisAlignment
+                          .center,
+                      children: [
+                        InkWell(onTap:(){
+                          Get.to(const OngoingInspectionUi());
+
+
+
+                        },
+                          child: customDetailBar(
+                              showImageAddress: 'assets/ongoing.png',
+                              width:
+                              Get.width *
+                                  .9,
+                              height:
+                              Get.height *
+                                  .1),
+                        ),
+                        InkWell(onTap: (){Get.to(()=>const CenterInspectionUi());},
+                          child: customDetailBar(
+                              showImageAddress: "assets/centerInspection.png",
+                              width:
+                              Get.width *
+                                  .9,
+                              height:
+                              Get.height *
+                                  .1),
+                        )
+                      ]))),
+          SizedBox(
+            height: Get.height * .04,
+          ),
+          InkWell(
+            onTap: (){
+              Get.to(()=>const OngoingInspectionUi());
+
+            },
+            child: Row(
+              mainAxisAlignment:
+              MainAxisAlignment.center,
+              children: const [
+                Text(
+                  "To order more than one car ?",
+                  style: TextStyle(
+                      color: Colors.grey),
+                ),
+                Text(
+                  " order now",
+                  style: TextStyle(
+                      fontWeight:
+                      FontWeight.bold),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: Get.height * .09,
+          )
+        ],
+      ),
+    ));
+}
+
+
+
+
+
 
 /// Junaid Utils ///
 ///

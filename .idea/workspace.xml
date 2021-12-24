@@ -5,11 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dcbffef9-3b3b-4332-9dfa-79ca0fc78173" name="Default Changelist" comment="ui update on 22/08/2021">
-      <change afterPath="$PROJECT_DIR$/assets/img_1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/junaid_Screens/ongoing_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/junaid_Screens/ongoing_service.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.packages" beforeDir="false" afterPath="$PROJECT_DIR$/.packages" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kashif.iml" beforeDir="false" afterPath="$PROJECT_DIR$/kashif.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/DashBoardScreen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/DashBoardScreen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/anas_screens/contactus.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/anas_screens/contactus.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/anas_screens/payment.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/anas_screens/payment.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/anas_screens/radiobutton.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/anas_screens/radiobutton.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/anas_screens/scan.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/anas_screens/scan.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/anas_screens/scan_tempelet.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/anas_screens/scan_tempelet.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/anas_screens/supportscreen2.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/anas_screens/supportscreen2.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/anas_screens/supportscreen3.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/anas_screens/supportscreen3.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/order_taking_screens/odrder_start.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/order_taking_screens/odrder_start.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/order_taking_screens/order_ended.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/order_taking_screens/order_ended.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/screens/order_taking_screens/stepper_ui.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/order_taking_screens/stepper_ui.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/utils.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/utils.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -231,8 +246,25 @@
       <option name="project" value="LOCAL" />
       <updated>1640197213557</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="ui update on 22/08/2021">
+      <created>1640274987735</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1640274987735</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">

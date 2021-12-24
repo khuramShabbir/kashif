@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
+import 'package:top_sheet/top_sheet.dart';
 import '../../utils.dart';
 import 'order_ended.dart';
 
@@ -135,14 +136,59 @@ class _StepperUiState extends State<StepperUi> {
                   SizedBox(
                     height: Get.height * .03,
                   ),
-                  InkWell(onTap: (){Get.to(()=>const OrderEnded());},
+                  InkWell(
+                    onTap: () {
+                      Get.to(() => const OrderEnded());
+                    },
                     child: Container(
-
+                      color: Colors.red,
+                      height: Get.height * .4,
                       width: Get.width * .8,
-
-
-
                     ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: customButton(onClick: () {
+                      TopSheet.show(
+                          context: context,
+                          direction: TopSheetDirection.TOP,
+                          child:
+
+
+
+
+
+
+
+
+
+
+
+                        /* ListTile(
+                            leading: const Icon(
+                              Icons.arrow_back,
+                              color: Colors.black,
+                            ),
+                            title: LinearPercentIndicator(
+                              alignment: MainAxisAlignment.center,
+                              width: Get.width * .6,
+                              lineHeight: 10.0,
+                              percent: progressBarPersent = .7,
+                              backgroundColor: Colors.grey.withOpacity(.5),
+                              progressColor: Colors.black,
+                              padding: const EdgeInsets.all(0),
+                            ),
+                            trailing: SvgPicture.asset('assets/menu.svg'),
+                            subtitle: Container(
+                              height: Get.height * .4,
+                              decoration: const BoxDecoration(
+                                color: Colors.blue,
+                                  borderRadius: BorderRadius.only(
+                                      bottomLeft: Radius.circular(20),
+                                      bottomRight: Radius.circular(20))),
+                            ),
+                          )*/);
+                    }),
                   ),
                 ],
               ),

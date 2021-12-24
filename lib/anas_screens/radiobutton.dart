@@ -18,7 +18,7 @@ class _RadiobuttonState extends State<Radiobutton> {
           children: [
             InkWell(onTap: (){
               setState(() {
-                color = Colors.red as MaterialColor;
+                color = Colors.red;
               });
             },
               child: Container(

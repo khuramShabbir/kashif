@@ -206,14 +206,8 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                     color: Colors.white),
                 child: InkWell(
                   onTap: () {
-
-
-                   Get.bottomSheet(bottomSheet(),
-                   isScrollControlled: true
-                   );
-
-
-                    },
+                    bottomSheetStartOrder();
+                  },
                   child: Container(
                     height: Get.width * .17,
                     width: Get.width * .17,

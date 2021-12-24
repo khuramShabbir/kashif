@@ -5,7 +5,6 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:kashif/anas_screens/support.dart';
 
 
-import 'profile.dart';
 
 class Scan extends StatefulWidget {
   const Scan({Key? key}) : super(key: key);
