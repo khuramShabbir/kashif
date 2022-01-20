@@ -27,9 +27,6 @@ class ApiServices   {
 
   static final userAuthProvider =Provider.of<UserAuthProvider>(Get.context!, listen: false);
   static final dashboardProvider =Provider.of<DashboardProvider>(Get.context!, listen: false);
-    static var _header={
-      'Authorization': 'Bearer ${storage.read(userToken)}',
-    };
   static Future<dynamic> postApi(String feedURL,
       {Map<String, String>? parameters,Map<String, String>? headers}) async {
 
@@ -119,7 +116,13 @@ class ApiServices   {
 
   static void getVehicleMaker() async {
     // showProgrress();
+
+    var _header={
+      'Authorization': 'Bearer ${storage.read(userToken)}',
+    };
+
     var value = await getApi(_GET_VEHICLE_MAKERS,
+
         headers: _header);
 
     dismissDialogue();
@@ -153,10 +156,10 @@ class ApiServices   {
 
   static void createCard()async{
 logger.e(storage.read(userToken));
-    // var headers = {
-    //   'Authorization': 'Bearer ${storage.read(userToken)}',
-    //   'Content-Type': 'application/json',
-    // };
+    var headers = {
+      'Authorization': 'Bearer ${storage.read(userToken)}',
+      'Content-Type': 'application/json',
+    };
     var request = http.Request('POST', Uri.parse('$_BASE_URL$_CREATE_CARD'));
     var splittime = dashboardProvider.getTimeSlot.split("-");
     request.body = json.encode({
@@ -175,7 +178,9 @@ logger.e(storage.read(userToken));
 
 
     logger.e(request.body);
-    request.headers.addAll(_header);
+
+
+request.headers.addAll(headers);
 
     http.StreamedResponse response = await request.send();
     dismissDialogue();
@@ -188,8 +193,10 @@ logger.e(storage.read(userToken));
       showMessage('Card Created Successfully');
     }
     else {
-      showMessage(response.reasonPhrase!);
-      print(response.reasonPhrase);
+      var s = await response.stream.bytesToString();
+      showMessage(s);
+      // print(response.reasonPhrase);
+      logger.wtf(s);
     }
 
 
@@ -197,6 +204,10 @@ logger.e(storage.read(userToken));
   }
 
   static void getUserPersonalInfo() async{
+    var _header={
+      'Authorization': 'Bearer ${storage.read(userToken)}',
+    };
+
     var value =await getApi(_CGET_USER_PERSONAL_INFO,headers:_header );
 
     userAuthProvider.setuserInfoData(true,getUserFromJson(value.toString()));
