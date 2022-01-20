@@ -57,8 +57,8 @@ class _ContactUsState extends State<ContactUs> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const SizedBox(height: 5,),
-                    boldtext("I was involved in an accident"),
-                    const Padding(
+                      boldtext("I was involved in an accident"),
+                      const Padding(
                       padding: EdgeInsets.symmetric(vertical: 20.0),
                       child: Text("If you've lost an item you will ned to send us\n"
                           "an message immediately ,please remembering\n "
@@ -91,7 +91,7 @@ class _ContactUsState extends State<ContactUs> {
                         )
                       ],),
                       const SizedBox(height: 12,),
-                     Column(
+                      Column(
                        crossAxisAlignment: CrossAxisAlignment.start,
                        children: [
                        boldtext("PLACE" ,size: 12),
@@ -99,10 +99,8 @@ class _ContactUsState extends State<ContactUs> {
                        textField(19, 1.15),
                      ],),
                       const SizedBox(height: 20),
-
                       boldtext("HAVE YOU BEEN HURT?" ,size: 12),
                       const SizedBox(height: 12,),
-
                       Row(children: [
                          Row(
                           children: [
@@ -152,7 +150,7 @@ class _ContactUsState extends State<ContactUs> {
                           ],)
                       ],),
                       const SizedBox(height: 12,),
-                     Column(
+                      Column(
                        crossAxisAlignment: CrossAxisAlignment.start,
                        children: [
                        boldtext("HAVE THE ACCIDENT OCCURRED" ,size: 12),
@@ -173,8 +171,7 @@ class _ContactUsState extends State<ContactUs> {
                             color: Colors.grey.shade200,
                             borderRadius: const BorderRadius.all(Radius.circular(17))
                         ),),
-
-                      const SizedBox(height: 18,),
+                      const SizedBox(height: 18)
 
                   ],),
                 ),

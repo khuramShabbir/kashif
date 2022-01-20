@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:kashif/providers/user_auth_provider.dart';
 import 'package:kashif/screens/login-Screens/sign_up_ui.dart';
 
 import 'package:kashif/utils.dart';
+import 'package:provider/provider.dart';
 
 import 'forget_password.dart';
 import 'otp_verify_code.dart';
@@ -19,68 +21,71 @@ class SignInUI extends StatefulWidget {
 
 class _SignInUIState extends State<SignInUI> {
   bool isTrue = false;
-  var userName;
-  var password;
+
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        resizeToAvoidBottomInset: false,
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              child: Row(
-                children: [
-                  SizedBox(
-                    width: Get.width * 0.12,
-                  ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children:  [
-                      Text(
-                        "Sign in",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: Get.width*.06),
-                      ),
-                     const SizedBox(
-                        height: 50,
-                      ),
-                      Text(
-                        "What's Your Number?",
-                        style: TextStyle(fontSize: Get.width*.04, color: Colors.grey),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              height: Get.height * 0.35,
-            ),
-            SizedBox(
-              width: Get.width,
-              child: Row(
-                children: [
-                  SizedBox(
-                    width: Get.width * 0.15,
-                  ),
-                  Expanded(
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: Get.height * 0.09,
+    return Consumer<UserAuthProvider>(builder: (builder,data,child){
+
+      return  Scaffold(
+          resizeToAvoidBottomInset: false,
+          body: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: Get.width * 0.12,
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children:  [
+                        Text(
+                          "Sign in",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: Get.width*.06),
                         ),
-                        //TODO: implement on onChange'
-                        customInputFormField(
+                        const SizedBox(
+                          height: 50,
+                        ),
+                        Text(
+                          "What's Your Number?",
+                          style: TextStyle(fontSize: Get.width*.04, color: Colors.grey),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                height: Get.height * 0.35,
+              ),
+              SizedBox(
+                width: Get.width,
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: Get.width * 0.15,
+                    ),
+                    Expanded(
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height: Get.height * 0.09,
+                          ),
+                          //TODO: implement on onChange'
+                          customInputFormField(
+                            //TODO: implement on 'onChange'
                             onChange: (value) {
-                              userName = value;
-                              logger.e(userName);
+                               data.mobileNumber=value;
+
                             },
+                            keyboardType: TextInputType.phone,
                             prefixIconList: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 SvgPicture.asset(
-                                  'assets/user_outline.svg',
+                                  'assets/smartphone.svg',
                                   color: Colors.black,
                                   width: 25.0,
                                   height: 25.0,
@@ -95,134 +100,126 @@ class _SignInUIState extends State<SignInUI> {
                                 )
                               ],
                             ),
-                            hintText: "Create an account here",
-                            fontSize: 13),
-                        SizedBox(
-                          height: Get.height * .01,
-                        ),
-                        customInputFormField(
-                          //TODO: implement on 'onChange'
-                          onChange: (value) {
-                            password = value;
+                            hintText: "Mobile Number",
+                            fontSize: 13,
+                          ),
+                          SizedBox(
+                            height: Get.height * .01,
+                          ),
+                          customInputFormField(
+                              onChange: (value) {
+                                data.password=value;
+                              },
+                              prefixIconList: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  SvgPicture.asset(
+                                    'assets/user_outline.svg',
+                                    color: Colors.black,
+                                    width: 25.0,
+                                    height: 25.0,
+                                  ),
+                                  const SizedBox(
+                                    width: 10,
+                                  ),
+                                  Container(
+                                    color: Colors.grey,
+                                    width: 1.5,
+                                    height: 20,
+                                  )
+                                ],
+                              ),
+                              hintText: "Password",
+                              fontSize: 13,
+                            obscure: true
+                          ),
 
-                            logger.e(value);
-                          },
-                          keyboardType: TextInputType.phone,
-                          prefixIconList: Row(
-                            mainAxisSize: MainAxisSize.min,
+
+                          SizedBox(
+                            height: Get.height * .05,
+                          ),
+                          InkWell(
+                            onTap: () {
+                              Get.to(() => const ForgetPasswordUi());
+                            },
+                            child:  Text(
+                              "Forget Password?",
+                              style: TextStyle(
+                                  fontSize: Get.width*.04,
+                                  fontWeight: FontWeight.bold,
+                                  decoration: TextDecoration.underline),
+                            ),
+                          ),
+                          SizedBox(
+                            height: Get.height * .05,
+                          ),
+                          customButton(
+                            onClick: () {
+
+                              Get.to(() =>  OtpVerifyCode(isFromLogin: true,));
+                            },
+
+                            buttonWidget: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children:  [
+                                Text(
+                                  "Sign in",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize:Get.width*.04),
+                                ),
+                                const SizedBox(
+                                  width: 5,
+                                ),
+                                const Icon(
+                                  Icons.arrow_forward_outlined,
+                                  color: Colors.white,
+                                  size: 15,
+                                )
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            height: Get.height * .05,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              SvgPicture.asset(
-                                'assets/smartphone.svg',
-                                color: Colors.black,
-                                width: 25.0,
-                                height: 25.0,
+                              const Text(
+                                'New member ?',
+                                style: TextStyle(color: Colors.grey),
                               ),
                               const SizedBox(
                                 width: 10,
                               ),
-                              Container(
-                                color: Colors.grey,
-                                width: 1.5,
-                                height: 20,
-                              )
+                              InkWell(
+                                onTap: () {
+                                  Get.to(() => const SignUpUi());
+                                },
+                                child:  Text(
+                                  'Sign up',
+                                  style: TextStyle(
+                                      fontSize: Get.width*.04,
+                                      fontWeight: FontWeight.bold,
+                                      decoration: TextDecoration.underline),
+                                ),
+                              ),
                             ],
-                          ),
-                          hintText: "Mobile Number",
-                          fontSize: 13,
-                        ),
-                        SizedBox(
-                          height: Get.height * .05,
-                        ),
-                        InkWell(
-                          onTap: () {
-                            Get.to(() => const ForgetPasswordUi());
-                          },
-                          child:  Text(
-                            "Forget Password?",
-                            style: TextStyle(
-                                fontSize: Get.width*.04,
-                                fontWeight: FontWeight.bold,
-                                decoration: TextDecoration.underline),
-                          ),
-                        ),
-                        SizedBox(
-                          height: Get.height * .05,
-                        ),
-                        customButton(
-                          onClick: () {
-                           /* if (userName != null && password != null) {
-                              Get.to(() => const OtpVerifyCode());
-                            } else {
-                              Get.defaultDialog(
-                                  title: 'Please Provide Your account detail',
-                                  titleStyle: const TextStyle(color: Colors.red),
-                                  middleText: "Demo mode !",
-                                  middleTextStyle: const TextStyle(
-                                      color: Colors.brown, fontSize: 20));
-                            }*/
-
-                            Get.to(() => const OtpVerifyCode());
-                            },
-
-                          buttonWidget: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children:  [
-                              Text(
-                                "Sign in",
-                                style: TextStyle(
-                                    color: Colors.white, fontSize:Get.width*.04),
-                              ),
-                             const SizedBox(
-                                width: 5,
-                              ),
-                             const Icon(
-                                Icons.arrow_forward_outlined,
-                                color: Colors.white,
-                                size: 15,
-                              )
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          height: Get.height * .05,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Text(
-                              'New member ?',
-                              style: TextStyle(color: Colors.grey),
-                            ),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            InkWell(
-                              onTap: () {
-                                Get.to(() => const SignUpUi());
-                              },
-                              child:  Text(
-                                'Sign up',
-                                style: TextStyle(
-                                  fontSize: Get.width*.04,
-                                    fontWeight: FontWeight.bold,
-                                    decoration: TextDecoration.underline),
-                              ),
-                            ),
-                          ],
-                        )
-                      ],
+                          )
+                        ],
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    width: Get.width * 0.15,
-                  )
-                ],
+                    SizedBox(
+                      width: Get.width * 0.15,
+                    )
+                  ],
+                ),
+                height: Get.height * 0.65,
               ),
-              height: Get.height * 0.65,
-            ),
-          ],
-        ));
+            ],
+          ));
+
+    });
   }
 }
 

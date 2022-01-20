@@ -64,7 +64,7 @@ class _CenterInspectionUiState extends State<CenterInspectionUi> {
                 children: [
                   InkWell(
                     onTap: () {
-                      Get.to(() => const GooGleMapUi());
+                      Get.to(() => GMaps(title: "Map",));
                     },
                     child: pickupAddress(),
                   ),

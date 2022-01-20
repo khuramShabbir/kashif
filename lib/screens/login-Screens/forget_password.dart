@@ -97,7 +97,7 @@ class _SignInUIState extends State<ForgetPasswordUi> {
 
                         InkWell(
                           onTap: () {
-                            Get.to(() =>const OtpVerifyCode());
+                            Get.to(() => OtpVerifyCode());
                           },
                           child:
                           CircleAvatar(

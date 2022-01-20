@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:kashif/dashboardscreen.dart';
+import 'package:kashif/providers/user_auth_provider.dart';
+import 'package:kashif/screens/login-Screens/sign_in_ui.dart';
+import 'package:kashif/screens/splash_screen.dart';
 import 'package:kashif/utils.dart';
+import 'package:provider/provider.dart';
 import 'payment.dart';
 import 'support.dart';
 
@@ -15,88 +20,94 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-
-      child: Scaffold(
-        backgroundColor: Colors.white,
-
-          appBar: AppBar(
-            elevation: 0,
-            centerTitle: true,
+    return Consumer<UserAuthProvider>(builder: (build,data,child){
+      return SafeArea(
+        child: Scaffold(
             backgroundColor: Colors.white,
-           leading: null,
-            actions: [Padding(
+            appBar: AppBar(
+              elevation: 0,
+              centerTitle: true,
+              backgroundColor: Colors.white,
+              leading: null,
+              actions: [Padding(
                 padding: const EdgeInsets.only(right: 20.0),
                 child: SvgPicture.asset('assets/bell-ringing.svg'),
               )
-            ],
-            title: const Text(
-              'Profile',
-              style: TextStyle(color: Colors.black),
-            ),
-          ),
-          body: SizedBox(
-            child: Row(
-              children: [
-                SizedBox(
-                  width: Get.width * .07,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    profileDetail(),
-                    profileDetail(
-                        svgImageAddress: 'assets/phone (Stroke).svg',
-                        labelText: 'Phone number',
-                        text: '+966 000 000 000'),
-                    profileDetail(
-                        svgImageAddress: 'assets/Message.svg',
-                        labelText: "phone number",
-                        text: 'alkayali@dr.com'),
-                    profileDetail(
-                        svgImageAddress: 'assets/Location.svg',
-                        labelText: 'Magic coffee store address',
-                        text: 'Bradford BD1 1PR'),
-                    InkWell(
-                      onTap: () {
-                        Get.to(() => const PaymentMethod());
-                      },
-                      child: paymentMethodAndHelp(
-                        svgImageAddress: 'assets/Work.svg',
-                        text: "Payment method",
-                      ),
-                    ),
-                    InkWell(
-                      onTap: () {
-                        Get.to(() => const Support());
-                      },
-                      child: paymentMethodAndHelp(
-                        svgImageAddress: 'assets/Chat.svg',
-                        text: 'Help',
-                      ),
-                    ),
-                    const Expanded(child: SizedBox(child: SizedBox())),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10.0),
-                      child: customButton(
-                          onClick: () {},
-                          buttonWidget: const Center(
-                              child: Text(
-                            'Log Out',
-                            style: TextStyle(color: Colors.white),
-                          )),
-
-                          borderRadius: 18),
-                    ),
-                    const Expanded(
-                      child: SizedBox(child: SizedBox()),
-                    )
-                  ],
-                )
               ],
+              title: const Text(
+                'Profile',
+                style: TextStyle(color: Colors.black),
+              ),
             ),
-          )),
-    );
+            body: SizedBox(
+              child: Row(
+                children: [
+                  SizedBox(
+                    width: Get.width * .07,
+                  ),
+                 data.isUserLoaded ?
+                 Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      profileDetail(),
+                      profileDetail(
+                          svgImageAddress: 'assets/phone (Stroke).svg',
+                          labelText: 'Phone number',
+                          text: '${data.userFromJson!.data[0].mobile}'),
+                      profileDetail(
+                          svgImageAddress: 'assets/Message.svg',
+                          labelText: "phone number",
+                          text: '${data.userFromJson!.data[0].email}'),
+                      profileDetail(
+                          svgImageAddress: 'assets/Location.svg',
+                          labelText: 'Address',
+                          text: 'Required'),
+                      InkWell(
+                        onTap: () {
+                          Get.to(() => const PaymentMethod());
+                        },
+                        child: paymentMethodAndHelp(
+                          svgImageAddress: 'assets/Work.svg',
+                          text: "Payment method",
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () {
+                          Get.to(() => const Support());
+                        },
+                        child: paymentMethodAndHelp(
+                          svgImageAddress: 'assets/Chat.svg',
+                          text: 'Help',
+                        ),
+                      ),
+                      const Expanded(child: SizedBox(child: SizedBox())),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10.0),
+                        child: customButton(
+                            onClick: () async{
+
+                              await storage.erase();
+                              Get.offAll(SignInUI());
+                            },
+                            buttonWidget: const Center(
+                                child: Text(
+                                  'Log Out',
+                                  style: TextStyle(color: Colors.white),
+                                )),
+
+                            borderRadius: 18),
+                      ),
+                      const Expanded(
+                        child: SizedBox(child: SizedBox()),
+                      )
+                    ],
+                  )
+                     : Center(child: CircularProgressIndicator(),)
+                ],
+              ),
+            )),
+      );
+    },);
   }
 }
 

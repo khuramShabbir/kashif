@@ -1,16 +1,43 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:kashif/screens/order_taking_screens/center_inspection_ui.dart';
 import 'package:kashif/screens/order_taking_screens/goolemap_for_center_inspection.dart';
 import 'package:kashif/screens/order_taking_screens/ongoing_inspection.dart';
 import 'package:logger/logger.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-const primaryColor = Color(0xFFFF203840);
+///
+ final  storage = GetStorage();
 
+String userToken='USER_TOKEN';
+String isUserLoggedIn='IS_USER_LOGGED_IN';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+///
+const primaryColor = Color(0xFFFF203840);
+Color grey = const Color(0x0ffb8b8b);
 const primaryBlueColor = 0xFF304FFE;
+const colorGrey = Colors.grey;
 var barColor = Colors.black.withOpacity(0.2);
 double progressBarPersent = 0.0; // should be > 1
 
@@ -20,8 +47,7 @@ var logger = Logger();
 ///
 ///
 ///
-Widget lineBar() =>
-    Padding(
+Widget lineBar() => Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15.0),
       child: Container(
         height: 1,
@@ -33,8 +59,7 @@ Widget lineBar() =>
 ///
 
 Widget pickupAddress() {
-  return
-    Container(
+  return Container(
       width: Get.width * .8,
       height: Get.height * .1,
       decoration: BoxDecoration(
@@ -84,10 +109,7 @@ Widget pickupAddress() {
                   ))),
         ],
       ),
-    )
-
-
-  ;
+    );
 }
 
 
@@ -184,6 +206,7 @@ Widget indicator({
 
 Widget customInputFormField({
   bool obscure = false,
+  bool enable = true,
   var keyboardType,
   var onChange,
   var suffixIcon,
@@ -204,9 +227,11 @@ Widget customInputFormField({
     validator: validator,
     keyboardType: keyboardType,
     obscureText: obscure,
+    enabled: enable,
     onChanged: onChange,
     decoration: InputDecoration(
-      disabledBorder: InputBorder.none,
+      disabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(10)
+          ,borderSide: BorderSide(color: Colors.grey)),
       border: isOutlinedBorder
           ? OutlineInputBorder(borderRadius: BorderRadius.circular(10))
           : null,
@@ -763,6 +788,8 @@ Future bottomSheetStartOrder(){
                           .center,
                       children: [
                         InkWell(onTap:(){
+                          Get.back();
+
                           Get.to(const OngoingInspectionUi());
 
 
@@ -793,6 +820,7 @@ Future bottomSheetStartOrder(){
           ),
           InkWell(
             onTap: (){
+              Get.back();
               Get.to(()=>const OngoingInspectionUi());
 
             },
@@ -830,7 +858,11 @@ Future bottomSheetStartOrder(){
 /// Junaid Utils ///
 ///
 
-Color grey = const Color(0x0ffb8b8b);
+
+
+
+
+
 
 StringPicture carDoor = 'assets/CarDoor.png' as StringPicture;
 
@@ -1188,7 +1220,8 @@ Widget carReports(String text1, String text2, String text3, String text4) {
   );
 }
 
-Widget carSetting(String t1,
+Widget carSetting(
+    String t1,
     String t2,
     String t3,
     String t4,
@@ -1338,3 +1371,32 @@ Widget carSetting(String t1,
     ],
   );
 }
+
+
+
+showMessage(
+    String data, {double fontsize = 16.0,}) {
+  Fluttertoast.showToast(
+      msg: data,
+      toastLength: Toast.LENGTH_LONG,
+      gravity: ToastGravity.BOTTOM,
+      timeInSecForIosWeb: 1,
+      backgroundColor: Colors.black,
+      textColor: Colors.white,
+      fontSize: fontsize);
+}
+
+
+showProgrress({bool isdimissnable=true}){
+
+  Get.dialog(const Center(child:CircularProgressIndicator()),barrierDismissible: isdimissnable);
+
+}
+
+dismissDialogue(){
+
+  if(Get.isDialogOpen!){
+    Get.back();
+  }
+}
+
