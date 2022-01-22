@@ -32,7 +32,6 @@ String isUserLoggedIn='IS_USER_LOGGED_IN';
 
 
 
-
 ///
 const primaryColor = Color(0xFFFF203840);
 Color grey = const Color(0x0ffb8b8b);

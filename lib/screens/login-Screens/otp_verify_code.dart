@@ -21,6 +21,8 @@ class _OtpVerifyCodeState extends State<OtpVerifyCode> {
   @override
   void initState() {
     var provider=Provider.of<UserAuthProvider>(Get.context!,listen: false);
+
+
     provider.sendOTP();
     Future.delayed(Duration(seconds: 1),(){
       showProgrress();

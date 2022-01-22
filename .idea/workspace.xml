@@ -7,7 +7,11 @@
     <list default="true" id="dcbffef9-3b3b-4332-9dfa-79ca0fc78173" name="Default Changelist" comment="Cashif V 0.0.1">
       <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/anas_screens/profile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/anas_screens/profile.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/apis_services/api_services.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/apis_services/api_services.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/login-Screens/otp_verify_code.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/login-Screens/otp_verify_code.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/login-Screens/sign_up_ui.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/login-Screens/sign_up_ui.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/utils.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/utils.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -251,7 +255,14 @@
       <option name="project" value="LOCAL" />
       <updated>1642716631856</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Cashif V 0.0.1">
+      <created>1642717789070</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1642717789070</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -298,7 +309,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
           <url>file://$PROJECT_DIR$/lib/utils.dart</url>
-          <line>870</line>
+          <line>869</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
