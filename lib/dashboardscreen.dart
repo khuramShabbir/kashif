@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:kashif/apis_services/api_services.dart';
 import 'package:kashif/screen_list.dart';
 import 'package:kashif/screens/order_taking_screens/center_inspection_ui.dart';
 import 'package:kashif/screens/order_taking_screens/ongoing_inspection.dart';
@@ -16,6 +17,11 @@ class DashBoardScreen extends StatefulWidget {
 class _DashBoardScreenState extends State<DashBoardScreen> {
   var list = ScreenSList();
   int initialScreen = 0;
+@override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

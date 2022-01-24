@@ -14,12 +14,12 @@ class Support extends StatefulWidget {
 
 class _SupportState extends State<Support> {
 
-  Widget SupportRow({String Entertext="Frequently"}){
+  Widget SupportRow({String enterText="Frequently"}){
     return  Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
 
-      Text(Entertext ,style: TextStyle(
+      Text(enterText ,style: TextStyle(
         fontSize: 14,
         color: Colors.grey.shade800
       ),),
@@ -93,11 +93,11 @@ class _SupportState extends State<Support> {
                                 Get.to(Support2());
 
                               },
-                                child: SupportRow(Entertext: "Frequently asked questions")),
+                                child: SupportRow(enterText: "Frequently asked questions")),
                             /// container height = 1
                             Container(height: 1,
                             color: Colors.grey.shade400,),
-                            SupportRow(Entertext: "Your support tickets"),
+                            SupportRow(enterText: "Your support tickets"),
                             /// container height = 1
                             Container(height: 1,
                               color: Colors.grey.shade400,),
@@ -105,7 +105,7 @@ class _SupportState extends State<Support> {
                                 onTap: (){
                                   Get.to(ContactUs());
                                 },
-                                child: SupportRow(Entertext: "Contact us")),
+                                child: SupportRow(enterText: "Contact us")),
 
 
                           ],),

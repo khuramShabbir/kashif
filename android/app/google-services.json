@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "831710394729",
+    "project_id": "cashif-bfd08",
+    "storage_bucket": "cashif-bfd08.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:831710394729:android:f6ea9e98fb7e181fbea5f8",
+        "android_client_info": {
+          "package_name": "com.example.kashif"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "831710394729-jhria7na42jv5f78g48jldeo1s254no5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBg_jbXpgZDQjg37YFrh23HZCpBRG7sjmA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "831710394729-jhria7na42jv5f78g48jldeo1s254no5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

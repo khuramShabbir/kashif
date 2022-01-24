@@ -31,6 +31,8 @@ dependencies:
     sdk: flutter
   get:
   provider:
+  http:
+  fluttertoast: ^7.1.1
   shape_of_view_null_safe:
   carousel_slider:
   logger:
@@ -43,22 +45,31 @@ dependencies:
   permission_handler:
   geolocator: ^8.0.1
   top_sheet:
-
+  get_storage:
+  dropdown_search: 2.0.1
+  location: 4.3.0
+  geocoder:
 
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  firebase_auth: ^3.3.5
+  firebase_core: ^1.11.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
   flutter_launcher_icons: ^0.9.2
+
+
+
 flutter_icons:
   android:
-  ios:
+  ios: false
+#  remove_alpha_ios: true
   image_path: "assets/logo.png"
+
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your

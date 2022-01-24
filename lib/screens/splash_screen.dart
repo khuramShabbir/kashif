@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:kashif/dashboardscreen.dart';
 import 'package:kashif/screens/splash_screen/onboarding_screen.dart';
+import 'package:kashif/utils.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -10,12 +13,20 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     Future.delayed(const Duration(seconds: 3),(){
-      Get.offAll(()=>const OnboardingScreen());
+
+      if(storage.read(isUserLoggedIn) != null ){
+        Get.offAll(()=>const DashBoardScreen());
+      }
+      else{
+        Get.offAll(()=>const OnboardingScreen());
+
+      }
     });
 
   }

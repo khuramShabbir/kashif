@@ -2,12 +2,15 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
+import 'package:kashif/providers/user_auth_provider.dart';
 import 'package:kashif/utils.dart';
+import 'package:provider/provider.dart';
 
 import '../../dashboardscreen.dart';
 
 class OtpVerifyCode extends StatefulWidget {
-  const OtpVerifyCode({Key? key}) : super(key: key);
+ bool isFromLogin;
+  OtpVerifyCode({this.isFromLogin:false});
 
   @override
   _OtpVerifyCodeState createState() => _OtpVerifyCodeState();
@@ -15,16 +18,24 @@ class OtpVerifyCode extends StatefulWidget {
 
 class _OtpVerifyCodeState extends State<OtpVerifyCode> {
   int counterTime = 30;
-
+  @override
+  void initState() {
+    var provider=Provider.of<UserAuthProvider>(Get.context!,listen: false);
+    provider.sendOTP();
+    Future.delayed(Duration(seconds: 1),(){
+      showProgrress();
+    });
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     Future.delayed(const Duration(seconds: 1), () {
-      counterTime--;
       if (counterTime > 0) {
+        counterTime--;
         setState(() {});
       }
     });
-    return Scaffold(
+    return Consumer<UserAuthProvider>(builder: (build,data,child){return Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
           leading: Padding(
@@ -58,7 +69,7 @@ class _OtpVerifyCodeState extends State<OtpVerifyCode> {
               style: TextStyle(color: Colors.grey,fontSize: Get.width*.04),
             ),
             Text(
-              '+966  555  555  555 via SMS',
+              '${data.mobileNumber} via SMS',
               style: TextStyle(color: Colors.grey, fontSize: Get.width*.04),
             ),
             SizedBox(
@@ -68,11 +79,21 @@ class _OtpVerifyCodeState extends State<OtpVerifyCode> {
 
             OtpTextField(
               cursorColor: Colors.transparent,
-              numberOfFields: 4,
+              numberOfFields: 6,
               borderColor: const Color(0xFF512DA8),
               showFieldAsBox: false,
-              onCodeChanged: (String code) {},
-              onSubmit: (String verificationCode) {}, // end onSubmit
+
+              onCodeChanged: (String code) {
+
+                // print(data.inputCode);
+
+              },
+              onSubmit: (String verificationCode) {
+
+                data.verifyOTP(verificationCode,widget.isFromLogin);
+
+                logger.wtf(verificationCode);
+              }, // end onSubmit
             ),
 
             SizedBox(
@@ -87,7 +108,9 @@ class _OtpVerifyCodeState extends State<OtpVerifyCode> {
             ),
             customButton(
                 onClick: () {
-                  Get.to(() => const DashBoardScreen());
+                  // data.verifyOTP(verificationCode);
+
+                  // Get.to(() => const DashBoardScreen());
                 },
 
                 buttonWidget: Padding(
@@ -109,6 +132,6 @@ class _OtpVerifyCodeState extends State<OtpVerifyCode> {
                   ),
                 ))
           ],
-        ));
+        ));});
   }
 }
