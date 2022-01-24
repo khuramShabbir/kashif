@@ -49,7 +49,7 @@ class _ProfileState extends State<Profile> {
                  Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      profileDetail(),
+                      profileDetail(text: '${data.userFromJson!.data[0].name}'),
                       profileDetail(
                           svgImageAddress: 'assets/phone (Stroke).svg',
                           labelText: 'Phone number',
@@ -114,7 +114,7 @@ class _ProfileState extends State<Profile> {
 Widget profileDetail({
   String svgImageAddress = "assets/user.svg",
   String labelText = 'Name',
-  String text = 'Khaled al-Kayali',
+  String text = '',
 }) {
   return SizedBox(
     width: Get.width * .9,

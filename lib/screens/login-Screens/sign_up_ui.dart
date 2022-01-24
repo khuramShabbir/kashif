@@ -125,7 +125,7 @@ class _SignInUIState extends State<SignUpUi> {
                             },
                             errorText: 'invalid mobile number',
 
-                            keyboardType: TextInputType.number,
+                            keyboardType: TextInputType.phone,
                             prefixIconList: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [

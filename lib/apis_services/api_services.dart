@@ -78,11 +78,10 @@ class ApiServices   {
         await storage.write(isUserLoggedIn, true);
 
         Get.offAll(DashBoardScreen());
-      } else {
-        showMessage(value.toString());
-        // showMessage("Error while sign up");
-
       }
+      else {
+        showMessage(value.toString());
+           }
       logger.e(value);
     } else {}
   }
@@ -105,13 +104,14 @@ class ApiServices   {
         await storage.write(userToken, decode['access_token']);
         await storage.write(isUserLoggedIn, true);
         Get.offAll(DashBoardScreen());
-      } else {
+      }
+      else {
         showMessage(value.toString());
-        // showMessage("Error while sign up");
-
       }
       logger.e(value);
-    } else {}
+    }
+
+    else {}
   }
 
   static void getVehicleMaker() async {
