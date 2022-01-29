@@ -180,7 +180,7 @@ class _StepperUiState extends State<StepperUi> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                               Text("The Vehicle Arrived at the center",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15,color: Colors.grey),),
-                              Text("    date here",style: TextStyle(color: Colors.grey),),
+                              Text(data.cardInfoByCardIdFromJson.data.card.inspectionStart,style: TextStyle(color: Colors.grey),),
 
                             ],),
                                 content:   Row(children: [
@@ -213,7 +213,26 @@ class _StepperUiState extends State<StepperUi> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: customButton(onClick: () {
+                        //
+                        //
+                        // if(data.cardInfoByCardIdFromJson.data.card.rating==null){
+                        //
+                        //   Get.dialog(Container(
+                        //
+                        //     height: Get.height,
+                        //     width: Get.width,
+                        //     color: Colors.white.withOpacity(0.5),
+                        //     child: Center(child: Container(
+                        //
+                        //       ),),
+                        //
+                        //   ));
+                        //
+                        // }
+                        // else{
                         Get.to(()=>OrderEnded());
+                        // }
+
 
 
 
@@ -244,6 +263,9 @@ class _StepperUiState extends State<StepperUi> {
                                         bottomRight: Radius.circular(20))),
                               ),
                             ));*/
+
+
+
                       },buttonWidget: Center(child: Text("Next",style: TextStyle(color: Colors.white,fontSize: 20),))),
                     )
                     :

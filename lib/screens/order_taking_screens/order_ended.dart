@@ -2,6 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:kashif/junaid_Screens/report_screen.dart';
+import 'package:kashif/junaid_Screens/car_brand_details_2_ui.dart';
+import 'package:kashif/junaid_Screens/ongoing_service.dart';
 import 'package:kashif/providers/dashboard_provider.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:provider/provider.dart';
@@ -17,15 +20,8 @@ class OrderEnded extends StatefulWidget {
 }
 
 class _OrderEndedState extends State<OrderEnded> {
-  Future ratingDialog() {
-    return Get.defaultDialog(title: "Rate Your Please", actions: [
-      SvgPicture.asset('assets/leftarrow.svg'),
-      SvgPicture.asset('assets/leftarrow.svg'),
-      SvgPicture.asset('assets/leftarrow.svg'),
-      SvgPicture.asset('assets/leftarrow.svg'),
-      SvgPicture.asset('assets/leftarrow.svg'),
-    ]);
-  }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -236,9 +232,11 @@ class _OrderEndedState extends State<OrderEnded> {
                             ),
                           ),
                           customButton(
-                              onClick: () {
-                                ratingDialog();
-                              },
+                              onClick: () async {
+
+                                        Get.to(ReportScreen());
+
+                                },
                               buttonWidget: Padding(
                                 padding:
                                 const EdgeInsets.symmetric(horizontal: 15.0),

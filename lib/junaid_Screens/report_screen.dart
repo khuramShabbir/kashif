@@ -5,14 +5,14 @@ import 'package:get/get.dart';
 import '../utils.dart';
 
 
-class CarBrandDetailUi extends StatefulWidget {
-  const CarBrandDetailUi({Key? key}) : super(key: key);
+class ReportScreen extends StatefulWidget {
+  const ReportScreen({Key? key}) : super(key: key);
 
   @override
-  _CarBrandDetailUiState createState() => _CarBrandDetailUiState();
+  _ReportScreenState createState() => _ReportScreenState();
 }
 
-class _CarBrandDetailUiState extends State<CarBrandDetailUi> {
+class _ReportScreenState extends State<ReportScreen> {
 
   // List <Widget> reportList = [
   //   carReportDetails('assets/BellIcon.svg', 'Engine'),
@@ -108,11 +108,6 @@ class _CarBrandDetailUiState extends State<CarBrandDetailUi> {
                   ),
                 ),
               ),
-
-
-              // Column(
-              //   children: List.generate(reportList.length, (index) => reportList[index]),
-              // ),
               Container(
                 height: Get.width*0.6,
                 width: Get.width*0.9,

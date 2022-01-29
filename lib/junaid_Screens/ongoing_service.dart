@@ -5,7 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:kashif/junaid_Screens/car_brand_details_2_ui.dart';
 import '../utils.dart';
-import 'car_brand_details.dart';
+import 'report_screen.dart';
 
 class OnGoingServicesUi extends StatefulWidget {
   const OnGoingServicesUi({Key? key}) : super(key: key);
@@ -140,7 +140,7 @@ class _OnGoingServicesUiState extends State<OnGoingServicesUi> {
                         itemBuilder: (context, index) {
                           return InkWell(
                               onTap: () {
-                                Get.to(() => const CarBrandDetailUi());
+                                Get.to(() => const ReportScreen());
                               },
                               child: upcomingDetail());
                         }),
