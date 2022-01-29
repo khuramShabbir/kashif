@@ -25,7 +25,7 @@ class _OtpVerifyCodeState extends State<OtpVerifyCode> {
 
     provider.sendOTP();
     Future.delayed(Duration(seconds: 1),(){
-      showProgrress();
+      showProgress();
     });
     super.initState();
   }

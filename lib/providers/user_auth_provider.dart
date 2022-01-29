@@ -71,7 +71,7 @@ class UserAuthProvider extends ChangeNotifier {
    }
 
    showMessage("Verifying");
-   showProgrress();
+   showProgress();
    var credential =  PhoneAuthProvider.credential(verificationId: verificationId, smsCode: verificationCode);
 
    await FirebaseAuth.instance.signInWithCredential(credential).then((value) {

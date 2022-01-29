@@ -200,7 +200,7 @@ class ApiServices   {
       var body = await response.stream.bytesToString();
       print(body);
       showMessage('Card Created Successfully');
-      showProgrress();
+      showProgress();
       var decoded = json.decode(body);
       int cardId = decoded['data']['id'];
       dismissDialogue();

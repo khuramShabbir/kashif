@@ -1324,7 +1324,7 @@ showMessage(
       fontSize: fontsize);
 }
 
-showProgrress({bool isdimissnable = true}) {
+showProgress({bool isdimissnable = true}) {
   Get.dialog(const Center(child: CircularProgressIndicator()),
       barrierDismissible: isdimissnable);
 }

@@ -22,12 +22,10 @@ class SignInUI extends StatefulWidget {
 class _SignInUIState extends State<SignInUI> {
   bool isTrue = false;
 
-
   @override
   Widget build(BuildContext context) {
-    return Consumer<UserAuthProvider>(builder: (builder,data,child){
-
-      return  Scaffold(
+    return Consumer<UserAuthProvider>(builder: (builder, data, child) {
+      return Scaffold(
           resizeToAvoidBottomInset: false,
           body: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -41,18 +39,20 @@ class _SignInUIState extends State<SignInUI> {
                     Column(
                       mainAxisAlignment: MainAxisAlignment.end,
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children:  [
+                      children: [
                         Text(
                           "Sign in",
                           style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: Get.width*.06),
+                              fontWeight: FontWeight.bold,
+                              fontSize: Get.width * .06),
                         ),
                         const SizedBox(
                           height: 50,
                         ),
                         Text(
                           "What's Your Number?",
-                          style: TextStyle(fontSize: Get.width*.04, color: Colors.grey),
+                          style: TextStyle(
+                              fontSize: Get.width * .04, color: Colors.grey),
                         ),
                       ],
                     ),
@@ -77,8 +77,7 @@ class _SignInUIState extends State<SignInUI> {
                           customInputFormField(
                             //TODO: implement on 'onChange'
                             onChange: (value) {
-                               data.mobileNumber=value;
-
+                              data.mobileNumber = value;
                             },
                             keyboardType: TextInputType.phone,
                             prefixIconList: Row(
@@ -108,7 +107,7 @@ class _SignInUIState extends State<SignInUI> {
                           ),
                           customInputFormField(
                               onChange: (value) {
-                                data.password=value;
+                                data.password = value;
                               },
                               prefixIconList: Row(
                                 mainAxisSize: MainAxisSize.min,
@@ -131,9 +130,7 @@ class _SignInUIState extends State<SignInUI> {
                               ),
                               hintText: "Password",
                               fontSize: 13,
-                            obscure: true
-                          ),
-
+                              obscure: true),
 
                           SizedBox(
                             height: Get.height * .05,
@@ -142,10 +139,10 @@ class _SignInUIState extends State<SignInUI> {
                             onTap: () {
                               Get.to(() => const ForgetPasswordUi());
                             },
-                            child:  Text(
+                            child: Text(
                               "Forget Password?",
                               style: TextStyle(
-                                  fontSize: Get.width*.04,
+                                  fontSize: Get.width * .04,
                                   fontWeight: FontWeight.bold,
                                   decoration: TextDecoration.underline),
                             ),
@@ -155,18 +152,25 @@ class _SignInUIState extends State<SignInUI> {
                           ),
                           customButton(
                             onClick: () {
-
-                              Get.to(() =>  OtpVerifyCode(isFromLogin: true,));
+                              if (data.mobileNumber.isEmpty ||
+                                  data.mobileNumber.length < 11 ||
+                                  data.password.isEmpty) {
+                                showMessage("Incomplete information");
+                                return;
+                              }
+                              Get.to(() => OtpVerifyCode(
+                                    isFromLogin: true,
+                                  ));
                             },
-
                             buttonWidget: Row(
                               mainAxisSize: MainAxisSize.min,
                               mainAxisAlignment: MainAxisAlignment.center,
-                              children:  [
+                              children: [
                                 Text(
                                   "Sign in",
                                   style: TextStyle(
-                                      color: Colors.white, fontSize:Get.width*.04),
+                                      color: Colors.white,
+                                      fontSize: Get.width * .04),
                                 ),
                                 const SizedBox(
                                   width: 5,
@@ -196,10 +200,10 @@ class _SignInUIState extends State<SignInUI> {
                                 onTap: () {
                                   Get.to(() => const SignUpUi());
                                 },
-                                child:  Text(
+                                child: Text(
                                   'Sign up',
                                   style: TextStyle(
-                                      fontSize: Get.width*.04,
+                                      fontSize: Get.width * .04,
                                       fontWeight: FontWeight.bold,
                                       decoration: TextDecoration.underline),
                                 ),
@@ -218,8 +222,6 @@ class _SignInUIState extends State<SignInUI> {
               ),
             ],
           ));
-
     });
   }
 }
-
