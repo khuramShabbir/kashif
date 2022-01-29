@@ -1,6 +1,8 @@
+//@dart=2.9
 import 'package:flutter/cupertino.dart';
 import 'package:geocoder/geocoder.dart';
 import 'package:get/get.dart';
+import 'package:kashif/model_classes/GetCardInfoByCardID.dart';
 import 'package:kashif/model_classes/getVehicleMakers.dart';
 import 'package:kashif/model_classes/get_vehicle_services.dart';
 import 'package:kashif/screens/order_taking_screens/ongoing_inspection_pickup_address.dart';
@@ -9,15 +11,21 @@ import 'package:kashif/utils.dart';
 class DashboardProvider extends ChangeNotifier{
 
   bool isVehicleMakerLoaded=false;
-  GetVehicleMaker? getVehicleMaker;
+  GetVehicleMaker getVehicleMaker;
   bool isServiceDataLoaded=false;
-  GetVehicleServices? vehicleServicesFromJson;
+  GetVehicleServices vehicleServicesFromJson;
   String carMakeId="";
   String carMakeModelId="";
   String manufacturYear="";
   String vinCode="";
-  String numberPlate="";
-  String serviceId='';
+  String numberPlateEnglish="";
+  String numberPlateDigits="";
+  String serviceTyoeId='';
+
+
+  ///1 for inspection at your door step
+  ///2 for inspection at your center
+  int orderType=1;
 
 
   setVehicleMakers(bool isVehicleMakerLoaded,GetVehicleMaker getVehicleMaker ){
@@ -31,32 +39,36 @@ class DashboardProvider extends ChangeNotifier{
     print(manufacturYear);
     print(carMakeModelId);
     print(vinCode);
-    print(numberPlate);
+    print(numberPlateEnglish);
     if (carMakeId.isEmpty ||
         manufacturYear.isEmpty ||
         carMakeModelId.isEmpty ||
         vinCode.isEmpty ||
-        serviceId.isEmpty ||
-        numberPlate.isEmpty) {
+        serviceTyoeId.isEmpty ||
+        numberPlateEnglish.isEmpty ||
+        numberPlateDigits.isEmpty
+    )
+    {
       showMessage("incomplete information");
       return;
     }
+    // else if(){}
 
     Get.to(OngoingInspectionPickUpAddressUi());
   }
-    double? lat;
-    double? lng;
+    double lat;
+    double lng;
     String location="";
   void setAddress(var value) {
     lat=value[0];
     lng=value[1];
-    geoCoder(lat!,lng!);
+    geoCoder(lat,lng);
 
 
   }
 
 
-  Address? address;
+  Address address;
   void geoCoder(double lat, double lng) async {
     print(lat);
     print(lng);
@@ -126,6 +138,15 @@ class DashboardProvider extends ChangeNotifier{
   void setTimeslot(String getTimeSlot) {
     this.getTimeSlot=getTimeSlot;
     notifyListeners();
+  }
+  GetCardInfoByCardId cardInfoByCardIdFromJson;
+  bool isSingleCardLoaded=false;
+  void setCardInformation(GetCardInfoByCardId cardInfoByCardIdFromJson,bool isSingleCardLoaded) {
+
+        this.isSingleCardLoaded=isSingleCardLoaded;
+        this.cardInfoByCardIdFromJson=cardInfoByCardIdFromJson;
+        notifyListeners();
+
   }
 
 }

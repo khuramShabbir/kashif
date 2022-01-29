@@ -66,10 +66,11 @@ dev_dependencies:
 
 flutter_icons:
   android:
-  ios: false
-#  remove_alpha_ios: true
+  ios: true
+  remove_alpha_ios: true
   image_path: "assets/logo.png"
-
+#  flutter pub get
+#  flutter pub run flutter_launcher_icons:main
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your

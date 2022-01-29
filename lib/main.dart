@@ -18,9 +18,9 @@ main() async {
     providers: [
       ChangeNotifierProvider(create: (ctx) => UserAuthProvider()),
       ChangeNotifierProvider(create: (ctx) => DashboardProvider()),
-
     ],
     child: const GetMaterialApp(
-        debugShowCheckedModeBanner: false, home: SplashScreen()),
+        debugShowCheckedModeBanner: false, home: SplashScreen()
+    ),
   ));
 }

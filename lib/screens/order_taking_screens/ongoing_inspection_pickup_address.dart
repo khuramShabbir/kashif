@@ -551,9 +551,9 @@ Widget invoiceBottomSheet() {
                               onClick: () {
 
                                 // showMessage("Submitting request");
+                                Get.back();
                                 showProgrress(isdimissnable: false);
                                 ApiServices.createCard();
-                                // Get.to(() => const StepperUi());
                               },
                               buttonWidget: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -584,7 +584,7 @@ getServicePrice(DashboardProvider data) {
 
   for(int i=0; i<data.vehicleServicesFromJson!.data!.length;i++){
 
-    if(data.serviceId==data.vehicleServicesFromJson!.data![i].id.toString()){
+    if(data.serviceTyoeId==data.vehicleServicesFromJson!.data![i].id.toString()){
       return data.vehicleServicesFromJson!.data![i].price.toString();
     }
 

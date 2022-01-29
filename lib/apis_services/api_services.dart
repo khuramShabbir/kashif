@@ -3,11 +3,13 @@ import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
+import 'package:kashif/model_classes/GetCardInfoByCardID.dart';
 import 'package:kashif/model_classes/getVehicleMakers.dart';
 import 'package:kashif/model_classes/get_user.dart';
 import 'package:kashif/model_classes/get_vehicle_services.dart';
 import 'package:kashif/providers/dashboard_provider.dart';
 import 'package:kashif/providers/user_auth_provider.dart';
+import 'package:kashif/screens/order_taking_screens/stepper_ui.dart';
 import 'package:provider/provider.dart';
 
 import '../dashboardscreen.dart';
@@ -16,6 +18,7 @@ import '../utils.dart';
 class ApiServices   {
   static const _BASE_URL = "https://test.cashif.cc/api/";
   static const _LOGIN = "login";
+  static const _GET_CARD_INFO = "get_card_info";
   static const _REGISTER = "register";
   static const _FORGOT_PASSWORD = "forgot-password";
   static const _GET_VEHICLE_SERVICES = "get_vehcile_services";
@@ -155,7 +158,9 @@ class ApiServices   {
   }
 
   static void createCard()async{
-logger.e(storage.read(userToken));
+
+    // logger.e(storage.read(userToken));
+
     var headers = {
       'Authorization': 'Bearer ${storage.read(userToken)}',
       'Content-Type': 'application/json',
@@ -163,24 +168,28 @@ logger.e(storage.read(userToken));
     var request = http.Request('POST', Uri.parse('$_BASE_URL$_CREATE_CARD'));
     var splittime = dashboardProvider.getTimeSlot.split("-");
     request.body = json.encode({
-      "plate_number" : "${dashboardProvider.numberPlate}",
-      "plate_char" : "abc",
+      "plate_number" : "${dashboardProvider.numberPlateDigits}",
+      "plate_char" : "${dashboardProvider.numberPlateEnglish}",
       "car_brand" : "${dashboardProvider.carMakeId}",
       "car_model" : "${dashboardProvider.carMakeModelId}",
       "car_year" : "${dashboardProvider.manufacturYear}",
       "transmission" : "AUTOMATIC",
-      "inspection_type" : '${dashboardProvider.serviceId}',
+      "inspection_type" : '${dashboardProvider.orderType}',
+      "service_type" : '${dashboardProvider.serviceTyoeId}',
       "start_time" : "${splittime[0].replaceAll(" ", '')}",
       "end_time" : "${splittime[1].replaceAll(" ", '')}",
       "latitude" : "${dashboardProvider.lat}",
-      "longitude" : "${dashboardProvider.lng}"
+      "longitude" : "${dashboardProvider.lng}",
+      "payment_method" : "CASH"
+      ///it can be two types one is CASH and second is CREDIT_VISA_MASTER
+      // "payment_method" : "CREDIT_VISA_MASTER"
     });
 
 
     logger.e(request.body);
 
 
-request.headers.addAll(headers);
+    request.headers.addAll(headers);
 
     http.StreamedResponse response = await request.send();
     dismissDialogue();
@@ -188,9 +197,15 @@ request.headers.addAll(headers);
     if (response.statusCode == 200) {
       Get.back();
       Get.back();
-      Get.back();
-      print(await response.stream.bytesToString());
+      var body = await response.stream.bytesToString();
+      print(body);
       showMessage('Card Created Successfully');
+      showProgrress();
+      var decoded = json.decode(body);
+      int cardId = decoded['data']['id'];
+      dismissDialogue();
+      Get.to(() => StepperUi(cardId:cardId));
+
     }
     else {
       var s = await response.stream.bytesToString();
@@ -211,6 +226,36 @@ request.headers.addAll(headers);
     var value =await getApi(_CGET_USER_PERSONAL_INFO,headers:_header );
 
     userAuthProvider.setuserInfoData(true,getUserFromJson(value.toString()));
+
+
+  }
+
+  static void getCardInfoByCardId(int cardId) async {
+
+    var headers = {
+      'Authorization': 'Bearer ${storage.read(userToken)}',
+      'Content-Type': 'application/json'
+    };
+    var request = http.Request('GET', Uri.parse(_BASE_URL + _GET_CARD_INFO));
+    request.body = json.encode({
+      "card_id": "67163"
+    });
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+
+      var body = await response.stream.bytesToString();
+      dashboardProvider.setCardInformation(getCardInfoByCardIdFromJson(body),true);
+
+    }
+    else {
+      var s = await response.stream.bytesToString();
+      showMessage(s);
+      // print(response.reasonPhrase);
+      logger.wtf(s);
+    }
 
 
   }

@@ -1,21 +1,23 @@
+//@dart=2.9
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:kashif/providers/dashboard_provider.dart';
 import 'package:kashif/screens/order_taking_screens/center_inspection_ui.dart';
 import 'package:kashif/screens/order_taking_screens/goolemap_for_center_inspection.dart';
 import 'package:kashif/screens/order_taking_screens/ongoing_inspection.dart';
 import 'package:logger/logger.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
 ///
- final  storage = GetStorage();
-
-String userToken='USER_TOKEN';
-String isUserLoggedIn='IS_USER_LOGGED_IN';
-
+final storage = GetStorage();
+final dashboardProvider = Provider.of<DashboardProvider>(Get.context, listen: false);
+String userToken = 'USER_TOKEN';
+String isUserLoggedIn = 'IS_USER_LOGGED_IN';
 
 ///
 const primaryColor = Color(0xFFFF203840);
@@ -44,58 +46,52 @@ Widget lineBar() => Padding(
 
 Widget pickupAddress() {
   return Container(
-      width: Get.width * .8,
-      height: Get.height * .1,
-      decoration: BoxDecoration(
-
-          borderRadius: BorderRadius.circular(15)),
-      child: Row(
-        children: [
-          Expanded(
-              flex: 2,
-              child: Align(
-                  alignment: Alignment.topCenter,
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 10.0),
-                    child:
-                    SvgPicture.asset("assets/pin_location.svg"),
-                  ))),
-          Expanded(
-            flex: 8,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                Text(
-                  'Pick-up Address',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black),
-                ),
-                Text(
-                  'B/62,Bhaweshwar Darshan,Altamount',
-                  style:
-                  TextStyle(color: Colors.black, fontSize: 10),
-                ),
-              ],
-            ),
+    width: Get.width * .8,
+    height: Get.height * .1,
+    decoration: BoxDecoration(borderRadius: BorderRadius.circular(15)),
+    child: Row(
+      children: [
+        Expanded(
+            flex: 2,
+            child: Align(
+                alignment: Alignment.topCenter,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 10.0),
+                  child: SvgPicture.asset("assets/pin_location.svg"),
+                ))),
+        Expanded(
+          flex: 8,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: const [
+              Text(
+                'Pick-up Address',
+                style:
+                    TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+              ),
+              Text(
+                'B/62,Bhaweshwar Darshan,Altamount',
+                style: TextStyle(color: Colors.black, fontSize: 10),
+              ),
+            ],
           ),
-          const Expanded(
-              flex: 3,
-              child: Align(
-                  alignment: Alignment.topCenter,
-                  child: Padding(
-                    padding: EdgeInsets.only(top: 10.0),
-                    child: Text(
-                      'CHANGE',
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                  ))),
-        ],
-      ),
-    );
+        ),
+        const Expanded(
+            flex: 3,
+            child: Align(
+                alignment: Alignment.topCenter,
+                child: Padding(
+                  padding: EdgeInsets.only(top: 10.0),
+                  child: Text(
+                    'CHANGE',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ))),
+      ],
+    ),
+  );
 }
-
 
 /// Carousal Slider///
 ///
@@ -113,8 +109,7 @@ Widget carousalSlider() {
         ),
         items: List.generate(
             5,
-                (index) =>
-                Stack(
+            (index) => Stack(
                   children: [
                     SizedBox(
                         width: Get.width * .9,
@@ -136,31 +131,33 @@ Widget carousalSlider() {
 ///
 ///
 
-Widget customButton({
-  var buttonWidget,
-  double borderRadius = 50,
-  double buttonHeight = 0.06,
-  double buttonWidth = .4,
-  required Function onClick}) {
+Widget customButton(
+    {var buttonWidget,
+    double borderRadius = 50,
+    double buttonHeight = 0.06,
+    double buttonWidth = .4,
+    Function onClick}) {
   return InkWell(
     onTap: () {
       onClick();
     },
     child: Container(
 
-      /// Please Set values of height and width where`s you want hit this method
-      ///   buttonHeight: Get.height * .06,
-      ///   buttonWidth: Get.width * .4
-      ///
+        /// Please Set values of height and width where`s you want hit this method
+        ///   buttonHeight: Get.height * .06,
+        ///   buttonWidth: Get.width * .4
+        ///
         height: Get.height * buttonHeight,
         width: Get.width * buttonWidth,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(borderRadius),
           color: primaryColor,
         ),
-        child: Padding(padding:const EdgeInsets.symmetric(horizontal: 20,) ,
-child: buttonWidget,
-
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 20,
+          ),
+          child: buttonWidget,
         )),
   );
 }
@@ -179,7 +176,7 @@ Widget indicator({
       height: 10,
       width: width,
       decoration:
-      BoxDecoration(borderRadius: BorderRadius.circular(50), color: color),
+          BoxDecoration(borderRadius: BorderRadius.circular(50), color: color),
     ),
   );
 }
@@ -195,17 +192,16 @@ Widget customInputFormField({
   var onChange,
   var suffixIcon,
   var prefixIconList,
-  String? hintText,
+  String hintText,
   double fontSize = 16,
   var autoValidateMode,
-  String? errorText,
+  String errorText,
   var validator,
-  TextEditingController? textEditingController,
+  TextEditingController textEditingController,
   var textColor = Colors.grey,
   bool isOutlinedBorder = false,
 }) {
   return TextFormField(
-
     autovalidateMode: autoValidateMode,
     controller: textEditingController,
     validator: validator,
@@ -214,8 +210,9 @@ Widget customInputFormField({
     enabled: enable,
     onChanged: onChange,
     decoration: InputDecoration(
-      disabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(10)
-          ,borderSide: BorderSide(color: Colors.grey)),
+      disabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: BorderSide(color: Colors.grey)),
       border: isOutlinedBorder
           ? OutlineInputBorder(borderRadius: BorderRadius.circular(10))
           : null,
@@ -231,12 +228,11 @@ Widget customInputFormField({
   );
 }
 
-
 Widget customDetailBar({
   double width = 400,
   double height = 20,
   double radius = 15,
-  Widget? children,
+  Widget children,
   String showImageAddress = "assets/ongoing.png",
   String inspectionType = 'On going inspection',
   String definitionOfService = 'Simple definition of a service',
@@ -307,7 +303,6 @@ Widget customDetailBar({
   );
 }
 
-
 Widget confirmedOrder({
   var textBorderColor = Colors.green,
   var textColor = Colors.green,
@@ -323,44 +318,43 @@ Widget confirmedOrder({
       children: [
         Expanded(
             child: Row(
-              children: [
-                SizedBox(
-                  width: Get.width * .03,
+          children: [
+            SizedBox(
+              width: Get.width * .03,
+            ),
+            Text(
+              inspectionTypeText,
+              style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(
+              width: Get.width * .2,
+            ),
+            Container(
+              width: Get.width * .2,
+              height: Get.height * .022,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  border: Border.all(color: textBorderColor)),
+              child: Center(
+                child: Text(
+                  checkInTypeText,
+                  style: TextStyle(color: textColor, fontSize: 12),
                 ),
-                Text(
-                  inspectionTypeText,
-                  style: const TextStyle(
-                      fontSize: 15, fontWeight: FontWeight.bold),
-                ),
-                SizedBox(
-                  width: Get.width * .2,
-                ),
-                Container(
-                  width: Get.width * .2,
-                  height: Get.height * .022,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      border: Border.all(color: textBorderColor)),
-                  child: Center(
-                    child: Text(
-                      checkInTypeText,
-                      style: TextStyle(color: textColor, fontSize: 12),
-                    ),
-                  ),
-                )
-              ],
-            )),
+              ),
+            )
+          ],
+        )),
         Expanded(
             child: Row(
-              children: [
-                SizedBox(
-                  width: Get.width * .03,
-                ),
-                Text(typeCode),
-                SizedBox(width: Get.width * .05),
-                rating
-              ],
-            )),
+          children: [
+            SizedBox(
+              width: Get.width * .03,
+            ),
+            Text(typeCode),
+            SizedBox(width: Get.width * .05),
+            rating
+          ],
+        )),
         lineBar()
       ],
     ),
@@ -371,12 +365,10 @@ Widget confirmedOrder({
 ///
 Widget statusButton({
   String statusText = 'CONFIRMED',
-
-
 }) {
   return Container(
-
-    decoration: BoxDecoration(color: Colors.greenAccent.withOpacity(.2),
+    decoration: BoxDecoration(
+        color: Colors.greenAccent.withOpacity(.2),
         borderRadius: BorderRadius.circular(4),
         border: Border.all(width: 1, color: Colors.green)),
     alignment: Alignment.center,
@@ -384,7 +376,8 @@ Widget statusButton({
       padding: const EdgeInsets.symmetric(horizontal: 2),
       child: Text(
         statusText,
-        style: TextStyle(color: Colors.green,
+        style: TextStyle(
+            color: Colors.green,
             fontWeight: FontWeight.bold,
             fontSize: Get.width * .03),
       ),
@@ -408,24 +401,24 @@ Widget bottomSheet() {
       children: [
         Expanded(
             child: Padding(
-              padding: const EdgeInsets.only(top: 10.0),
-              child: AppBar(
-                centerTitle: true,
-                elevation: 0,
-                backgroundColor: Colors.transparent,
-                leading: InkWell(
-                  onTap: Get.back,
-                  child: const Icon(
-                    Icons.arrow_back,
-                    color: Colors.white,
-                  ),
-                ),
-                title: const Text(
-                  "Order Confirmation",
-                  style: TextStyle(color: Colors.white),
-                ),
+          padding: const EdgeInsets.only(top: 10.0),
+          child: AppBar(
+            centerTitle: true,
+            elevation: 0,
+            backgroundColor: Colors.transparent,
+            leading: InkWell(
+              onTap: Get.back,
+              child: const Icon(
+                Icons.arrow_back,
+                color: Colors.white,
               ),
-            )),
+            ),
+            title: const Text(
+              "Order Confirmation",
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+        )),
         Expanded(
             flex: 7,
             child: Container(
@@ -505,8 +498,8 @@ Widget bottomSheet() {
                           height: 25,
                           width: 25,
                           decoration: BoxDecoration(
-                              border: Border.all(
-                                  width: 1.5, color: primaryColor),
+                              border:
+                                  Border.all(width: 1.5, color: primaryColor),
                               borderRadius: BorderRadius.circular(50)),
                         ),
                         Padding(
@@ -557,8 +550,8 @@ Widget bottomSheet() {
                           height: 25,
                           width: 25,
                           decoration: BoxDecoration(
-                              border: Border.all(
-                                  width: 1.5, color: primaryColor),
+                              border:
+                                  Border.all(width: 1.5, color: primaryColor),
                               borderRadius: BorderRadius.circular(50)),
                         ),
                         Padding(
@@ -612,13 +605,13 @@ Widget bottomSheet() {
                           children: const [
                             Text(
                               'Subtotal',
-                              style: TextStyle(
-                                  color: primaryColor, fontSize: 12),
+                              style:
+                                  TextStyle(color: primaryColor, fontSize: 12),
                             ),
                             Text(
                               '\$9.00',
-                              style: TextStyle(
-                                  color: primaryColor, fontSize: 12),
+                              style:
+                                  TextStyle(color: primaryColor, fontSize: 12),
                             ),
                           ],
                         ),
@@ -627,13 +620,13 @@ Widget bottomSheet() {
                           children: const [
                             Text(
                               'Tax(10%)',
-                              style: TextStyle(
-                                  color: primaryColor, fontSize: 12),
+                              style:
+                                  TextStyle(color: primaryColor, fontSize: 12),
                             ),
                             Text(
                               '\$0.90',
-                              style: TextStyle(
-                                  color: primaryColor, fontSize: 12),
+                              style:
+                                  TextStyle(color: primaryColor, fontSize: 12),
                             ),
                           ],
                         ),
@@ -642,13 +635,13 @@ Widget bottomSheet() {
                           children: const [
                             Text(
                               'Delivery fee',
-                              style: TextStyle(
-                                  color: primaryColor, fontSize: 12),
+                              style:
+                                  TextStyle(color: primaryColor, fontSize: 12),
                             ),
                             Text(
                               '\$2.00',
-                              style: TextStyle(
-                                  color: primaryColor, fontSize: 12),
+                              style:
+                                  TextStyle(color: primaryColor, fontSize: 12),
                             ),
                           ],
                         ),
@@ -667,7 +660,7 @@ Widget bottomSheet() {
                             Text(
                               "Total Price",
                               style:
-                              TextStyle(color: Colors.grey.withOpacity(.5)),
+                                  TextStyle(color: Colors.grey.withOpacity(.5)),
                             ),
                             const Text(
                               '\$11.20',
@@ -679,10 +672,9 @@ Widget bottomSheet() {
                         ),
                         customButton(
                             onClick: () {
-                              Get
-                                  .to(() => const GoogleMapForCenterInspectionUi());
+                              Get.to(
+                                  () => const GoogleMapForCenterInspectionUi());
                             },
-
                             buttonWidget: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
@@ -706,157 +698,117 @@ Widget bottomSheet() {
     ),
   );
 }
+
 /// Bottom Sheet for start order
 ///
 ///
-Future bottomSheetStartOrder(){
-  return
-
-    Get.bottomSheet(Container(
-      height: Get.height / 2,
-      decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.only(
-              topLeft:
-              Radius.circular(25),
-              topRight:
-              Radius.circular(25))),
-      child: Column(
-        crossAxisAlignment:
-        CrossAxisAlignment.center,
-        children: [
-          SizedBox(
-            height: Get.height * .03,
-          ),
-          Row(
-            mainAxisAlignment:
-            MainAxisAlignment
-                .spaceBetween,
-            children:  [
-              Padding(
-                padding:const EdgeInsets.only(
-                    left: 15.0),
-                child: InkWell(
-                  onTap: (){
-                    Get.back();
-                  },
-                  child:const Icon(
-                    Icons
-                        .arrow_back_outlined,
-                    color: Colors.black,
-                  ),
+Future bottomSheetStartOrder() {
+  return Get.bottomSheet(Container(
+    height: Get.height / 2,
+    decoration: const BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(25), topRight: Radius.circular(25))),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        SizedBox(
+          height: Get.height * .03,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 15.0),
+              child: InkWell(
+                onTap: () {
+                  Get.back();
+                },
+                child: const Icon(
+                  Icons.arrow_back_outlined,
+                  color: Colors.black,
                 ),
               ),
-             const Text("Efhes Services",
-                  style: (TextStyle(
-                    fontSize: 21,fontWeight: FontWeight.bold
-                  ))),
-             const SizedBox()
-            ],
-          ),
-          SizedBox(
-            height: Get.height * .03,
-          ),
+            ),
+            const Text("Efhes Services",
+                style: (TextStyle(fontSize: 21, fontWeight: FontWeight.bold))),
+            const SizedBox()
+          ],
+        ),
+        SizedBox(
+          height: Get.height * .03,
+        ),
 
-          /// list of Services in bottomBar Sheet ///
+        /// list of Services in bottomBar Sheet ///
 
-          Expanded(
-              child:
-              SingleChildScrollView(
-                  scrollDirection:
-                  Axis.vertical,
-                  child: Column(
-                      mainAxisSize:
-                      MainAxisSize
-                          .max,
-                      mainAxisAlignment:
-                      MainAxisAlignment
-                          .center,
-                      children: [
-                        InkWell(onTap:(){
+        Expanded(
+            child: SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      InkWell(
+                        onTap: () {
                           Get.back();
 
                           Get.to(const OngoingInspectionUi());
-
-
-
                         },
-                          child: customDetailBar(
-                              showImageAddress: 'assets/ongoing.png',
-                              width:
-                              Get.width *
-                                  .9,
-                              definitionOfService: "service at your door step",
-
-                              height:
-                              Get.height *
-                                  .1),
-                        ),
-                        InkWell(onTap: (){Get.to(()=>const CenterInspectionUi());},
-                          child: customDetailBar(
-                              showImageAddress: "assets/centerInspection.png",
-                              inspectionType: "Center Inspection",
-                              definitionOfService: "service at our center",
-                              width:
-                              Get.width *
-                                  .9,
-                              height:
-                              Get.height *
-                                  .1),
-                        )
-                      ]))),
-          SizedBox(
-            height: Get.height * .04,
+                        child: customDetailBar(
+                            showImageAddress: 'assets/ongoing.png',
+                            width: Get.width * .9,
+                            definitionOfService: "service at your door step",
+                            height: Get.height * .1),
+                      ),
+                      InkWell(
+                        onTap: () {
+                          Get.to(() => const CenterInspectionUi());
+                        },
+                        child: customDetailBar(
+                            showImageAddress: "assets/centerInspection.png",
+                            inspectionType: "Center Inspection",
+                            definitionOfService: "service at our center",
+                            width: Get.width * .9,
+                            height: Get.height * .1),
+                      )
+                    ]))),
+        SizedBox(
+          height: Get.height * .04,
+        ),
+        InkWell(
+          onTap: () {
+            Get.back();
+            dashboardProvider.orderType=1;
+            Get.to(() => const OngoingInspectionUi());
+          },
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              Text(
+                "To order more than one car ?",
+                style: TextStyle(color: Colors.grey),
+              ),
+              Text(
+                " order now",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ],
           ),
-          InkWell(
-            onTap: (){
-              Get.back();
-              Get.to(()=>const OngoingInspectionUi());
-
-            },
-            child: Row(
-              mainAxisAlignment:
-              MainAxisAlignment.center,
-              children: const [
-                Text(
-                  "To order more than one car ?",
-                  style: TextStyle(
-                      color: Colors.grey),
-                ),
-                Text(
-                  " order now",
-                  style: TextStyle(
-                      fontWeight:
-                      FontWeight.bold),
-                ),
-              ],
-            ),
-          ),
-          SizedBox(
-            height: Get.height * .09,
-          )
-        ],
-      ),
-    ));
+        ),
+        SizedBox(
+          height: Get.height * .09,
+        )
+      ],
+    ),
+  ));
 }
-
-
-
-
-
 
 /// Junaid Utils ///
 ///
 
-
-
-
-
-
-
 StringPicture carDoor = 'assets/CarDoor.png' as StringPicture;
 
-late bool value = true;
+bool value = true;
 
 Widget customCardView() {
   return Padding(
@@ -873,93 +825,91 @@ Widget customCardView() {
             children: [
               Expanded(
                   child: Column(
+                children: [
+                  Row(
                     children: [
-                      Row(
-                        children: [
-                          const Text(
-                            'Full car inspection',
+                      const Text(
+                        'Full car inspection',
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold),
+                      ),
+                      Expanded(child: Container()),
+                      statusButton()
+                    ],
+                  ),
+                  Row(
+                    children: const [
+                      Text(
+                        'Full car inspection',
+                        style: TextStyle(fontSize: 15),
+                      ),
+                      SizedBox(
+                        width: 8,
+                      ),
+                      Text('#number??')
+                    ],
+                  )
+                ],
+              )),
+              Expanded(
+                  child: Column(
+                children: [
+                  /// 5star ratting
+                  Row(
+                    children: [
+                      RatingBar.builder(
+                        initialRating: 3,
+                        itemSize: 18,
+                        minRating: 1,
+                        direction: Axis.horizontal,
+                        allowHalfRating: true,
+                        itemCount: 5,
+                        itemPadding:
+                            const EdgeInsets.symmetric(horizontal: 1.0),
+                        itemBuilder: (context, _) => const Icon(
+                          Icons.star,
+                          color: Colors.amber,
+                        ),
+                        onRatingUpdate: (rating) {},
+                      ),
+                    ],
+                  ),
+
+                  Row(
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: const [
+                          Text(
+                            'Date',
                             style: TextStyle(
                                 fontSize: 18, fontWeight: FontWeight.bold),
                           ),
-                          Expanded(child: Container()),
-                          statusButton()
-                        ],
-                      ),
-                      Row(
-                        children: const [
                           Text(
-                            'Full car inspection',
+                            '21st Sept 2021, monday',
                             style: TextStyle(fontSize: 15),
                           ),
-                          SizedBox(
-                            width: 8,
+                        ],
+                      ),
+                      Expanded(child: Container()),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: const [
+                          Text(
+                            'PICK-UP-TIME',
+                            style: TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.bold),
                           ),
-                          Text('#number??')
+                          Text(
+                            '9:00-9:30am',
+                            style: TextStyle(),
+                          ),
                         ],
                       )
                     ],
-                  )),
-              Expanded(
-                  child: Column(
-                    children: [
-
-                      /// 5star ratting
-                      Row(
-                        children: [
-                          RatingBar.builder(
-                            initialRating: 3,
-                            itemSize: 18,
-                            minRating: 1,
-                            direction: Axis.horizontal,
-                            allowHalfRating: true,
-                            itemCount: 5,
-                            itemPadding:
-                            const EdgeInsets.symmetric(horizontal: 1.0),
-                            itemBuilder: (context, _) =>
-                            const Icon(
-                              Icons.star,
-                              color: Colors.amber,
-                            ),
-                            onRatingUpdate: (rating) {},
-                          ),
-                        ],
-                      ),
-
-                      Row(
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: const [
-                              Text(
-                                'Date',
-                                style: TextStyle(
-                                    fontSize: 18, fontWeight: FontWeight.bold),
-                              ),
-                              Text(
-                                '21st Sept 2021, monday',
-                                style: TextStyle(fontSize: 15),
-                              ),
-                            ],
-                          ),
-                          Expanded(child: Container()),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: const [
-                              Text(
-                                'PICK-UP-TIME',
-                                style: TextStyle(
-                                    fontSize: 15, fontWeight: FontWeight.bold),
-                              ),
-                              Text(
-                                '9:00-9:30am',
-                                style: TextStyle(),
-                              ),
-                            ],
-                          )
-                        ],
-                      ),
-                    ],
-                  ))
+                  ),
+                ],
+              ))
             ],
           ),
         )),
@@ -1023,7 +973,7 @@ Widget customCarCardView() {
                                         color: Colors.green.withOpacity(.15),
                                         borderRadius: BorderRadius.circular(5),
                                         border:
-                                        Border.all(color: Colors.green)),
+                                            Border.all(color: Colors.green)),
                                     child: const Center(
                                       child: Text(
                                         "CONFIRMED",
@@ -1049,20 +999,20 @@ Widget customCarCardView() {
                             const Expanded(
                                 child: Center(
                                     child: Text(
-                                      're-application',
-                                      style: TextStyle(
-                                          color: Color(primaryBlueColor),
-                                          fontWeight: FontWeight.bold),
-                                    ))),
+                              're-application',
+                              style: TextStyle(
+                                  color: Color(primaryBlueColor),
+                                  fontWeight: FontWeight.bold),
+                            ))),
                             Container(color: Colors.grey, width: 1),
                             const Expanded(
                                 child: Center(
                                     child: Text(
-                                      'Service report',
-                                      style: TextStyle(
-                                          color: Colors.red,
-                                          fontWeight: FontWeight.bold),
-                                    ))),
+                              'Service report',
+                              style: TextStyle(
+                                  color: Colors.red,
+                                  fontWeight: FontWeight.bold),
+                            ))),
                           ],
                         ),
                       ),
@@ -1084,7 +1034,6 @@ Widget customCarCardView() {
     ],
   );
 }
-
 
 Widget appBar(String text) {
   return Padding(
@@ -1131,10 +1080,9 @@ Widget carBrand(String carName) {
   );
 }
 
-
 Widget carReports(String text1, String text2, String text3, String text4) {
-  late bool internalOrder = true;
-  late bool seatsDirty = false;
+  bool internalOrder = true;
+  bool seatsDirty = false;
 
   return Column(
     children: [
@@ -1142,68 +1090,68 @@ Widget carReports(String text1, String text2, String text3, String text4) {
         children: [
           internalOrder
               ? const Icon(
-            Icons.check_circle,
-            color: Colors.greenAccent,
-          )
+                  Icons.check_circle,
+                  color: Colors.greenAccent,
+                )
               : const Icon(
-            Icons.info_outline,
-            color: Colors.redAccent,
-          ),
+                  Icons.info_outline,
+                  color: Colors.redAccent,
+                ),
           const SizedBox(width: 8),
           internalOrder
               ? Text(
-            text1,
-            style: const TextStyle(
-                fontWeight: FontWeight.bold, fontSize: 18),
-          )
+                  text1,
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: 18),
+                )
               : Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                text1,
-                style: const TextStyle(
-                    fontWeight: FontWeight.bold, fontSize: 18),
-              ),
-              Text(
-                text2,
-                style: const TextStyle(color: Colors.redAccent),
-              )
-            ],
-          )
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      text1,
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 18),
+                    ),
+                    Text(
+                      text2,
+                      style: const TextStyle(color: Colors.redAccent),
+                    )
+                  ],
+                )
         ],
       ),
       Row(
         children: [
           seatsDirty
               ? const Icon(
-            Icons.check_circle,
-            color: Colors.greenAccent,
-          )
+                  Icons.check_circle,
+                  color: Colors.greenAccent,
+                )
               : const Icon(
-            Icons.info_outline,
-            color: Colors.redAccent,
-          ),
+                  Icons.info_outline,
+                  color: Colors.redAccent,
+                ),
           const SizedBox(width: 8),
           seatsDirty
               ? Text(
-            text3,
-            style: const TextStyle(
-                fontWeight: FontWeight.bold, fontSize: 18),
-          )
+                  text3,
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: 18),
+                )
               : Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                text3,
-                style: const TextStyle(
-                    fontWeight: FontWeight.bold, fontSize: 18),
-              ),
-              Text(
-                text4,
-                style: const TextStyle(color: Colors.redAccent),
-              )
-            ],
-          )
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      text3,
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 18),
+                    ),
+                    Text(
+                      text4,
+                      style: const TextStyle(color: Colors.redAccent),
+                    )
+                  ],
+                )
         ],
       ),
     ],
@@ -1362,10 +1310,10 @@ Widget carSetting(
   );
 }
 
-
-
 showMessage(
-    String data, {double fontsize = 16.0,}) {
+  String data, {
+  double fontsize = 16.0,
+}) {
   Fluttertoast.showToast(
       msg: data,
       toastLength: Toast.LENGTH_LONG,
@@ -1376,17 +1324,13 @@ showMessage(
       fontSize: fontsize);
 }
 
-
-showProgrress({bool isdimissnable=true}){
-
-  Get.dialog(const Center(child:CircularProgressIndicator()),barrierDismissible: isdimissnable);
-
+showProgrress({bool isdimissnable = true}) {
+  Get.dialog(const Center(child: CircularProgressIndicator()),
+      barrierDismissible: isdimissnable);
 }
 
-dismissDialogue(){
-
-  if(Get.isDialogOpen!){
+dismissDialogue() {
+  if (Get.isDialogOpen) {
     Get.back();
   }
 }
-

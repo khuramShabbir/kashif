@@ -150,8 +150,8 @@ class _OngoingInspectionUiState extends State<OngoingInspectionUi> {
                                     mode: Mode.MENU,
                                     items: getItemsServices(data),
                                     onChanged: (value) {
-                                      data.serviceId=getServiceName(data,value!);
-                                      print(data.serviceId);
+                                      data.serviceTyoeId=getServiceName(data,value!);
+                                      print(data.serviceTyoeId);
                                     },
                                     selectedItem: "Select Inspection",
                                     dropdownSearchDecoration: InputDecoration(
@@ -241,18 +241,51 @@ class _OngoingInspectionUiState extends State<OngoingInspectionUi> {
                                         ],
                                       ),
                                     )),
+
+
                                 labelText('Car plate'),
-                                customInputFormField(
 
-                                    hintText: "AAA - 0000",
-                                    isOutlinedBorder: true,
-                                    onChange: (value) {
-                                      if(value.toString().length>4){
-                                        return;
-                                      }
-                                      data.numberPlate=value;
+                                Container(
+                                  height: 70,
+                                  width: Get.width,
+                                  child: Row(children: [
+                                  Expanded(
+                                    child: customInputFormField(
+                                      keyboardType: TextInputType.text,
+                                        hintText: "AAAA",
+                                        isOutlinedBorder: true,
+                                        onChange: (value) {
+                                          if(value.toString().length>4){
+                                            return;
+                                          }
+                                          data.numberPlateEnglish=value;
 
-                                    }),
+                                        }),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(horizontal: 5),
+                                    child: Text("-",style: TextStyle(fontSize: 35),),
+                                  ),
+                                  Expanded(
+                                    child: customInputFormField(
+                                        keyboardType: TextInputType.number,
+                                        hintText: "1234",
+                                        isOutlinedBorder: true,
+                                        onChange: (value) {
+                                          if(value.toString().length>4){
+                                            return;
+                                          }
+                                          data.numberPlateDigits=value;
+
+                                        }),
+                                  ),
+                                    ],
+                                  ),
+                                )
+
+
+
+
                               ],
                             ),
                           ),

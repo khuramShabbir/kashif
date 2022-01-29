@@ -66,7 +66,7 @@ class _OnGoingServicesUiState extends State<OnGoingServicesUi> {
                 InkWell(
                   onTap: () {
                     isTaped = true;
-                    logger.e('UPCOMING');
+                    // logger.e('UPCOMING');
                     setState(() {});
                   },
                   child: Container(
