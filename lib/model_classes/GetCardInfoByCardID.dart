@@ -63,6 +63,7 @@ class Card {
     this.endTime,
     this.latitude,
     this.longitude,
+    this.card_step,
     this.vmVehicleId,
     this.inspectionStart,
     this.inspectionEnd,
@@ -85,6 +86,7 @@ class Card {
   String inspectionStart;
   String inspectionEnd;
   dynamic rating;
+  dynamic card_step;
   String createdAt;
   Vehicle vehicle;
   Invoice invoice;
@@ -93,6 +95,7 @@ class Card {
   factory Card.fromJson(Map<String, dynamic> json) => Card(
     id: json["id"],
     uuid: json["uuid"],
+    card_step: json["card_step"],
     inspectionType: json["inspection_type"],
     status: json["status"],
     startTime: json["start_time"],
@@ -112,6 +115,7 @@ class Card {
   Map<String, dynamic> toJson() => {
     "id": id,
     "uuid": uuid,
+    "card_step": card_step,
     "inspection_type": inspectionType,
     "status": status,
     "start_time": startTime,

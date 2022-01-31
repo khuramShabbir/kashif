@@ -3,7 +3,9 @@ import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
+import 'package:kashif/model_classes/GetAllRecords.dart';
 import 'package:kashif/model_classes/GetCardInfoByCardID.dart';
+import 'package:kashif/model_classes/GetLifters.dart';
 import 'package:kashif/model_classes/getVehicleMakers.dart';
 import 'package:kashif/model_classes/get_user.dart';
 import 'package:kashif/model_classes/get_vehicle_services.dart';
@@ -24,7 +26,9 @@ class ApiServices   {
   static const _GET_VEHICLE_SERVICES = "get_vehcile_services";
   static const _GET_VEHICLE_MAKERS = "get_vehcile_maker";
   static const _CREATE_CARD = "create_card";
-  static const _CGET_USER_PERSONAL_INFO = "get_self_info";
+  static const _GET_USER_PERSONAL_INFO = "get_self_info";
+  static const _GET_LIFTERS = "get_lifters";
+  static const _GET_All_CARD_RECORD = "get_inspection_record";
 
 
 
@@ -180,6 +184,7 @@ class ApiServices   {
       "end_time" : "${splittime[1].replaceAll(" ", '')}",
       "latitude" : "${dashboardProvider.lat}",
       "longitude" : "${dashboardProvider.lng}",
+      "lifter_no" : "${dashboardProvider.carLifterId==-1? 1 :dashboardProvider.carLifterId}",
       "payment_method" : "CASH"
       ///it can be two types one is CASH and second is CREDIT_VISA_MASTER
       // "payment_method" : "CREDIT_VISA_MASTER"
@@ -197,6 +202,11 @@ class ApiServices   {
     if (response.statusCode == 200) {
       Get.back();
       Get.back();
+      if(dashboardProvider.carLifterIndex>-1){
+        logger.i("message");
+      Get.back();
+      }
+
       var body = await response.stream.bytesToString();
       print(body);
       showMessage('Card Created Successfully');
@@ -204,6 +214,9 @@ class ApiServices   {
       var decoded = json.decode(body);
       int cardId = decoded['data']['id'];
       dismissDialogue();
+
+      dashboardProvider.resetOrderVaribales();
+
       Get.to(() => StepperUi(cardId:cardId));
 
     }
@@ -223,14 +236,14 @@ class ApiServices   {
       'Authorization': 'Bearer ${storage.read(userToken)}',
     };
 
-    var value =await getApi(_CGET_USER_PERSONAL_INFO,headers:_header );
+    var value =await getApi(_GET_USER_PERSONAL_INFO,headers:_header );
 
     userAuthProvider.setuserInfoData(true,getUserFromJson(value.toString()));
 
 
   }
 
-  static void getCardInfoByCardId(int cardId) async {
+  static Future<bool> getCardInfoByCardId(int cardId) async {
 
     var headers = {
       'Authorization': 'Bearer ${storage.read(userToken)}',
@@ -257,40 +270,31 @@ class ApiServices   {
       logger.wtf(s);
     }
 
+    return true;
+
 
   }
-    /*var splittime = dashboardProvider.getTimeSlot.split("-");
-    Map<String, String> parameters={
-        "plate_number" : "${dashboardProvider.numberPlate}",
-        "plate_char" : "${dashboardProvider.numberPlate}",
-        "car_brand" : "${dashboardProvider.carMakeId}",
-        "car_model" : "${dashboardProvider.carMakeModelId}",
-        "car_year" : "${dashboardProvider.manufacturYear}",
-        "transmission" : "AUTOMATIC",
-        "inspection_type" : '${dashboardProvider.serviceId}',
-        "start_time" : "${splittime[0].replaceAll(" ", '')}",
-        "end_time" : "${splittime[1].replaceAll(" ", '')}",
-        "latitude" : "${dashboardProvider.lat}",
-        "longitude" : "${dashboardProvider.lng}"
-    };
 
-    logger.e(parameters);
-    var value =await  postApi(_CREATE_CARD,parameters: parameters,headers: {
-      'Authorization': 'Bearer ${storage.read(userToken)}',
-      // 'Content-Type': 'application/json',
-      'Cookie': 'XSRF-TOKEN=eyJpdiI6Im5qQ3BLMDdTeGtKRTBVa3BtZGh0eXc9PSIsInZhbHVlIjoiRkx3ZkJ1Uy9IYlBYdGJiVEpHTVZnN1NMV3lCbTZJNnoreFdhZjJHc2JnWEZOZTdZcm1yTEhmcHR1QlV3cG1LNk44NlF6M1gzZHpzd2tLSGcxWjdxUTJhRVpOMTd5TzNwcWJta29wSmZWZVRQU2c1U2VUOG1sRFFXNU01VTdWd20iLCJtYWMiOiJjZGE5ZTA1ZDcxOTJhOGMxYjNkZDJkMDlmMTQ1NTc0YWFiZDAxYWNlMWNjYTlmNWU5MGQ0OWE3ZTUyOWYzYzk2IiwidGFnIjoiIn0%3D; vehiclemanagement_session=eyJpdiI6IlB1b3NucnZQd1cvN2lIdGI5ZjlDdVE9PSIsInZhbHVlIjoiREdPR0RMZjVwNGpFc01hZEcvaUQ4WkJuaUVIalZlSHl0UFpqczNRMmY0N1A5SjVCeEZJQVE0ditDNCtGZWgzYVFYMW8zdHdEVGRycUZMOW40dXpwdmtTQkxyNGltS0srUzd3OFdPWk1GWFVtamxxNHBoYkUxaDUxbEJ1N3BxKzQiLCJtYWMiOiJjYTAxNjllOWFhYTgxM2RmNDBkYzY5NzhmNTdiNWMwZTZiMjc2MGNjODllMDVmMzgxZDI0ZGI3ODkyYzE5MDAxIiwidGFnIjoiIn0%3D'
-    });
-    dismissDialogue;
-    if (value != null) {
-      var decode = json.decode(value);
-      if (decode['success'].toString().contains('1')) {
-        showMessage(decode['message'].toString());
-      } else {
-        showMessage(value.toString());
-        showMessage("ERROR 404");
-      }
-      logger.e(value);
-    }
+  static void gteLifters() async {
 
-  }*/
+   var body = await getApi(_GET_LIFTERS,headers: {"Authorization":"Bearer ${storage.read(userToken)}"});
+
+   logger.e(body);
+   GetLifters liftersFromJson = getLiftersFromJson(body);
+   dashboardProvider.setLifterData(true,liftersFromJson);
+
+
+
+
+  }
+
+  static void getAllCardsRecord()async {
+    var body = await getApi(_GET_All_CARD_RECORD,headers: {"Authorization":"Bearer ${storage.read(userToken)}"});
+    dashboardProvider.setAllCardRecords(true,getAllRecordsFromJson(body));
+
+
+
+
+  }
+
 }

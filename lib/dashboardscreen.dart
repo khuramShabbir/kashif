@@ -168,7 +168,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                           onTap: () {
                             initialScreen = 3;
                             setState(() {});
-                            logger.e('Screen for Profile');
+                            // logger.e('Screen for Profile');
                           },
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,

@@ -22,7 +22,7 @@ main() async {
       ChangeNotifierProvider(create: (ctx) => DashboardProvider()),
     ],
     child: const GetMaterialApp(
-        debugShowCheckedModeBanner: false, home: ReportScreen()
+        debugShowCheckedModeBanner: false, home: SplashScreen()
     ),
   ));
 }

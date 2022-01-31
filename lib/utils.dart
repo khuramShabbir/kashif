@@ -44,7 +44,7 @@ Widget lineBar() => Padding(
 /// pickup Address///
 ///
 
-Widget pickupAddress() {
+Widget pickupAddress(DashboardProvider data) {
   return Container(
     width: Get.width * .8,
     height: Get.height * .1,
@@ -64,14 +64,14 @@ Widget pickupAddress() {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
+            children:  [
               Text(
                 'Pick-up Address',
                 style:
                     TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
               ),
               Text(
-                'B/62,Bhaweshwar Darshan,Altamount',
+                data.address==null ? "": data.address.addressLine,
                 style: TextStyle(color: Colors.black, fontSize: 10),
               ),
             ],
@@ -363,345 +363,9 @@ Widget confirmedOrder({
 
 /// Status Button///
 ///
-Widget statusButton({
-  String statusText = 'CONFIRMED',
-}) {
-  return Container(
-    decoration: BoxDecoration(
-        color: Colors.greenAccent.withOpacity(.2),
-        borderRadius: BorderRadius.circular(4),
-        border: Border.all(width: 1, color: Colors.green)),
-    alignment: Alignment.center,
-    child: Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 2),
-      child: Text(
-        statusText,
-        style: TextStyle(
-            color: Colors.green,
-            fontWeight: FontWeight.bold,
-            fontSize: Get.width * .03),
-      ),
-    ),
-  );
-}
 
-///
-///  Bottom Sheet///
-///
-///
-Widget bottomSheet() {
-  return Container(
-    width: Get.width,
-    height: Get.height * .77,
-    decoration: const BoxDecoration(
-        color: primaryColor,
-        borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(25), topRight: Radius.circular(25))),
-    child: Column(
-      children: [
-        Expanded(
-            child: Padding(
-          padding: const EdgeInsets.only(top: 10.0),
-          child: AppBar(
-            centerTitle: true,
-            elevation: 0,
-            backgroundColor: Colors.transparent,
-            leading: InkWell(
-              onTap: Get.back,
-              child: const Icon(
-                Icons.arrow_back,
-                color: Colors.white,
-              ),
-            ),
-            title: const Text(
-              "Order Confirmation",
-              style: TextStyle(color: Colors.white),
-            ),
-          ),
-        )),
-        Expanded(
-            flex: 7,
-            child: Container(
-              width: Get.width,
-              decoration: const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(25),
-                      topRight: Radius.circular(25))),
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  SizedBox(
-                    height: Get.height * .04,
-                  ),
-                  SizedBox(
-                    width: Get.width * .8,
-                    height: Get.height * .08,
-                    child: Row(
-                      children: [
-                        Expanded(child: Image.asset('assets/bank_Riyadh.png')),
-                        Expanded(
-                          flex: 3,
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 10.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: const [
-                                Text(
-                                  'Riyadh',
-                                  style: TextStyle(
-                                      color: primaryColor,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                Text(
-                                  '29846264 HH',
-                                  style: TextStyle(
-                                      color: primaryColor, fontSize: 12),
-                                ),
-                                Text(
-                                  'Saudi Arabia Riyadh',
-                                  style: TextStyle(
-                                      color: primaryColor, fontSize: 12),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(right: 10.0),
-                                child: Image.asset('assets/Edit.png'),
-                              )
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: Get.height * .04,
-                  ),
-                  SizedBox(
-                    width: Get.width * .7,
-                    height: Get.height * .08,
-                    child: Row(
-                      children: [
-                        //TODO:Payment method Selection
 
-                        Container(
-                          child: Image.asset('assets/slection.png'),
-                          height: 25,
-                          width: 25,
-                          decoration: BoxDecoration(
-                              border:
-                                  Border.all(width: 1.5, color: primaryColor),
-                              borderRadius: BorderRadius.circular(50)),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              const Text(
-                                'Cash',
-                                style: TextStyle(
-                                    color: primaryColor,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              Text(
-                                'Pay the delegate',
-                                style: TextStyle(
-                                    color: Colors.grey.withOpacity(.5),
-                                    fontSize: 12),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Expanded(
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(right: 10.0),
-                                child: SvgPicture.asset('assets/cards.svg'),
-                              )
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: Get.height * .04,
-                  ),
-                  SizedBox(
-                    width: Get.width * .7,
-                    height: Get.height * .08,
-                    child: Row(
-                      children: [
-                        Container(
-                          height: 25,
-                          width: 25,
-                          decoration: BoxDecoration(
-                              border:
-                                  Border.all(width: 1.5, color: primaryColor),
-                              borderRadius: BorderRadius.circular(50)),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              const Text(
-                                'Credit Card',
-                                style: TextStyle(
-                                    color: primaryColor,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              Text(
-                                '2540 xxxx xxxx 2648',
-                                style: TextStyle(
-                                    color: Colors.grey.withOpacity(.5),
-                                    fontSize: 12),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Expanded(
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(right: 10.0),
-                                child: Image.asset('assets/visa.png'),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(right: 10.0),
-                                child: Image.asset('assets/mastercard .png'),
-                              )
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    width: Get.width * .8,
-                    height: Get.height * .14,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: const [
-                            Text(
-                              'Subtotal',
-                              style:
-                                  TextStyle(color: primaryColor, fontSize: 12),
-                            ),
-                            Text(
-                              '\$9.00',
-                              style:
-                                  TextStyle(color: primaryColor, fontSize: 12),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: const [
-                            Text(
-                              'Tax(10%)',
-                              style:
-                                  TextStyle(color: primaryColor, fontSize: 12),
-                            ),
-                            Text(
-                              '\$0.90',
-                              style:
-                                  TextStyle(color: primaryColor, fontSize: 12),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: const [
-                            Text(
-                              'Delivery fee',
-                              style:
-                                  TextStyle(color: primaryColor, fontSize: 12),
-                            ),
-                            Text(
-                              '\$2.00',
-                              style:
-                                  TextStyle(color: primaryColor, fontSize: 12),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    width: Get.width * .8,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Total Price",
-                              style:
-                                  TextStyle(color: Colors.grey.withOpacity(.5)),
-                            ),
-                            const Text(
-                              '\$11.20',
-                              style: TextStyle(
-                                  color: primaryColor,
-                                  fontWeight: FontWeight.bold),
-                            )
-                          ],
-                        ),
-                        customButton(
-                            onClick: () {
-                              Get.to(
-                                  () => const GoogleMapForCenterInspectionUi());
-                            },
-                            buttonWidget: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Image.asset('assets/pay-now.png'),
-                                const Padding(
-                                  padding: EdgeInsets.only(left: 15.0),
-                                  child: Text(
-                                    'Pay now',
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                )
-                              ],
-                            ))
-                      ],
-                    ),
-                  )
-                ],
-              ),
-            )),
-      ],
-    ),
-  );
-}
 
-/// Bottom Sheet for start order
-///
-///
 Future bottomSheetStartOrder() {
   return Get.bottomSheet(Container(
     height: Get.height / 2,
@@ -750,9 +414,12 @@ Future bottomSheetStartOrder() {
                     children: [
                       InkWell(
                         onTap: () {
+                          // Get.back();
                           Get.back();
+                          dashboardProvider.orderType=1;
+                          Get.to(() => const OngoingInspectionUi());
 
-                          Get.to(const OngoingInspectionUi());
+                          // Get.to(const OngoingInspectionUi());
                         },
                         child: customDetailBar(
                             showImageAddress: 'assets/ongoing.png',
@@ -762,7 +429,11 @@ Future bottomSheetStartOrder() {
                       ),
                       InkWell(
                         onTap: () {
-                          Get.to(() => const CenterInspectionUi());
+                          Get.back();
+                          dashboardProvider.orderType=2;
+                          Get.to(() => const OngoingInspectionUi());
+
+                          // Get.to(() => const CenterInspectionUi());
                         },
                         child: customDetailBar(
                             showImageAddress: "assets/centerInspection.png",
@@ -775,25 +446,18 @@ Future bottomSheetStartOrder() {
         SizedBox(
           height: Get.height * .04,
         ),
-        InkWell(
-          onTap: () {
-            Get.back();
-            dashboardProvider.orderType=1;
-            Get.to(() => const OngoingInspectionUi());
-          },
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              Text(
-                "To order more than one car ?",
-                style: TextStyle(color: Colors.grey),
-              ),
-              Text(
-                " order now",
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-            ],
-          ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: const [
+            Text(
+              "To order more than one car ?",
+              style: TextStyle(color: Colors.grey),
+            ),
+            Text(
+              " order now",
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+          ],
         ),
         SizedBox(
           height: Get.height * .09,
@@ -810,7 +474,7 @@ StringPicture carDoor = 'assets/CarDoor.png' as StringPicture;
 
 bool value = true;
 
-Widget customCardView() {
+/*Widget customCardView() {
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: Container(
@@ -914,7 +578,7 @@ Widget customCardView() {
           ),
         )),
   );
-}
+}*/
 
 Widget customCarCardView() {
   return Stack(
@@ -1157,6 +821,7 @@ Widget carReports(String text1, String text2, String text3, String text4) {
     ],
   );
 }
+/*
 
 Widget carSetting(
     String t1,
@@ -1309,6 +974,7 @@ Widget carSetting(
     ],
   );
 }
+*/
 
 showMessage(
   String data, {

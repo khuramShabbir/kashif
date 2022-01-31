@@ -53,7 +53,9 @@ class CarBrandScanUi extends StatelessWidget {
               children: [
                InkWell(
                    onTap: (){Get.to(()=>const GoogleMapForCenterInspectionUi());},
-                   child: pickupAddress()),
+                   // child: pickupAddress()
+
+               ),
                 const Text(
                   "Vin:",
                   style: TextStyle(

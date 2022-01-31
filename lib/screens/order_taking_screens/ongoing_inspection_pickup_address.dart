@@ -9,6 +9,7 @@ import 'package:kashif/screens/order_taking_screens/stepper_ui.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:provider/provider.dart';
 import '../../utils.dart';
+import 'center_inspection_ui.dart';
 import 'google_mape.dart';
 
 class OngoingInspectionPickUpAddressUi extends StatefulWidget {
@@ -163,7 +164,19 @@ int index=-1;
 
                     if(data.getTimeSlot.isEmpty || data.lat==null) return;
 
+
+                    if(data.orderType==1){
+
                     Get.bottomSheet(invoiceBottomSheet(), isScrollControlled: true);
+                    }else if(data.orderType==2){
+                      Get.to(CenterInspectionUi());
+
+                      // CenterInspectionUi
+                    }
+
+
+
+
                   },
                   buttonWidget: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 25.0),

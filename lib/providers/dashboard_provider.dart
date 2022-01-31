@@ -2,7 +2,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:geocoder/geocoder.dart';
 import 'package:get/get.dart';
+import 'package:kashif/model_classes/GetAllRecords.dart';
 import 'package:kashif/model_classes/GetCardInfoByCardID.dart';
+import 'package:kashif/model_classes/GetLifters.dart';
 import 'package:kashif/model_classes/getVehicleMakers.dart';
 import 'package:kashif/model_classes/get_vehicle_services.dart';
 import 'package:kashif/screens/order_taking_screens/ongoing_inspection_pickup_address.dart';
@@ -21,6 +23,11 @@ class DashboardProvider extends ChangeNotifier{
   String numberPlateEnglish="";
   String numberPlateDigits="";
   String serviceTyoeId='';
+  GetCardInfoByCardId cardInfoByCardIdFromJson;
+  bool isSingleCardLoaded=false;
+
+  int carLifterId=-1;
+  int carLifterIndex=-1;
 
 
   ///1 for inspection at your door step
@@ -52,7 +59,6 @@ class DashboardProvider extends ChangeNotifier{
       showMessage("incomplete information");
       return;
     }
-    // else if(){}
 
     Get.to(OngoingInspectionPickUpAddressUi());
   }
@@ -66,8 +72,6 @@ class DashboardProvider extends ChangeNotifier{
 
 
   }
-
-
   Address address;
   void geoCoder(double lat, double lng) async {
     print(lat);
@@ -125,27 +129,59 @@ class DashboardProvider extends ChangeNotifier{
     // print(address.featureName);
     // print(address.thoroughfare);
   }
-
   void setVehicleServices(bool isServiceDataLoaded, GetVehicleServices vehicleServicesFromJson) {
     this.isServiceDataLoaded=isServiceDataLoaded;
     this.vehicleServicesFromJson=vehicleServicesFromJson;
     notifyListeners();
 
   }
-
   String getTimeSlot="";
-
   void setTimeslot(String getTimeSlot) {
     this.getTimeSlot=getTimeSlot;
     notifyListeners();
   }
-  GetCardInfoByCardId cardInfoByCardIdFromJson;
-  bool isSingleCardLoaded=false;
   void setCardInformation(GetCardInfoByCardId cardInfoByCardIdFromJson,bool isSingleCardLoaded) {
 
         this.isSingleCardLoaded=isSingleCardLoaded;
         this.cardInfoByCardIdFromJson=cardInfoByCardIdFromJson;
         notifyListeners();
+
+  }
+  bool isGetLifterDataLoaded=false;
+  GetLifters getLifters;
+  void setLifterData(bool value, GetLifters liftersFromJson) {
+    this.getLifters=liftersFromJson;
+    isGetLifterDataLoaded=value;
+    notifyListeners();
+
+  }
+  void resetOrderVaribales() {
+    isGetLifterDataLoaded=false;
+    isSingleCardLoaded=false;
+    getTimeSlot="";
+    isServiceDataLoaded=false;
+    address=null;
+    location='';
+    isVehicleMakerLoaded=false;
+
+    carMakeId="";
+    carMakeModelId="";
+    manufacturYear="";
+    vinCode="";
+    numberPlateEnglish="";
+    numberPlateDigits="";
+    serviceTyoeId='';
+
+
+  }
+
+  bool isAllRecordsLoaded=false;
+   GetAllRecords allRecordsFromJson;
+  void setAllCardRecords(bool value, GetAllRecords allRecordsFromJson) {
+    this.isAllRecordsLoaded=value;
+    this.allRecordsFromJson=allRecordsFromJson;
+    notifyListeners();
+
 
   }
 
