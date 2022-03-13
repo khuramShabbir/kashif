@@ -32,11 +32,13 @@ class _StepperUiState extends State<StepperUi> {
 
     var dashboardProvider=Provider.of<DashboardProvider>(Get.context,listen: false);
 
-    dashboardProvider.setCardInformation(null,false);
+        Future.delayed(Duration(seconds: 1),(){
 
-    ApiServices.getCardInfoByCardId(widget.cardId);
+          dashboardProvider.setCardInformation(null,false);
+            ApiServices.getCardInfoByCardId(widget.cardId);
+        });
 
-  }
+          }
 
   @override
   Widget build(BuildContext context) {
@@ -163,9 +165,9 @@ class _StepperUiState extends State<StepperUi> {
 
 
                       InkWell(
-                        onTap: () {
-                          // Get.to(() => const OrderEnded());
-                        },
+                        // onTap: () {
+                        //   // Get.to(() => const OrderEnded());
+                        // },
                         child: Container(
                           width: Get.width,
                           child:  stepper.Stepper(
@@ -177,7 +179,7 @@ class _StepperUiState extends State<StepperUi> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                 Text("The Vehicle Arrived at the center",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15,color: Colors.grey),),
-                                Text(data.cardInfoByCardIdFromJson.data.card.inspectionStart,style: TextStyle(color: Colors.grey),),
+                                Text(data.cardInfoByCardIdFromJson.data.card.inspectionStart??"",style: TextStyle(color: Colors.grey),),
 
                               ],),
                                   content:   Row(children: [
@@ -197,25 +199,47 @@ class _StepperUiState extends State<StepperUi> {
                               ],)
                                   ),
                               stepper.Step(
-                                  state: data.cardInfoByCardIdFromJson.data.card.card_step!=null  &&data.cardInfoByCardIdFromJson.data.card.card_step>0 ? stepper.StepState.complete: stepper.StepState.indexed,
-                                  title: Text("Mechanical Issues"), content: Text("step 1")),
+                                  state: data.cardInfoByCardIdFromJson.data.card.card_step!=null  &&
+                                      int.parse(data.cardInfoByCardIdFromJson.data.card.card_step.toString())>0 ? stepper.StepState.complete: stepper.StepState.indexed,
+                                  title: Text("Mechanical Issues"), content: Text('')),
                               stepper.Step(
-                                  state:data.cardInfoByCardIdFromJson.data.card.card_step!=null  &&data.cardInfoByCardIdFromJson.data.card.card_step>1 ? stepper.StepState.complete: stepper.StepState.indexed,
+                                  state:data.cardInfoByCardIdFromJson.data.card.card_step!=null  &&
+                                      int.parse(data.cardInfoByCardIdFromJson.data.card.card_step.toString())>2 ? stepper.StepState.complete: stepper.StepState.indexed,
                                   title: Text("Tympanic Indicator checking"), content: Text("")),
                               stepper.Step(
-                                  state:data.cardInfoByCardIdFromJson.data.card.card_step!=null  &&data.cardInfoByCardIdFromJson.data.card.card_step>2 ? stepper.StepState.complete: stepper.StepState.indexed,
+                                  state:data.cardInfoByCardIdFromJson.data.card.card_step!=null  &&
+                                      int.parse(data.cardInfoByCardIdFromJson.data.card.card_step.toString())>3 ? stepper.StepState.complete: stepper.StepState.indexed,
                                   title: Text("Tires checking"), content: Text("")),
                               stepper.Step(
-                                  state: data.cardInfoByCardIdFromJson.data.card.card_step!=null  &&data.cardInfoByCardIdFromJson.data.card.card_step>3 ? stepper.StepState.complete: stepper.StepState.indexed,
+                                  state: data.cardInfoByCardIdFromJson.data.card.card_step!=null  &&
+                                      int.parse(data.cardInfoByCardIdFromJson.data.card.card_step.toString())>4 ? stepper.StepState.complete: stepper.StepState.indexed,
                                   title: Text("Sensors checking"), content: Text("")),
                               stepper.Step(
-                                  state: data.cardInfoByCardIdFromJson.data.card.card_step!=null  &&data.cardInfoByCardIdFromJson.data.card.card_step>4 ? stepper.StepState.complete: stepper.StepState.indexed,
+                                  state: data.cardInfoByCardIdFromJson.data.card.card_step!=null  &&
+                                      int.parse(data.cardInfoByCardIdFromJson.data.card.card_step.toString())>5 ? stepper.StepState.complete: stepper.StepState.indexed,
+                                  title: Text("Body checking"), content: Text("")),
+                              stepper.Step(
+                                  state: data.cardInfoByCardIdFromJson.data.card.card_step!=null  &&
+                                      int.parse(data.cardInfoByCardIdFromJson.data.card.card_step.toString())>6 ? stepper.StepState.complete: stepper.StepState.indexed,
                                   title: Text("Road Testing"), content: Text("")),
                               stepper.Step(
-                                  state: data.cardInfoByCardIdFromJson.data.card.card_step!=null  &&data.cardInfoByCardIdFromJson.data.card.card_step>5 ? stepper.StepState.complete: stepper.StepState.indexed,
-                                  title: Text("Responsibilities"), content: Text("")),
+                                  state: data.cardInfoByCardIdFromJson.data.card.card_step!=null  &&
+                                     int.parse(data.cardInfoByCardIdFromJson.data.card.card_step.toString())>=7
+                                      // int.parse(data.cardInfoByCardIdFromJson.data.card.card_step.toString())>=8
+                                      // &&
+                                      // int.parse(data.cardInfoByCardIdFromJson.data.card.card_step.toString())==8
+
+                                      ? stepper.StepState.complete: stepper.StepState.indexed,
+                                  title: Text("Attaching Pictures"), content: Text("")),
                               stepper.Step(
-                                  state: data.cardInfoByCardIdFromJson.data.report!=null ?  stepper.StepState.complete: stepper.StepState.indexed,
+                                  state: data.cardInfoByCardIdFromJson.data.report!=null
+                                      &&
+                                      data.cardInfoByCardIdFromJson.data.card.card_step!=null
+                                      &&
+                                      data.cardInfoByCardIdFromJson.data.card.inspectionEnd!=null
+
+
+                                      ?  stepper.StepState.complete: stepper.StepState.indexed,
                                   title: Text("Inspection Completed"), content: Text("")),
 
 
@@ -245,9 +269,6 @@ class _StepperUiState extends State<StepperUi> {
                           // else{
                           Get.to(()=>OrderEnded());
                           // }
-
-
-
 
                       /*    TopSheet.show(
                               context: context,

@@ -29,7 +29,41 @@ class GetAllRecords {
     "success": success,
   };
 }
+class Invoice {
+  Invoice({
+    this.id,
+    this.vmCardId,
+    this.invoiceNumber,
+    this.totalPrice,
+    this.amountPaid,
+    this.paymentMethod,
+  });
 
+  int id;
+  int vmCardId;
+  int invoiceNumber;
+  int totalPrice;
+  int amountPaid;
+  String paymentMethod;
+
+  factory Invoice.fromJson(Map<String, dynamic> json) => Invoice(
+    id: json["id"],
+    vmCardId: json["vm_card_id"],
+    invoiceNumber: json["invoice_number"],
+    totalPrice: json["total_price"],
+    amountPaid: json["amount_paid"],
+    paymentMethod: json["payment_method"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "vm_card_id": vmCardId,
+    "invoice_number": invoiceNumber,
+    "total_price": totalPrice,
+    "amount_paid": amountPaid,
+    "payment_method": paymentMethod,
+  };
+}
 class RecodsData {
   RecodsData({
     this.id,
@@ -40,7 +74,9 @@ class RecodsData {
     this.latitude,
     this.longitude,
     this.vmVehicleId,
+    this.rating,
     this.vehicle,
+    this.invoice,
   });
 
   int id;
@@ -50,25 +86,31 @@ class RecodsData {
   String endTime;
   String latitude;
   String longitude;
+  dynamic rating;
   int vmVehicleId;
   Vehicle vehicle;
+  Invoice invoice;
 
   factory RecodsData.fromJson(Map<String, dynamic> json) => RecodsData(
     id: json["id"],
     inspectionType: json["inspection_type"],
     status: json["status"],
+    rating: json["rating"],
     startTime: json["start_time"],
     endTime: json["end_time"],
     latitude: json["latitude"],
     longitude: json["longitude"],
     vmVehicleId: json["vm_vehicle_id"],
+    invoice: json["invoice"] == null ? null : Invoice.fromJson(json["invoice"]),
     vehicle: Vehicle.fromJson(json["vehicle"]),
   );
 
   Map<String, dynamic> toJson() => {
     "id": id,
     "inspection_type": inspectionType,
+    "invoice": invoice == null ? null : invoice.toJson(),
     "status": status,
+    "rating": rating,
     "start_time": startTime,
     "end_time": endTime,
     "latitude": latitude,

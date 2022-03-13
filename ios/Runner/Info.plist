@@ -54,5 +54,15 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+
+		<key>NSLocationAlwaysUsageDescription</key>
+    	<string>Cashif needs your location for order tracking purpose so workshop, technician and car pick up can easily reach to your destination.</string>
+
+    	<key>NSLocationUsageDescription</key>
+    	<string>Cashif needs your location for order tracking purpose so workshop, technician and car pick up can easily reach to your destination.</string>
+
+    	<key>NSLocationWhenInUseUsageDescription</key>
+    	<string>Cashif needs your location for order tracking purpose so workshop, technician and car pick up can easily reach to your destination.</string>
+
 </dict>
 </plist>

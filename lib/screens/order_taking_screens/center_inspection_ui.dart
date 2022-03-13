@@ -23,7 +23,7 @@ class _CenterInspectionUiState extends State<CenterInspectionUi> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    ApiServices.gteLifters();
+    ApiServices.getLifters();
 
 
 

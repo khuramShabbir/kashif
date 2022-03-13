@@ -7,6 +7,7 @@ import 'package:kashif/apis_services/api_services.dart';
 import 'package:kashif/junaid_Screens/car_brand_details_2_ui.dart';
 import 'package:kashif/model_classes/GetAllRecords.dart';
 import 'package:kashif/providers/dashboard_provider.dart';
+import 'package:kashif/screens/order_taking_screens/stepper_ui.dart';
 import 'package:provider/provider.dart';
 import '../utils.dart';
 import 'report_screen.dart';
@@ -163,32 +164,40 @@ class _OnGoingServicesUiState extends State<OnGoingServicesUi> {
 
                       return InkWell(
                           onTap: () async{
-                            showProgress();
-                            await ApiServices.getCardInfoByCardId(data.allRecordsFromJson.data[index].id);
-                            dismissDialogue();
-                            Get.to(() => const ReportScreen());
+                            if(data.allRecordsFromJson.data[index].status=="WORKING"){
+                              print("cardId: data.allRecordsFromJson.data[index].id "
+                                  "${data.allRecordsFromJson.data[index].id}");
+                              Get.to(() => StepperUi(cardId: data.allRecordsFromJson.data[index].id,));
+
+                              return;
+                            }
+                            else if(data.allRecordsFromJson.data[index].status=="CLOSED"){
+                              showProgress();
+                              await ApiServices.getCardInfoByCardId(
+                                  data.allRecordsFromJson.data[index].id);
+                              dismissDialogue();
+                              Get.to(() => const ReportScreen());
+                            }
+
                           },
                           child: upcomingDetail(data.allRecordsFromJson.data[index]));
                     }),
               )
-                  : InkWell(
-                onTap: () {
-                  // Get.to(() => const CarBrandUi2());
-                },
-                child: ListView.builder(
-                    itemCount: data.allRecordsFromJson.data.length,
-                    scrollDirection: Axis.vertical,
-                    shrinkWrap: true,
-                    itemBuilder: (context, index) {
-                      if(data.allRecordsFromJson.data[index].status=="DONE"){
-                        print(index);
-                      return pastDetail(data.allRecordsFromJson.data[index]);
-                      }
+                  : Expanded(
+                    child: ListView.builder(
+                        itemCount: data.allRecordsFromJson.data.length,
+                        scrollDirection: Axis.vertical,
+                        shrinkWrap: true,
+                        itemBuilder: (context, index) {
+                          if(data.allRecordsFromJson.data[index].status=="DONE"){
+                            print(index);
+                          return pastDetail(data.allRecordsFromJson.data[index]);
+                          }
 
-                        return  Container();
+                            return  Container();
 
-                    }),
-              )
+                        }),
+                  )
             ],
           )
               :
@@ -214,7 +223,8 @@ class _OnGoingServicesUiState extends State<OnGoingServicesUi> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    recodsData.inspectionType.toString().contains("1")? "Ongoing Inspection" : "Center Inspection",
+                    recodsData.inspectionType.toString().contains("1")? "Ongoing Inspection"
+                        : "Center Inspection",
                     style: TextStyle(
                         fontSize: Get.width * .04, fontWeight: FontWeight.bold),
                   ),
@@ -254,7 +264,7 @@ class _OnGoingServicesUiState extends State<OnGoingServicesUi> {
                   RatingBar.builder(
                     initialRating: 0,
                     itemSize: 18,
-                    minRating: 0,
+                    minRating: recodsData.rating==null ? 0 : double.parse(recodsData.rating.toString()),
                     direction: Axis.horizontal,
                     allowHalfRating: true,
                     itemCount: 5,
@@ -330,143 +340,159 @@ class _OnGoingServicesUiState extends State<OnGoingServicesUi> {
       ),
     );
   }
-
-}
-
-
-
-Widget pastDetail(RecodsData recordsData) {
-  return Padding(
-    padding: EdgeInsets.only(top: Get.height * .02),
-    child: Stack(
-      children: [
-        Center(
-          child: Container(
-            height: Get.height * .2,
-            width: Get.width * .8,
-            decoration: BoxDecoration(color: Colors.white, boxShadow: [
-              BoxShadow(
-                  color: Colors.grey.withOpacity(.5),
-                  offset: const Offset(-3, 3),
-                  blurRadius: 5),
-            ]),
-            child: Row(
-              children: [
-                Expanded(
-                  flex: 2,
-                  child: Column(
-                    children: [
-                      Expanded(
-                        flex: 2,
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 15.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const SizedBox(
-                                height: 15,
-                              ),
-                               Padding(
-                                padding: EdgeInsets.only(bottom: 8.0),
-                                child: Text(
-                                  "${recordsData.vehicle.maker.name} ${recordsData.vehicle.models.name}",
-                                  style: TextStyle(fontWeight: FontWeight.bold),
+  Widget pastDetail(RecodsData recordsData) {
+    return Padding(
+      padding: EdgeInsets.only(top: Get.height * .02),
+      child: Stack(
+        children: [
+          Center(
+            child: Container(
+              height: Get.height * .2,
+              width: Get.width * .8,
+              decoration: BoxDecoration(color: Colors.white, boxShadow: [
+                BoxShadow(
+                    color: Colors.grey.withOpacity(.5),
+                    offset: const Offset(-3, 3),
+                    blurRadius: 5),
+              ]),
+              child: Row(
+                children: [
+                  Expanded(
+                    flex: 2,
+                    child: Column(
+                      children: [
+                        Expanded(
+                          flex: 2,
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 15.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const SizedBox(
+                                  height: 15,
                                 ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(bottom: 8.0),
-                                child: Text(
-                                  '${recordsData.vehicle.plateChar} - ${recordsData.vehicle.plateNumber}',
-                                  style: TextStyle(
-                                      color: Colors.red,
-                                      fontWeight: FontWeight.bold),
+                                Padding(
+                                  padding: EdgeInsets.only(bottom: 8.0),
+                                  child: Text(
+                                    "${recordsData.vehicle.maker.name} ${recordsData.vehicle.models.name}",
+                                    style: TextStyle(fontWeight: FontWeight.bold),
+                                  ),
                                 ),
-                              ),
-                              Row(
-                                children: [
-                                  const Text('******879CG'),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 8.0),
-                                    child: Container(
-                                      width: Get.width * .18,
-                                      height: Get.height * .022,
-                                      decoration: BoxDecoration(
-                                          color: Colors.green.withOpacity(.15),
-                                          borderRadius:
-                                              BorderRadius.circular(5),
-                                          border:
-                                              Border.all(color: Colors.green)),
-                                      child:  Center(
-                                        child: Text(
-                                          recordsData.status,
-                                          style: TextStyle(
-                                              color: Colors.green,
-                                              fontSize: 10),
+                                Padding(
+                                  padding: EdgeInsets.only(bottom: 8.0),
+                                  child: Text(
+                                    '${recordsData.vehicle.plateChar} - ${recordsData.vehicle.plateNumber}',
+                                    style: TextStyle(
+                                        color: Colors.red,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                                Row(
+                                  children: [
+                                    Text('${recordsData.invoice.invoiceNumber}'),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 8.0),
+                                      child: Container(
+                                        width: Get.width * .18,
+                                        height: Get.height * .022,
+                                        decoration: BoxDecoration(
+                                            color: Colors.green.withOpacity(.15),
+                                            borderRadius:
+                                            BorderRadius.circular(5),
+                                            border:
+                                            Border.all(color: Colors.green)),
+                                        child:  Center(
+                                          child: Text(
+                                            recordsData.status,
+                                            style: TextStyle(
+                                                color: Colors.green,
+                                                fontSize: 10),
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  )
+                                    )
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: InkWell(
+                            onTap: () async{
+                              await ApiServices.reApplication(recordsData.id);
+
+                              isTaped=true;
+                              setState(() {
+                                
+                              });
+
+                              logger.e("isTaped $isTaped");
+
+
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  border: Border.all(
+                                      width: 1,
+                                      color: Colors.grey.withOpacity(.3))),
+                              child: Row(
+                                children: [
+                                  const Expanded(
+                                      child: Center(
+                                          child: Text(
+                                            're-application',
+                                            style: TextStyle(
+                                                color: Color(primaryBlueColor),
+                                                fontWeight: FontWeight.bold),
+                                          ))),
+                                  Container(color: Colors.grey, width: 1),
+                                  Expanded(
+                                      child: InkWell(
+
+                                        onTap: ()async {
+
+                                          showProgress();
+                                          await ApiServices.getCardInfoByCardId(recordsData.id);
+                                          dismissDialogue();
+                                          Get.to(() => const ReportScreen());
+
+                                        },
+                                        child: Container(
+                                          child: Center(
+                                              child: Text(
+                                                'Service report',
+                                                style: TextStyle(
+                                                    color: Colors.red,
+                                                    fontWeight: FontWeight.bold),
+                                              )),
+                                        ),
+                                      )),
                                 ],
                               ),
-                            ],
+                            ),
                           ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Container(
-                          decoration: BoxDecoration(
-                              border: Border.all(
-                                  width: 1,
-                                  color: Colors.grey.withOpacity(.3))),
-                          child: Row(
-                            children: [
-                              const Expanded(
-                                  child: Center(
-                                      child: Text(
-                                're-application',
-                                style: TextStyle(
-                                    color: Color(primaryBlueColor),
-                                    fontWeight: FontWeight.bold),
-                              ))),
-                              Container(color: Colors.grey, width: 1),
-                               Expanded(
-                                  child: InkWell(
-
-                                    onTap: ()async {
-
-                                      showProgress();
-                                      await ApiServices.getCardInfoByCardId(recordsData.id);
-                                      dismissDialogue();
-                                      Get.to(() => const ReportScreen());
-
-                                    },
-                                    child: Center(
-                                        child: Text(
-                                'Service report',
-                                style: TextStyle(
-                                      color: Colors.red,
-                                      fontWeight: FontWeight.bold),
-                              )),
-                                  )),
-                            ],
-                          ),
-                        ),
-                      )
-                    ],
+                        )
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
-        ),
-        Align(
-            alignment: Alignment.centerRight,
-            child: Image.asset(
-              'assets/car_model.png',
-              height: Get.width * .3,
-              width: Get.width * .4,
-            ))
-      ],
-    ),
-  );
+          Align(
+              alignment: Alignment.centerRight,
+              child: Image.asset(
+                'assets/car_model.png',
+                height: Get.width * .3,
+                width: Get.width * .4,
+              ))
+        ],
+      ),
+    );
+  }
+
 }
+
+
+

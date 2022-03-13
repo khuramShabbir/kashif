@@ -5,7 +5,9 @@ import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:kashif/model_classes/GetAllRecords.dart';
 import 'package:kashif/model_classes/GetCardInfoByCardID.dart';
+import 'package:kashif/model_classes/GetCustomerVehicle.dart';
 import 'package:kashif/model_classes/GetLifters.dart';
+import 'package:kashif/model_classes/getCardsListByVehicleId.dart';
 import 'package:kashif/model_classes/getVehicleMakers.dart';
 import 'package:kashif/model_classes/get_user.dart';
 import 'package:kashif/model_classes/get_vehicle_services.dart';
@@ -29,7 +31,16 @@ class ApiServices   {
   static const _GET_USER_PERSONAL_INFO = "get_self_info";
   static const _GET_LIFTERS = "get_lifters";
   static const _GET_All_CARD_RECORD = "get_inspection_record";
+  static const _GET_Re_APPLICATION = "re_application";
+  static const _GET_CUSUTOMER_VEHICLE= "customer_vehicles";
+  static const _GET_CARDSLIST_BY_VEHICLE_ID= "vehicle_cards";
 
+  static _getHeaders(){
+    return {
+      'Authorization': 'Bearer ${storage.read(userToken)}',
+      'Content-Type': 'application/json'
+    };
+  }
 
 
   static final userAuthProvider =Provider.of<UserAuthProvider>(Get.context!, listen: false);
@@ -59,6 +70,8 @@ class ApiServices   {
     http.Response response = await http.get(parse, headers: headers);
 
     if (response.statusCode == 200) {
+      logger.i(response.body);
+
       return response.body;
     } else {
       logger.i(response.body);
@@ -87,9 +100,9 @@ class ApiServices   {
         Get.offAll(DashBoardScreen());
       }
       else {
-        showMessage(value.toString());
-           }
       logger.e(value);
+      showMessage(json.decode(value.toString())['error']['message'].toString());
+      }
     } else {}
   }
 
@@ -113,24 +126,22 @@ class ApiServices   {
         Get.offAll(DashBoardScreen());
       }
       else {
-        showMessage(value.toString());
+        showMessage(json.decode(value.toString())['error']['message'].toString());
       }
       logger.e(value);
     }
 
-    else {}
   }
 
   static void getVehicleMaker() async {
     // showProgrress();
 
-    var _header={
-      'Authorization': 'Bearer ${storage.read(userToken)}',
-    };
+
+
 
     var value = await getApi(_GET_VEHICLE_MAKERS,
 
-        headers: _header);
+        headers: _getHeaders());
 
     dismissDialogue();
     if (value != null) {
@@ -142,22 +153,25 @@ class ApiServices   {
         showMessage(value.toString());
         showMessage("ERROR 404");
       }
-      logger.e(value);
     }
   }
 
-  static void getVehicleServices() async{
+  static Future<bool> getVehicleServices() async{
     var value = await getApi(_GET_VEHICLE_SERVICES);
     if (value != null) {
       var decode = json.decode(value);
       if (decode['success'].toString().contains('1')) {
         dashboardProvider.setVehicleServices(true, getVehicleServicesFromJson(value.toString()));
+        return true;
       } else {
         showMessage(value.toString());
         showMessage("ERROR 404");
+        return false;
+
       }
       logger.e(value);
     }
+    return false;
 
   }
 
@@ -165,10 +179,7 @@ class ApiServices   {
 
     // logger.e(storage.read(userToken));
 
-    var headers = {
-      'Authorization': 'Bearer ${storage.read(userToken)}',
-      'Content-Type': 'application/json',
-    };
+
     var request = http.Request('POST', Uri.parse('$_BASE_URL$_CREATE_CARD'));
     var splittime = dashboardProvider.getTimeSlot.split("-");
     request.body = json.encode({
@@ -184,7 +195,7 @@ class ApiServices   {
       "end_time" : "${splittime[1].replaceAll(" ", '')}",
       "latitude" : "${dashboardProvider.lat}",
       "longitude" : "${dashboardProvider.lng}",
-      "lifter_no" : "${dashboardProvider.carLifterId==-1? 1 :dashboardProvider.carLifterId}",
+      // "lifter_no" : "${dashboardProvider.carLifterId==-1? 1 :dashboardProvider.carLifterId}",
       "payment_method" : "CASH"
       ///it can be two types one is CASH and second is CREDIT_VISA_MASTER
       // "payment_method" : "CREDIT_VISA_MASTER"
@@ -194,7 +205,7 @@ class ApiServices   {
     logger.e(request.body);
 
 
-    request.headers.addAll(headers);
+    request.headers.addAll(_getHeaders());
 
     http.StreamedResponse response = await request.send();
     dismissDialogue();
@@ -208,16 +219,19 @@ class ApiServices   {
       }
 
       var body = await response.stream.bytesToString();
-      print(body);
+      logger.i(body);
       showMessage('Card Created Successfully');
       showProgress();
-      var decoded = json.decode(body);
+      var decoded = json.decode(body.toString());
       int cardId = decoded['data']['id'];
       dismissDialogue();
+      logger.wtf(cardId);
+      showInvoice(body.toString());
+
+
 
       dashboardProvider.resetOrderVaribales();
 
-      Get.to(() => StepperUi(cardId:cardId));
 
     }
     else {
@@ -231,12 +245,17 @@ class ApiServices   {
 
   }
 
-  static void getUserPersonalInfo() async{
-    var _header={
-      'Authorization': 'Bearer ${storage.read(userToken)}',
-    };
+ static showInvoice(decoded){
 
-    var value =await getApi(_GET_USER_PERSONAL_INFO,headers:_header );
+
+   Get.to(() => StepperUi(cardId:cardId));
+
+ }
+
+  static void getUserPersonalInfo() async{
+
+
+    var value =await getApi(_GET_USER_PERSONAL_INFO,headers:_getHeaders() );
 
     userAuthProvider.setuserInfoData(true,getUserFromJson(value.toString()));
 
@@ -245,29 +264,30 @@ class ApiServices   {
 
   static Future<bool> getCardInfoByCardId(int cardId) async {
 
-    var headers = {
-      'Authorization': 'Bearer ${storage.read(userToken)}',
-      'Content-Type': 'application/json'
-    };
+
     var request = http.Request('GET', Uri.parse(_BASE_URL + _GET_CARD_INFO));
     request.body = json.encode({
-      "card_id": "67163"
+      "card_id": "$cardId"
+
+      // "card_id": "67163"
     });
-    request.headers.addAll(headers);
+    request.headers.addAll(_getHeaders());
 
     http.StreamedResponse response = await request.send();
 
     if (response.statusCode == 200) {
 
       var body = await response.stream.bytesToString();
-      dashboardProvider.setCardInformation(getCardInfoByCardIdFromJson(body),true);
-
+      logger.d("bodybodybody $body");
+      dashboardProvider.setCardInformation(getCardInfoByCardIdFromJson(body.toString()),true);
+      return true;
     }
     else {
       var s = await response.stream.bytesToString();
       showMessage(s);
-      // print(response.reasonPhrase);
       logger.wtf(s);
+      return false;
+
     }
 
     return true;
@@ -275,9 +295,9 @@ class ApiServices   {
 
   }
 
-  static void gteLifters() async {
+  static void getLifters() async {
 
-   var body = await getApi(_GET_LIFTERS,headers: {"Authorization":"Bearer ${storage.read(userToken)}"});
+   var body = await getApi(_GET_LIFTERS,headers: _getHeaders());
 
    logger.e(body);
    GetLifters liftersFromJson = getLiftersFromJson(body);
@@ -288,13 +308,88 @@ class ApiServices   {
 
   }
 
-  static void getAllCardsRecord()async {
-    var body = await getApi(_GET_All_CARD_RECORD,headers: {"Authorization":"Bearer ${storage.read(userToken)}"});
+  static Future<void> getAllCardsRecord()async {
+    var body = await getApi(_GET_All_CARD_RECORD,headers: _getHeaders());
     dashboardProvider.setAllCardRecords(true,getAllRecordsFromJson(body));
+    logger.e("getAllCardsRecord $body");
 
+  }
+
+  static Future<void> reApplication(int card_id)async {
+logger.e(card_id);
+
+
+
+   showProgress();
+
+    var request = http.Request('GET', Uri.parse(_BASE_URL+_GET_Re_APPLICATION));
+
+    request.body = json.encode({
+      "card_id": card_id
+    });
+
+    request.headers.addAll(_getHeaders());
+
+    logger.i(request.headers);
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+
+      var body = await response.stream.bytesToString();
+
+      await getAllCardsRecord();
+      logger.e("reApplication $body");
+      showMessage("New Card Created");
+
+    }
+
+    else {
+      await getAllCardsRecord();
+
+      print(response.reasonPhrase);
+      print(await response.stream.bytesToString());
+    }
+
+    dismissDialogue();
+
+
+  }
+
+  static Future<void> getCustomerAllVehicles()async {
+      dashboardProvider.setCustomerVehicles(getCustomerVehicleFromJson(await getApi(_GET_CUSUTOMER_VEHICLE,headers: _getHeaders())),true);
+  }
+
+  static Future<void> getCardsListByVehicleId(int vehicleId) async{
+
+    var request = http.Request('GET', Uri.parse("$_BASE_URL$_GET_CARDSLIST_BY_VEHICLE_ID"));
+    request.body = json.encode({
+      "vehicle_id": vehicleId
+    });
+    request.headers.addAll(_getHeaders());
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+
+      var body = await response.stream.bytesToString();
+
+      dashboardProvider.setCardsListByVehicleId(getCardsListByVehicleIdFromJson(body),true);
+
+
+
+    }
+    else {
+
+            print(response.reasonPhrase);
+            print(await response.stream.bytesToString());
+    }
 
 
 
   }
 
 }
+
+
+final dashboardProvider =Provider.of<DashboardProvider>(Get.context!, listen: false);

@@ -156,8 +156,7 @@ class _OrderStartHomeScreenState extends State<OrderStartHomeScreen> {
                                               right: 10, top: 10.0, bottom: 10),
                                           child: InkWell(
                                             onTap: () {
-
-                                                 bottomSheetStartOrder();
+                                              bottomSheetStartOrder();
                                             },
                                             child: Container(
                                               child: const Center(

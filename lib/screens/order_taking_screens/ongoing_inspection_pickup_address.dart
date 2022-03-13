@@ -12,7 +12,7 @@ import '../../utils.dart';
 import 'center_inspection_ui.dart';
 import 'google_mape.dart';
 
-class OngoingInspectionPickUpAddressUi extends StatefulWidget {
+  class OngoingInspectionPickUpAddressUi extends StatefulWidget {
   const OngoingInspectionPickUpAddressUi({Key? key}) : super(key: key);
 
   @override
@@ -20,8 +20,13 @@ class OngoingInspectionPickUpAddressUi extends StatefulWidget {
       _OngoingInspectionPickUpAddressUiState();
 }
 
-class _OngoingInspectionPickUpAddressUiState
-    extends State<OngoingInspectionPickUpAddressUi> {
+  class _OngoingInspectionPickUpAddressUiState extends State<OngoingInspectionPickUpAddressUi> {
+
+
+
+
+
+
   bool isSelected = false;
 int index=-1;
   @override
@@ -70,7 +75,7 @@ int index=-1;
             // crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.max,
             children: [
-              InkWell(
+              data.orderType==1 ?InkWell(
                 onTap: () {
                   Get.to(() {
                     return GMaps(
@@ -133,7 +138,7 @@ int index=-1;
                     ),
                   ),
                 ),
-              ),
+              ):Container(),
               Expanded(
                 child: GridView.count(
                   crossAxisCount: 2,
@@ -159,17 +164,24 @@ int index=-1;
               SizedBox(
                 height: 15,
               ),
+
+
+
+
               customButton(
                   onClick: () {
 
-                    if(data.getTimeSlot.isEmpty || data.lat==null) return;
+                    if(data.getTimeSlot.isEmpty) return;
 
 
-                    if(data.orderType==1){
+                    if(data.orderType==1 && data.lat!=null){
 
                     Get.bottomSheet(invoiceBottomSheet(), isScrollControlled: true);
-                    }else if(data.orderType==2){
-                      Get.to(CenterInspectionUi());
+                    }
+
+                    else if(data.orderType==2){
+                      // Get.to(CenterInspectionUi());
+                      Get.bottomSheet(invoiceBottomSheet(), isScrollControlled: true);
 
                       // CenterInspectionUi
                     }
@@ -241,13 +253,18 @@ int index=-1;
     }
     return datadatalist;
   }
+
+  @override
+  void initState() {
+    
+  }
 }
 
-Widget timePicker({
+  Widget timePicker({
   String time = "00:00am",
   var timeColor = Colors.black,
   var borderColor = const Color(0x81BBBBB8), bool isSelected=false,
-}) {
+  }) {
   return Container(
     height: Get.height * .055,
     width: Get.width * .37,
@@ -602,4 +619,335 @@ getServicePrice(DashboardProvider data) {
     }
 
   }
+}
+
+
+
+Widget invoiceBottomSheetForTrackingScreen() {
+  return Consumer<DashboardProvider>(builder: (build,data,child){
+    return Container(
+      width: Get.width,
+      height: Get.height * .77,
+      decoration: const BoxDecoration(
+          color: primaryColor,
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(25), topRight: Radius.circular(25))),
+      child: Column(
+        children: [
+          Expanded(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 10.0),
+                child: AppBar(
+                  centerTitle: true,
+                  elevation: 0,
+                  backgroundColor: Colors.transparent,
+                  leading: InkWell(
+                    onTap: Get.back,
+                    child: const Icon(
+                      Icons.arrow_back,
+                      color: Colors.white,
+                    ),
+                  ),
+                  title: const Text(
+                    "Order Confirmation",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+              )),
+          Expanded(
+              flex: 7,
+              child: Container(
+                width: Get.width,
+                decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(25),
+                        topRight: Radius.circular(25))),
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    SizedBox(
+                      height: Get.height * .04,
+                    ),
+                    SizedBox(
+                      width: Get.width * .8,
+                      height: Get.height * .08,
+                      child: Row(
+                        children: [
+                          Expanded(child: Image.asset('assets/bank_Riyadh.png')),
+                          Expanded(
+                            flex: 4,
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 10.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children:  [
+                                  Text(
+                                    data.address==null ?"" : data.address!.locality,
+                                    style: TextStyle(
+                                        color: primaryColor,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  Text(
+                                    data.address==null ?"" : data.address!.addressLine,
+                                    style: TextStyle(
+                                        color: primaryColor, fontSize: 12),
+                                  ),
+                                  // Text(data.address==null ?"" : data.address!.countryName,
+                                  //   style: TextStyle(
+                                  //       color: primaryColor, fontSize: 12),
+                                  // ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                InkWell(
+                                  onTap: (){
+                                    Get.to(() {
+                                      return GMaps(
+                                        title: "Map",
+                                      );
+                                    })!
+                                        .then((value) {
+                                      if (value == null) {
+                                        return;
+                                      }
+                                      data.setAddress(value);
+                                    });
+                                  },
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(right: 10.0),
+                                    child: Image.asset('assets/Edit.png'),
+                                  ),
+                                )
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: Get.height * .04,
+                    ),
+                    SizedBox(
+                      width: Get.width * .7,
+                      height: Get.height * .08,
+                      child: Row(
+                        children: [
+                          //TODO:Payment method Selection
+
+                          Container(
+                            child: Image.asset('assets/slection.png'),
+                            height: 25,
+                            width: 25,
+                            decoration: BoxDecoration(
+                                border:
+                                Border.all(width: 1.5, color: primaryColor),
+                                borderRadius: BorderRadius.circular(50)),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                const Text(
+                                  'Cash',
+                                  style: TextStyle(
+                                      color: primaryColor,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Text(
+                                  'Pay the delegate',
+                                  style: TextStyle(
+                                      color: Colors.grey.withOpacity(.5),
+                                      fontSize: 12),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Expanded(
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 10.0),
+                                  child: SvgPicture.asset('assets/cards.svg'),
+                                )
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: Get.height * .04,
+                    ),
+                    SizedBox(
+                      width: Get.width * .7,
+                      height: Get.height * .08,
+                      child: Row(
+                        children: [
+                          Container(
+                            height: 25,
+                            width: 25,
+                            decoration: BoxDecoration(
+                                border:
+                                Border.all(width: 1.5, color: primaryColor),
+                                borderRadius: BorderRadius.circular(50)),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                const Text(
+                                  'Credit Card',
+                                  style: TextStyle(
+                                      color: primaryColor,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Text(
+                                  '2540 xxxx xxxx 2648',
+                                  style: TextStyle(
+                                      color: Colors.grey.withOpacity(.5),
+                                      fontSize: 12),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Expanded(
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 10.0),
+                                  child: Image.asset('assets/visa.png'),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 10.0),
+                                  child: Image.asset('assets/mastercard .png'),
+                                )
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      width: Get.width * .8,
+                      height: Get.height * .14,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children:  [
+                              Text(
+                                'Subtotal',
+                                style:
+                                TextStyle(color: primaryColor, fontSize: 12),
+                              ),
+                              Text(
+                                'SAR ${getServicePrice(data)}',
+                                style:
+                                TextStyle(color: primaryColor, fontSize: 12),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: const [
+                              Text(
+                                'Tax(10%)',
+                                style:
+                                TextStyle(color: primaryColor, fontSize: 12),
+                              ),
+                              Text(
+                                '0',
+                                style:
+                                TextStyle(color: primaryColor, fontSize: 12),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: const [
+                              Text(
+                                'Delivery fee',
+                                style:
+                                TextStyle(color: primaryColor, fontSize: 12),
+                              ),
+                              Text(
+                                '0',
+                                style:
+                                TextStyle(color: primaryColor, fontSize: 12),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      width: Get.width * .8,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Total Price",
+                                style:
+                                TextStyle(color: Colors.grey.withOpacity(.5)),
+                              ),
+                              Text(
+                                'SAR ${getServicePrice(data)}',
+                                style: TextStyle(
+                                    color: primaryColor,
+                                    fontWeight: FontWeight.bold),
+                              )
+                            ],
+                          ),
+                          customButton(
+                              onClick: () {
+
+                                // showMessage("Submitting request");
+                                Get.back();
+                                showProgress(isdimissnable: false);
+                                ApiServices.createCard();
+                              },
+                              buttonWidget: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Image.asset('assets/pay-now.png'),
+                                  const Padding(
+                                    padding: EdgeInsets.only(left: 15.0),
+                                    child: Text(
+                                      'Pay now',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                  )
+                                ],
+                              ))
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              )),
+        ],
+      ),
+    );
+  },);
 }

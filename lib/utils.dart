@@ -5,14 +5,16 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:kashif/apis_services/api_services.dart';
+import 'package:kashif/model_classes/get_vehicle_services.dart';
 import 'package:kashif/providers/dashboard_provider.dart';
 import 'package:kashif/screens/order_taking_screens/center_inspection_ui.dart';
 import 'package:kashif/screens/order_taking_screens/goolemap_for_center_inspection.dart';
 import 'package:kashif/screens/order_taking_screens/ongoing_inspection.dart';
+import 'package:kashif/search_page.dart';
 import 'package:logger/logger.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
-
 ///
 final storage = GetStorage();
 final dashboardProvider = Provider.of<DashboardProvider>(Get.context, listen: false);
@@ -117,10 +119,10 @@ Widget carousalSlider() {
                           "assets/card.jpeg",
                           fit: BoxFit.fill,
                         )),
-                    Text(
-                      "Index $index",
-                      style: const TextStyle(color: Colors.red, fontSize: 20),
-                    )
+                    // Text(
+                    //   "Index $index",
+                    //   style: const TextStyle(color: Colors.red, fontSize: 20),
+                    // )
                   ],
                 ))),
   );
@@ -361,10 +363,6 @@ Widget confirmedOrder({
   );
 }
 
-/// Status Button///
-///
-
-
 
 Future bottomSheetStartOrder() {
   return Get.bottomSheet(Container(
@@ -428,12 +426,19 @@ Future bottomSheetStartOrder() {
                             height: Get.height * .1),
                       ),
                       InkWell(
-                        onTap: () {
+                        onTap: ()async {
                           Get.back();
+                          showProgress();
                           dashboardProvider.orderType=2;
-                          Get.to(() => const OngoingInspectionUi());
+                          // bool status=await ApiServices.getVehicleServices();
+                          dismissDialogue();
+                          // if(status){
+                          showServiceType();
+                          // vehicleServicesFromJson
+                        // }
 
-                          // Get.to(() => const CenterInspectionUi());
+
+
                         },
                         child: customDetailBar(
                             showImageAddress: "assets/centerInspection.png",
@@ -467,118 +472,80 @@ Future bottomSheetStartOrder() {
   ));
 }
 
-/// Junaid Utils ///
-///
 
+class Person {
+  final String name, surname;
+  final num age;
+
+  Person(this.name, this.surname, this.age);
+}
+
+
+void showServiceType() async{
+
+  showSearch(
+    context: Get.context,
+    delegate: SearchPage<SingleService>(
+      items: dashboardProvider.vehicleServicesFromJson.data,
+      searchLabel: 'Search here',
+      suggestion: SingleChildScrollView(
+        child: Column(children: List.generate(dashboardProvider.vehicleServicesFromJson.data.length,
+                (index) => getSearchItem(dashboardProvider.vehicleServicesFromJson.data[index])),),
+      ),
+      failure: Center(
+        child: Text('Nothing found :('),
+      ),
+      filter: (person) => [
+        person.name,
+        // person.id,
+        // person.age.toString(),
+      ],
+      builder: (person) => getSearchItem(person),
+
+    ),
+  );
+}
+
+getSearchItem(SingleService service) {
+  return InkWell(
+    onTap: (){
+      print(service.price);
+      dashboardProvider.serviceTyoeId=getServiceName(dashboardProvider,service.name);
+      print(dashboardProvider.serviceTyoeId);
+      Get.back();
+      Get.to(() => const OngoingInspectionUi());
+
+    },
+    child: Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        decoration: BoxDecoration(border: Border(bottom: BorderSide(color: primaryColor,width: 0.5))),
+        child: ListTile(
+          title: Text(service.name),
+          subtitle: Text("${service.price.toString()}"),
+          trailing: Text('${service.detailsService}'),
+        ),
+      ),
+    ),
+  );
+}
+
+
+String getServiceName(DashboardProvider data, String name) {
+  String id='';
+  for(int i= 0;i<data.vehicleServicesFromJson.data.length ; i++){
+    if(data.vehicleServicesFromJson.data[i].name.toLowerCase()==name.toLowerCase()){
+      id= data.vehicleServicesFromJson.data[i].id.toString();
+    }
+  }
+  return id;
+
+}
 StringPicture carDoor = 'assets/CarDoor.png' as StringPicture;
 
 bool value = true;
 
-/*Widget customCardView() {
-  return Padding(
-    padding: const EdgeInsets.all(8.0),
-    child: Container(
-        width: Get.width * 0.8,
-        height: Get.height * 0.3,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12),
-            border: Border.all(width: 1, color: Colors.grey)),
-        child: Padding(
-          padding: const EdgeInsets.all(18.0),
-          child: Column(
-            children: [
-              Expanded(
-                  child: Column(
-                children: [
-                  Row(
-                    children: [
-                      const Text(
-                        'Full car inspection',
-                        style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold),
-                      ),
-                      Expanded(child: Container()),
-                      statusButton()
-                    ],
-                  ),
-                  Row(
-                    children: const [
-                      Text(
-                        'Full car inspection',
-                        style: TextStyle(fontSize: 15),
-                      ),
-                      SizedBox(
-                        width: 8,
-                      ),
-                      Text('#number??')
-                    ],
-                  )
-                ],
-              )),
-              Expanded(
-                  child: Column(
-                children: [
-                  /// 5star ratting
-                  Row(
-                    children: [
-                      RatingBar.builder(
-                        initialRating: 3,
-                        itemSize: 18,
-                        minRating: 1,
-                        direction: Axis.horizontal,
-                        allowHalfRating: true,
-                        itemCount: 5,
-                        itemPadding:
-                            const EdgeInsets.symmetric(horizontal: 1.0),
-                        itemBuilder: (context, _) => const Icon(
-                          Icons.star,
-                          color: Colors.amber,
-                        ),
-                        onRatingUpdate: (rating) {},
-                      ),
-                    ],
-                  ),
 
-                  Row(
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
-                          Text(
-                            'Date',
-                            style: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.bold),
-                          ),
-                          Text(
-                            '21st Sept 2021, monday',
-                            style: TextStyle(fontSize: 15),
-                          ),
-                        ],
-                      ),
-                      Expanded(child: Container()),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
-                          Text(
-                            'PICK-UP-TIME',
-                            style: TextStyle(
-                                fontSize: 15, fontWeight: FontWeight.bold),
-                          ),
-                          Text(
-                            '9:00-9:30am',
-                            style: TextStyle(),
-                          ),
-                        ],
-                      )
-                    ],
-                  ),
-                ],
-              ))
-            ],
-          ),
-        )),
-  );
-}*/
 
 Widget customCarCardView() {
   return Stack(
@@ -821,160 +788,6 @@ Widget carReports(String text1, String text2, String text3, String text4) {
     ],
   );
 }
-/*
-
-Widget carSetting(
-    String t1,
-    String t2,
-    String t3,
-    String t4,
-    String t5,
-    String t6,
-    String t7,
-    String t8,
-    String t9,
-    String t10,
-    String t11,
-    String t12,
-    String t13,
-    String t14) {
-  return Column(
-    children: [
-      Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 22.0, vertical: 18),
-        child: Row(
-          children: [
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      SvgPicture.asset('assets/TimeCalendar.svg'),
-                      const Text('Brand:'),
-                      Text(t1)
-                    ],
-                  ),
-                  const SizedBox(height: 8),
-                  Row(
-                    children: [
-                      SvgPicture.asset('assets/TimeCalendar.svg'),
-                      const Text('Paint:'),
-                      Text(t2)
-                    ],
-                  ),
-                  const SizedBox(height: 8),
-                  Row(
-                    children: [
-                      SvgPicture.asset('assets/TimeCalendar.svg'),
-                      const Text('Paint:'),
-                      Text(t3)
-                    ],
-                  ),
-                  const SizedBox(height: 8),
-                  Row(
-                    children: [
-                      SvgPicture.asset('assets/TimeCalendar.svg'),
-                      const Text('Paint:'),
-                      Text(t4)
-                    ],
-                  ),
-                  const SizedBox(height: 8),
-                  Row(
-                    children: [
-                      SvgPicture.asset('assets/TimeCalendar.svg'),
-                      const Text('Paint:'),
-                      Text(t5)
-                    ],
-                  ),
-                  const SizedBox(height: 8),
-                  Row(
-                    children: [
-                      SvgPicture.asset('assets/TimeCalendar.svg'),
-                      const Text('Paint:'),
-                      Text(t6)
-                    ],
-                  ),
-                  const SizedBox(height: 8),
-                  Row(
-                    children: [
-                      SvgPicture.asset('assets/TimeCalendar.svg'),
-                      const Text('Paint:'),
-                      Text(t7)
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      SvgPicture.asset('assets/TimeCalendar.svg'),
-                      const Text('Paint:'),
-                      Text(t8)
-                    ],
-                  ),
-                  const SizedBox(height: 8),
-                  Row(
-                    children: [
-                      SvgPicture.asset('assets/TimeCalendar.svg'),
-                      const Text('Paint:'),
-                      Text(t9)
-                    ],
-                  ),
-                  const SizedBox(height: 8),
-                  Row(
-                    children: [
-                      SvgPicture.asset('assets/TimeCalendar.svg'),
-                      const Text('Paint:'),
-                      Text(t10)
-                    ],
-                  ),
-                  const SizedBox(height: 8),
-                  Row(
-                    children: [
-                      SvgPicture.asset('assets/TimeCalendar.svg'),
-                      const Text('Paint:'),
-                      Text(t11)
-                    ],
-                  ),
-                  const SizedBox(height: 8),
-                  Row(
-                    children: [
-                      SvgPicture.asset('assets/TimeCalendar.svg'),
-                      const Text('Paint:'),
-                      Text(t12)
-                    ],
-                  ),
-                  const SizedBox(height: 8),
-                  Row(
-                    children: [
-                      SvgPicture.asset('assets/TimeCalendar.svg'),
-                      const Text('Paint:'),
-                      Text(t13)
-                    ],
-                  ),
-                  const SizedBox(height: 8),
-                  Row(
-                    children: [
-                      SvgPicture.asset('assets/TimeCalendar.svg'),
-                      const Text('Paint:'),
-                      Text(t14)
-                    ],
-                  ),
-                ],
-              ),
-            )
-          ],
-        ),
-      )
-    ],
-  );
-}
-*/
 
 showMessage(
   String data, {

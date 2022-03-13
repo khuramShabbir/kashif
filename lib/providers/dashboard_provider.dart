@@ -4,7 +4,9 @@ import 'package:geocoder/geocoder.dart';
 import 'package:get/get.dart';
 import 'package:kashif/model_classes/GetAllRecords.dart';
 import 'package:kashif/model_classes/GetCardInfoByCardID.dart';
+import 'package:kashif/model_classes/GetCustomerVehicle.dart';
 import 'package:kashif/model_classes/GetLifters.dart';
+import 'package:kashif/model_classes/getCardsListByVehicleId.dart';
 import 'package:kashif/model_classes/getVehicleMakers.dart';
 import 'package:kashif/model_classes/get_vehicle_services.dart';
 import 'package:kashif/screens/order_taking_screens/ongoing_inspection_pickup_address.dart';
@@ -28,10 +30,6 @@ class DashboardProvider extends ChangeNotifier{
 
   int carLifterId=-1;
   int carLifterIndex=-1;
-
-
-  ///1 for inspection at your door step
-  ///2 for inspection at your center
   int orderType=1;
 
 
@@ -66,6 +64,7 @@ class DashboardProvider extends ChangeNotifier{
     double lng;
     String location="";
   void setAddress(var value) {
+    if(value==null) return;
     lat=value[0];
     lng=value[1];
     geoCoder(lat,lng);
@@ -182,6 +181,23 @@ class DashboardProvider extends ChangeNotifier{
     this.allRecordsFromJson=allRecordsFromJson;
     notifyListeners();
 
+
+  }
+  GetCustomerVehicle customerVehicleFromJson;
+  bool isVehiclesLoaded=false;
+  void setCustomerVehicles(GetCustomerVehicle customerVehicleFromJson, bool isVehiclesLoaded) {
+    this.isVehiclesLoaded=isVehiclesLoaded;
+    this.customerVehicleFromJson=customerVehicleFromJson;
+    notifyListeners();
+
+  }
+  GetCardsListByVehicleId cardsListByVehicleIdFromJson;
+  bool isCardListLoadedbyVehicle=false;
+
+  void setCardsListByVehicleId(GetCardsListByVehicleId cardsListByVehicleIdFromJson, bool isCardListLoaded) {
+    this.cardsListByVehicleIdFromJson=cardsListByVehicleIdFromJson;
+    this.isCardListLoadedbyVehicle=isCardListLoaded;
+    notifyListeners();
 
   }
 

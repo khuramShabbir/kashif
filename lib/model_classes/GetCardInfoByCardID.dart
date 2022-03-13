@@ -43,8 +43,8 @@ class Data {
   Report report;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-    card: Card.fromJson(json["card"]),
-    report: Report.fromJson(json["report"]),
+    card: json["card"]!=null ? Card.fromJson(json["card"]) : null,
+    report: json["report"]!=null ? Report.fromJson(json["report"]) : null,
   );
 
   Map<String, dynamic> toJson() => {
@@ -67,7 +67,9 @@ class Card {
     this.vmVehicleId,
     this.inspectionStart,
     this.inspectionEnd,
+    this.qr_code,
     this.rating,
+    this.inspectionTypeText,
     this.createdAt,
     this.vehicle,
     this.invoice,
@@ -82,12 +84,14 @@ class Card {
   String endTime;
   String latitude;
   String longitude;
+  String qr_code;
   int vmVehicleId;
   String inspectionStart;
   String inspectionEnd;
   dynamic rating;
   dynamic card_step;
   String createdAt;
+  String inspectionTypeText;
   Vehicle vehicle;
   Invoice invoice;
   Inspection inspection;
@@ -95,6 +99,7 @@ class Card {
   factory Card.fromJson(Map<String, dynamic> json) => Card(
     id: json["id"],
     uuid: json["uuid"],
+    qr_code: json["qr_code"],
     card_step: json["card_step"],
     inspectionType: json["inspection_type"],
     status: json["status"],
@@ -106,15 +111,17 @@ class Card {
     inspectionStart: json["inspection_start"],
     inspectionEnd: json["inspection_end"],
     rating: json["rating"],
+    inspectionTypeText: json["inspectionTypeText"],
     createdAt: json["created_at"],
     vehicle: Vehicle.fromJson(json["vehicle"]),
     invoice: Invoice.fromJson(json["invoice"]),
-    inspection: Inspection.fromJson(json["inspection"]),
+    inspection:json["inspection"] !=null ? Inspection.fromJson(json["inspection"]): null,
   );
 
   Map<String, dynamic> toJson() => {
     "id": id,
     "uuid": uuid,
+    "qr_code": qr_code,
     "card_step": card_step,
     "inspection_type": inspectionType,
     "status": status,
@@ -126,6 +133,7 @@ class Card {
     "inspection_start": inspectionStart,
     "inspection_end": inspectionEnd,
     "rating": rating,
+    "inspectionTypeText": inspectionTypeText,
     "created_at": createdAt,
     "vehicle": vehicle.toJson(),
     "invoice": invoice.toJson(),
@@ -333,18 +341,22 @@ class Report {
   Report({
     this.carBodyChecking,
     this.mechanicalIssue,
+    this.report_pdf,
   });
 
   String carBodyChecking;
+  String report_pdf;
   List<MechanicalIssue> mechanicalIssue;
 
   factory Report.fromJson(Map<String, dynamic> json) => Report(
     carBodyChecking: json["car_body_checking"],
+    report_pdf: json["report_pdf"],
     mechanicalIssue: List<MechanicalIssue>.from(json["mechanical_issue"].map((x) => MechanicalIssue.fromJson(x))),
   );
 
   Map<String, dynamic> toJson() => {
     "car_body_checking": carBodyChecking,
+    "report_pdf": report_pdf,
     "mechanical_issue": List<dynamic>.from(mechanicalIssue.map((x) => x.toJson())),
   };
 }

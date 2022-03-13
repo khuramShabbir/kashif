@@ -30,7 +30,6 @@ class _OngoingInspectionUiState extends State<OngoingInspectionUi> {
     super.initState();
     Future.delayed(Duration(seconds: 1), () {
       ApiServices.getVehicleMaker();
-      ApiServices.getVehicleServices();
     });
   }
 
@@ -141,7 +140,7 @@ class _OngoingInspectionUiState extends State<OngoingInspectionUi> {
                                               BorderRadius.circular(10))),
                                 ),
 
-                                data.isServiceDataLoaded ?
+                               /* data.isServiceDataLoaded ?
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -168,7 +167,7 @@ class _OngoingInspectionUiState extends State<OngoingInspectionUi> {
                                   ),
 
                                 ],)
-                                : Container(),
+                                : Container(),*/
 
 
 
@@ -299,7 +298,6 @@ class _OngoingInspectionUiState extends State<OngoingInspectionUi> {
                       height: Get.height * .05,
                     ),
                     customButton(
-                        buttonWidth: 0.30,
                         onClick: () {
                           data.btnNextForTimeAndAddress();
                           },
@@ -310,12 +308,12 @@ class _OngoingInspectionUiState extends State<OngoingInspectionUi> {
                             children: const [
                               Text(
                                 'Next',
-                                style: TextStyle(color: Colors.white),
+                                style: TextStyle(color: Colors.white,fontSize: 18),
                               ),
                               Icon(
                                 Icons.arrow_forward,
                                 color: Colors.white,
-                                size: 15,
+                                size: 24,
                               )
                             ],
                           ),

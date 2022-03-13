@@ -78,95 +78,60 @@ class _SignInUIState extends State<SignUpUi> {
                       width: Get.width * 0.15,
                     ),
                     Expanded(
-                      child: Column(
-                        children: [
-                          SizedBox(
-                            height: Get.height * 0.05,
-                          ),
-                          //TODO: implement on 'onChange' at userName
-                          customInputFormField(
-                              onChange: (value) {
-                                data.userName = value;
-                              },
-                              prefixIconList: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  SvgPicture.asset(
-                                    'assets/user_outline.svg',
-                                    color: Colors.black,
-                                    width: 25.0,
-                                    height: 25.0,
-                                  ),
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  Container(
-                                    color: Colors.grey,
-                                    width: 1.5,
-                                    height: 20,
-                                  )
-                                ],
-                              ),
-                              hintText: "Account Name",
-                              fontSize: 13),
-                          SizedBox(
-                            height: Get.height * .02,
-                          ),
-                          customInputFormField(
-                            //TODO: implement on 'onChange' at MobileNumber
-                            onChange: (value) {
-                              data.mobileNumber = value;
-                            },
-                            autoValidateMode:
-                                AutovalidateMode.onUserInteraction,
-
-                            validator: (value) {
-                              GetUtils.isPhoneNumber(value);
-                            },
-                            errorText: 'invalid mobile number',
-
-                            keyboardType: TextInputType.phone,
-                            prefixIconList: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                SvgPicture.asset(
-                                  'assets/smartphone.svg',
-                                  color: Colors.black,
-                                  width: 25.0,
-                                  height: 25.0,
-                                ),
-                                const SizedBox(
-                                  width: 10,
-                                ),
-                                Container(
-                                  color: Colors.grey,
-                                  width: 1.5,
-                                  height: 20,
-                                )
-                              ],
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: Get.height * 0.05,
                             ),
-                            hintText: "Mobile Number",
-                            fontSize: 13,
-                          ),
-                          SizedBox(
-                            height: Get.height * .02,
-                          ),
-
-                          //TODO: implement on 'onChange' at Email Address
-
-                          customInputFormField(
+                            //TODO: implement on 'onChange' at userName
+                            customInputFormField(
+                                onChange: (value) {
+                                  data.userName = value;
+                                },
+                                prefixIconList: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    SvgPicture.asset(
+                                      'assets/user_outline.svg',
+                                      color: Colors.black,
+                                      width: 25.0,
+                                      height: 25.0,
+                                    ),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    Container(
+                                      color: Colors.grey,
+                                      width: 1.5,
+                                      height: 20,
+                                    )
+                                  ],
+                                ),
+                                hintText: "Account Name",
+                                fontSize: 13),
+                            SizedBox(
+                              height: Get.height * .02,
+                            ),
+                            customInputFormField(
+                              //TODO: implement on 'onChange' at MobileNumber
                               onChange: (value) {
-                                data.emailAddress = value;
+                                data.mobileNumber = value;
                               },
-                              errorText: 'invalid email',
                               autoValidateMode:
                                   AutovalidateMode.onUserInteraction,
-                              validator: (value) {},
+
+                              validator: (value) {
+                                GetUtils.isPhoneNumber(value);
+                              },
+                              errorText: 'invalid mobile number',
+
+                              keyboardType: TextInputType.phone,
                               prefixIconList: Row(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   SvgPicture.asset(
-                                    'assets/email.svg',
+                                    'assets/smartphone.svg',
                                     color: Colors.black,
                                     width: 25.0,
                                     height: 25.0,
@@ -181,76 +146,112 @@ class _SignInUIState extends State<SignUpUi> {
                                   )
                                 ],
                               ),
-                              hintText: "Email address",
-                              fontSize: 13),
-                          SizedBox(
-                            height: Get.height * .02,
-                          ),
-
-                          //TODO: implement on 'onChange' at Password
-
-                          customInputFormField(
-                            keyboardType: TextInputType.text,
-                            suffixIcon: InkWell(
-                              onTap: () {
-                                setState(() {
-                                  data.securePassword = !data.securePassword;
-                                });
-                              },
-                              child: SvgPicture.asset(
-                                'assets/eye.svg',
-                                color:
-                                data.securePassword ? Colors.grey : primaryColor,
-                                width: 25.0,
-                                height: 25.0,
-                              ),
+                              hintText: "Mobile Number",
+                              fontSize: 13,
                             ),
-                            obscure: data.securePassword,
-                            onChange: (value) {
-                              data.password = value;
+                            SizedBox(
+                              height: Get.height * .02,
+                            ),
 
-                            },
-                            prefixIconList: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                SvgPicture.asset(
-                                  'assets/lock.svg',
-                                  color: Colors.black,
+                            //TODO: implement on 'onChange' at Email Address
+
+                            customInputFormField(
+                                onChange: (value) {
+                                  data.emailAddress = value;
+                                },
+                                errorText: 'invalid email',
+                                autoValidateMode:
+                                    AutovalidateMode.onUserInteraction,
+                                validator: (value) {},
+                                prefixIconList: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    SvgPicture.asset(
+                                      'assets/email.svg',
+                                      color: Colors.black,
+                                      width: 25.0,
+                                      height: 25.0,
+                                    ),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    Container(
+                                      color: Colors.grey,
+                                      width: 1.5,
+                                      height: 20,
+                                    )
+                                  ],
+                                ),
+                                hintText: "Email address",
+                                fontSize: 13),
+                            SizedBox(
+                              height: Get.height * .02,
+                            ),
+
+                            //TODO: implement on 'onChange' at Password
+
+                            customInputFormField(
+                              keyboardType: TextInputType.text,
+                              suffixIcon: InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    data.securePassword = !data.securePassword;
+                                  });
+                                },
+                                child: SvgPicture.asset(
+                                  'assets/eye.svg',
+                                  color:
+                                  data.securePassword ? Colors.grey : primaryColor,
                                   width: 25.0,
                                   height: 25.0,
                                 ),
-                                const SizedBox(
-                                  width: 10,
-                                ),
-                                Container(
-                                  color: Colors.grey,
-                                  width: 1.5,
-                                  height: 20,
-                                )
-                              ],
-                            ),
-                            hintText: "Password",
-                            fontSize: 13,
-                          ),
+                              ),
+                              obscure: data.securePassword,
+                              onChange: (value) {
+                                data.password = value;
 
-                          SizedBox(
-                            height: Get.height * .05,
-                          ),
-                          const Text(
-                            "By signing up you agree with our Terms of Use",
-                            style: TextStyle(
-                              color: primaryColor,
-                              fontSize: 12,
+                              },
+                              prefixIconList: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  SvgPicture.asset(
+                                    'assets/lock.svg',
+                                    color: Colors.black,
+                                    width: 25.0,
+                                    height: 25.0,
+                                  ),
+                                  const SizedBox(
+                                    width: 10,
+                                  ),
+                                  Container(
+                                    color: Colors.grey,
+                                    width: 1.5,
+                                    height: 20,
+                                  )
+                                ],
+                              ),
+                              hintText: "Password",
+                              fontSize: 13,
                             ),
-                          ),
-                          SizedBox(
-                            height: Get.height * .05,
-                          ),
-                          //TODO: SignUp Button
 
-                          customButton(
-                            onClick: () {
-                              data.checkSignupFormValidity();
+                            SizedBox(
+                              height: Get.height * .05,
+                            ),
+                            const Text(
+                              "By signing up you agree with our Terms of Use",
+                              style: TextStyle(
+                                color: primaryColor,
+                                fontSize: 12,
+                              ),
+                            ),
+                            SizedBox(
+                              height: Get.height * .05,
+                            ),
+                            //TODO: SignUp Button
+
+                            customButton(
+                              onClick: () {
+                                data.checkSignupFormValidity();
 //                               /* if(formValidation.isFormOk(
 //                                userName,
 //                                mobileNumber,
@@ -267,51 +268,52 @@ class _SignInUIState extends State<SignUpUi> {
 //                             }
 // */
 //                               Get.to(() => const OtpVerifyCode());
-                            },
-                            buttonWidget: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: const [
-                                Text(
-                                  "Sign up ",
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 16),
-                                ),
-                                Icon(
-                                  Icons.arrow_forward_outlined,
-                                  color: Colors.white,
-                                  size: 15,
-                                )
-                              ],
+                              },
+                              buttonWidget: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: const [
+                                  Text(
+                                    "Sign up ",
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 16),
+                                  ),
+                                  Icon(
+                                    Icons.arrow_forward_outlined,
+                                    color: Colors.white,
+                                    size: 15,
+                                  )
+                                ],
+                              ),
                             ),
-                          ),
-                          SizedBox(
-                            height: Get.height * .05,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const Text(
-                                'Already a member ?',
-                                style: TextStyle(color: Colors.grey),
-                              ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  Get.back();
-                                },
-                                child: const Text(
-                                  'Sign in',
-                                  style: TextStyle(
-                                      color: primaryColor,
-                                      fontWeight: FontWeight.bold,
-                                      decoration: TextDecoration.underline),
+                            SizedBox(
+                              height: Get.height * .05,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const Text(
+                                  'Already a member ?',
+                                  style: TextStyle(color: Colors.grey),
                                 ),
-                              ),
-                            ],
-                          )
-                        ],
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                    Get.back();
+                                  },
+                                  child: const Text(
+                                    'Sign in',
+                                    style: TextStyle(
+                                        color: primaryColor,
+                                        fontWeight: FontWeight.bold,
+                                        decoration: TextDecoration.underline),
+                                  ),
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
                       ),
                     ),
                     SizedBox(
