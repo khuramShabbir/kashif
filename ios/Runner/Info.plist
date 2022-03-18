@@ -63,6 +63,8 @@
 
     	<key>NSLocationWhenInUseUsageDescription</key>
     	<string>Cashif needs your location for order tracking purpose so workshop, technician and car pick up can easily reach to your destination.</string>
-
+            <array>
+                        <string>whatsapp</string>
+                    </array>
 </dict>
 </plist>

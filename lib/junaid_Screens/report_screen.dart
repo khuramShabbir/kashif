@@ -10,6 +10,14 @@ import 'package:provider/provider.dart';
 import 'package:kashif/expansion_tile.dart' as exp;
 import 'package:intl/intl.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import 'package:flutter_share_me/flutter_share_me.dart';
+
+enum Share {
+  whatsapp,
+  share_system
+}
+
+
 
 class ReportScreen extends StatefulWidget {
   const ReportScreen({Key? key}) : super(key: key);
@@ -19,8 +27,9 @@ class ReportScreen extends StatefulWidget {
 }
 
 class _ReportScreenState extends State<ReportScreen> {
+
   int initIndex = -1;
-@override
+  @override
   void initState() {
     // TODO: implement initState
     super.initState();
@@ -44,9 +53,15 @@ class _ReportScreenState extends State<ReportScreen> {
               ),
             ),
             actions: [
-              Padding(
-                padding: const EdgeInsets.only(right: 20.0),
-                child: SvgPicture.asset('assets/bell-ringing.svg'),
+              InkWell(
+                onTap: (){
+                  // showShareBottomSheet(data);
+                  onButtonTap(Share.whatsapp,data);
+                },
+                child: Padding(
+                  padding: const EdgeInsets.only(right: 20.0),
+                  child: Image.asset('assets/share.png'),
+                ),
               )
             ],
             title: Text(
@@ -433,4 +448,83 @@ class _ReportScreenState extends State<ReportScreen> {
                  )
       ],),);
   }
+
+  void showShareBottomSheet(DashboardProvider data) {
+
+    // data.cardInfoByCardIdFromJson.data.report.report_pdf
+    if(data.cardInfoByCardIdFromJson==null) return;
+
+    Get.bottomSheet(
+        Material(
+      color: Colors.transparent,
+      child: Container(
+        color: Colors.white,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            shareRow("Whats App","assets/icons8-whatsapp.svg",(){
+              // onButtonTap(Share.whatsapp);
+            }),
+
+            shareRow("Email","assets/email.svg",(){
+              // onButtonTap(Share.share_system);
+
+            }),
+
+        ],),
+
+
+      ),
+
+    ));
+
+  }
+
+
+  Future<void> onButtonTap(Share share, DashboardProvider data) async {
+    String msg =
+        'Flutter share is great!!\n Check out full example at https://pub.dev/packages/flutter_share_me';
+    String url = 'https://pub.dev/packages/flutter_share_me';
+
+    String? response;
+    final FlutterShareMe flutterShareMe = FlutterShareMe();
+    switch (share) {
+
+      case Share.whatsapp:
+          response = await flutterShareMe.shareToWhatsApp(msg: data.cardInfoByCardIdFromJson.data.report.report_pdf);
+        break;
+
+      case Share.share_system:
+        response = await flutterShareMe.shareToSystem(msg: msg);
+        break;
+
+    }
+    debugPrint(response);
+  }
+
+  Widget shareRow(String name, String asset,var ontap){
+    return
+      InkWell(
+        onTap: ontap,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(children: [
+            Container(
+              width: 55,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SvgPicture.asset(asset),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(name),
+            )
+          ],),
+        ),
+      );
+  }
+
+
 }
+

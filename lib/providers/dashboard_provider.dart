@@ -25,12 +25,15 @@ class DashboardProvider extends ChangeNotifier{
   String numberPlateEnglish="";
   String numberPlateDigits="";
   String serviceTyoeId='';
+  String vat_percentage='';
+  String vatValue='';
   GetCardInfoByCardId cardInfoByCardIdFromJson;
   bool isSingleCardLoaded=false;
 
   int carLifterId=-1;
   int carLifterIndex=-1;
   int orderType=1;
+  int notificationNumber=0;
 
 
   setVehicleMakers(bool isVehicleMakerLoaded,GetVehicleMaker getVehicleMaker ){

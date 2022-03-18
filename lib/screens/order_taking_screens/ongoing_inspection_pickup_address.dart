@@ -524,34 +524,20 @@ Widget invoiceBottomSheet() {
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
+                            children: [
                               Text(
-                                'Tax(10%)',
+                                'VAT(${data.vehicleServicesFromJson.vat_percentage}%)',
                                 style:
                                 TextStyle(color: primaryColor, fontSize: 12),
                               ),
                               Text(
-                                '0',
-                                style:
-                                TextStyle(color: primaryColor, fontSize: 12),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
-                              Text(
-                                'Delivery fee',
-                                style:
-                                TextStyle(color: primaryColor, fontSize: 12),
-                              ),
-                              Text(
-                                '0',
+                                '${data.vatValue}',
                                 style:
                                 TextStyle(color: primaryColor, fontSize: 12),
                               ),
                             ],
                           ),
+
                         ],
                       ),
                     ),

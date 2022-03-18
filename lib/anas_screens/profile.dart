@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:kashif/dashboardscreen.dart';
+import 'package:kashif/screens/boarding/dashboardscreen.dart';
 import 'package:kashif/providers/user_auth_provider.dart';
 import 'package:kashif/screens/login-Screens/sign_in_ui.dart';
-import 'package:kashif/screens/splash_screen.dart';
+import 'package:kashif/screens/splash_screen/splash_screen.dart';
 import 'package:kashif/utils.dart';
 import 'package:provider/provider.dart';
 import 'payment.dart';

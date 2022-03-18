@@ -1,4 +1,20 @@
 PODS:
+  - FacebookCore (0.9.0):
+    - FBSDKCoreKit (~> 5.0)
+  - FacebookShare (0.9.0):
+    - FacebookCore (~> 0.9.0)
+    - FBSDKCoreKit (~> 5.0)
+    - FBSDKShareKit (~> 5.0)
+  - FBSDKCoreKit (5.15.1):
+    - FBSDKCoreKit/Basics (= 5.15.1)
+    - FBSDKCoreKit/Core (= 5.15.1)
+  - FBSDKCoreKit/Basics (5.15.1)
+  - FBSDKCoreKit/Core (5.15.1):
+    - FBSDKCoreKit/Basics
+  - FBSDKShareKit (5.15.1):
+    - FBSDKShareKit/Share (= 5.15.1)
+  - FBSDKShareKit/Share (5.15.1):
+    - FBSDKCoreKit (~> 5.0)
   - Firebase/Auth (8.10.0):
     - Firebase/CoreOnly
     - FirebaseAuth (~> 8.10.0)
@@ -26,6 +42,9 @@ PODS:
     - GoogleUtilities/Logger (~> 7.7)
     - nanopb (~> 2.30908.0)
   - Flutter (1.0.0)
+  - flutter_share_me (0.0.1):
+    - FacebookShare
+    - Flutter
   - fluttertoast (0.0.2):
     - Flutter
     - Toast
@@ -63,6 +82,8 @@ PODS:
   - GTMSessionFetcher/Core (1.7.0)
   - location (0.0.1):
     - Flutter
+  - map_launcher (0.0.1):
+    - Flutter
   - nanopb (2.30908.0):
     - nanopb/decode (= 2.30908.0)
     - nanopb/encode (= 2.30908.0)
@@ -81,17 +102,23 @@ DEPENDENCIES:
   - firebase_auth (from `.symlinks/plugins/firebase_auth/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
   - Flutter (from `Flutter`)
+  - flutter_share_me (from `.symlinks/plugins/flutter_share_me/ios`)
   - fluttertoast (from `.symlinks/plugins/fluttertoast/ios`)
   - geocoder (from `.symlinks/plugins/geocoder/ios`)
   - geolocator_apple (from `.symlinks/plugins/geolocator_apple/ios`)
   - google_maps_flutter (from `.symlinks/plugins/google_maps_flutter/ios`)
   - location (from `.symlinks/plugins/location/ios`)
+  - map_launcher (from `.symlinks/plugins/map_launcher/ios`)
   - path_provider_ios (from `.symlinks/plugins/path_provider_ios/ios`)
   - permission_handler (from `.symlinks/plugins/permission_handler/ios`)
   - webview_flutter_wkwebview (from `.symlinks/plugins/webview_flutter_wkwebview/ios`)
 
 SPEC REPOS:
   trunk:
+    - FacebookCore
+    - FacebookShare
+    - FBSDKCoreKit
+    - FBSDKShareKit
     - Firebase
     - FirebaseAuth
     - FirebaseCore
@@ -111,6 +138,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/firebase_core/ios"
   Flutter:
     :path: Flutter
+  flutter_share_me:
+    :path: ".symlinks/plugins/flutter_share_me/ios"
   fluttertoast:
     :path: ".symlinks/plugins/fluttertoast/ios"
   geocoder:
@@ -121,6 +150,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/google_maps_flutter/ios"
   location:
     :path: ".symlinks/plugins/location/ios"
+  map_launcher:
+    :path: ".symlinks/plugins/map_launcher/ios"
   path_provider_ios:
     :path: ".symlinks/plugins/path_provider_ios/ios"
   permission_handler:
@@ -129,6 +160,10 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/webview_flutter_wkwebview/ios"
 
 SPEC CHECKSUMS:
+  FacebookCore: ba86524b66cfa86d0f8e65d08faa8504a9f732dd
+  FacebookShare: 85968ad1b1606c4944fb154924e425fd29184ea5
+  FBSDKCoreKit: 1d5acf7c9d7a2f92bb1a242dc60cae5b7adb91df
+  FBSDKShareKit: 259737eab3cc807087374553abdf588b3096ba55
   Firebase: 44213362f1dcc52555b935dc925ed35ac55f1b20
   firebase_auth: 9d959bddc3b255ddfb67cf630a5bbb6186964356
   firebase_core: 2ca2d6cc8a11693e701b37126afae4800be5dbac
@@ -136,6 +171,7 @@ SPEC CHECKSUMS:
   FirebaseCore: 04186597c095da37d90ff9fd3e53bc61a1ff2440
   FirebaseCoreDiagnostics: 64d9709d804a6c25bd77841371c1fcfd909d5601
   Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
+  flutter_share_me: 908cbbb695723a87657fabb166d5ec28737d3ba8
   fluttertoast: 6122fa75143e992b1d3470f61000f591a798cc58
   geocoder: 3cfab70531a0b367e917bafe82df4c30f6d4c45a
   geolocator_apple: b741765c55dc21950e3e106e8b3584e55cf81ce5
@@ -145,6 +181,7 @@ SPEC CHECKSUMS:
   GoogleUtilities: e0913149f6b0625b553d70dae12b49fc62914fd1
   GTMSessionFetcher: 43748f93435c2aa068b1cbe39655aaf600652e91
   location: 3a2eed4dd2fab25e7b7baf2a9efefe82b512d740
+  map_launcher: e325db1261d029ff33e08e03baccffe09593ffea
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   path_provider_ios: 7d7ce634493af4477d156294792024ec3485acd5
   permission_handler: ccb20a9fad0ee9b1314a52b70b76b473c5f8dab0

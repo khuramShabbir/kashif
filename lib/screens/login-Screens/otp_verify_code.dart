@@ -6,7 +6,7 @@ import 'package:kashif/providers/user_auth_provider.dart';
 import 'package:kashif/utils.dart';
 import 'package:provider/provider.dart';
 
-import '../../dashboardscreen.dart';
+import '../boarding/dashboardscreen.dart';
 
 class OtpVerifyCode extends StatefulWidget {
  bool isFromLogin;
@@ -24,7 +24,7 @@ class _OtpVerifyCodeState extends State<OtpVerifyCode> {
 
 
     provider.sendOTP();
-    Future.delayed(Duration(seconds: 1),(){
+    Future.delayed(Duration(seconds: 0),(){
       showProgress();
     });
     super.initState();

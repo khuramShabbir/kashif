@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:kashif/providers/dashboard_provider.dart';
 import 'package:kashif/providers/user_auth_provider.dart';
-import 'package:kashif/screens/splash_screen.dart';
+import 'package:kashif/screens/splash_screen/splash_screen.dart';
 import 'package:provider/provider.dart';
 
 
@@ -20,7 +20,7 @@ main() async {
       ChangeNotifierProvider(create: (ctx) => UserAuthProvider()),
       ChangeNotifierProvider(create: (ctx) => DashboardProvider()),
     ],
-    child: const GetMaterialApp(
+    child:  GetMaterialApp(
         debugShowCheckedModeBanner: false, home: SplashScreen()
     ),
   ));

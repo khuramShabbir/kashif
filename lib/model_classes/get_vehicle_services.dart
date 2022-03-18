@@ -11,20 +11,24 @@ class GetVehicleServices {
     this.message,
     this.data,
     this.success,
+    this.vat_percentage,
   });
 
   String message;
   List<SingleService> data;
   String success;
+  String vat_percentage;
 
   factory GetVehicleServices.fromJson(Map<String, dynamic> json) => GetVehicleServices(
     message: json["message"],
+    vat_percentage: json["vat_percentage"],
     data: List<SingleService>.from(json["data"].map((x) => SingleService.fromJson(x))),
     success: json["success"],
   );
 
   Map<String, dynamic> toJson() => {
     "message": message,
+    "vat_percentage": vat_percentage,
     "data": List<dynamic>.from(data.map((x) => x.toJson())),
     "success": success,
   };
@@ -36,6 +40,7 @@ class SingleService {
     this.uuid,
     this.name,
     this.nameEn,
+    this.vat_value,
     this.nameAr,
     this.price,
     this.priceType,
@@ -59,6 +64,7 @@ class SingleService {
   String nameEn;
   String nameAr;
   int price;
+  dynamic vat_value;
   String priceType;
   int type;
   int expectedTime;
@@ -77,6 +83,7 @@ class SingleService {
     id: json["id"],
     uuid: json["uuid"],
     name: json["name"],
+    vat_value: json["vat_value"],
     nameEn: json["name_en"],
     nameAr: json["name_ar"],
     price: json["price"],
@@ -101,6 +108,7 @@ class SingleService {
     "name": name,
     "name_en": nameEn,
     "name_ar": nameAr,
+    "vat_value": vat_value,
     "price": price,
     "price_type": priceType,
     "type": type == null ? null : type,

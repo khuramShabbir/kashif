@@ -118,7 +118,7 @@ class _OnGoingServicesUiState extends State<OnGoingServicesUi> {
                   InkWell(
                     onTap: () {
                       isTaped = false;
-                      logger.e('Past');
+                      // logger.e('Past');
                       setState(() {});
                     },
                     child: Container(
@@ -164,7 +164,7 @@ class _OnGoingServicesUiState extends State<OnGoingServicesUi> {
 
                       return InkWell(
                           onTap: () async{
-                            if(data.allRecordsFromJson.data[index].status=="WORKING"){
+                            if(data.allRecordsFromJson.data[index].status=="WORKING" || data.allRecordsFromJson.data[index].status=="PENDING" ){
                               print("cardId: data.allRecordsFromJson.data[index].id "
                                   "${data.allRecordsFromJson.data[index].id}");
                               Get.to(() => StepperUi(cardId: data.allRecordsFromJson.data[index].id,));

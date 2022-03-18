@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:kashif/apis_services/api_services.dart';
+import 'package:kashif/providers/dashboard_provider.dart';
 import 'package:kashif/providers/user_auth_provider.dart';
 import 'package:kashif/utils.dart';
 import 'package:provider/provider.dart';
-import 'center_inspection_ui.dart';
 import 'link_ui.dart';
-import 'ongoing_inspection.dart';
 
 class OrderStartHomeScreen extends StatefulWidget {
   const OrderStartHomeScreen({Key? key}) : super(key: key);
@@ -17,14 +16,14 @@ class OrderStartHomeScreen extends StatefulWidget {
 }
 
 class _OrderStartHomeScreenState extends State<OrderStartHomeScreen> {
-  bool isTaped = true;
-@override
+  // bool isTaped = true;
+  @override
   void initState() {
     // TODO: implement initState
     super.initState();
     ApiServices.getUserPersonalInfo();
-
-}
+  }
+final dashboardProvider= Provider.of<DashboardProvider>(Get.context!,listen: false);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,32 +65,150 @@ class _OrderStartHomeScreenState extends State<OrderStartHomeScreen> {
                       padding: const EdgeInsets.only(left: 10.0),
                       child: Text(
                         "Welcome!",
-                        style: TextStyle(color: Colors.grey.withOpacity(.5)),
+                        style: TextStyle(
+                            color: Colors.grey, fontWeight: FontWeight.w500),
                       ),
                     ),
-                     Consumer<UserAuthProvider>(builder: (build,data,child){
-                       return Padding(
-                         padding: EdgeInsets.all(10.0),
-                         child: Text(
-                           !data.isUserLoaded? "" : data.userFromJson!.data[0].name,
-                           style: TextStyle(
-                             fontWeight: FontWeight.bold,
-                           ),
-                         ),
-                       );
-                     },)
+                    Consumer<UserAuthProvider>(
+                      builder: (build, data, child) {
+                        return Padding(
+                          padding: EdgeInsets.all(10.0),
+                          child: Text(
+                            !data.isUserLoaded
+                                ? ""
+                                : data.userFromJson!.data[0].name,
+                            style: TextStyle(
+                              fontSize: 17,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        );
+                      },
+                    )
                   ],
                 )
               ],
             ),
-            lineBar(),
+            lineBar(height: 0.5),
             carousalSlider(),
-            lineBar(),
+            lineBar(height: 0.5),
             SizedBox(
               height: Get.height * .04,
             ),
             Expanded(
-                child: Row(
+                child: Container(
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.receipt_long,color: primaryColor,size: 55,),
+                    SizedBox(width: 20,),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                      Text("Select the service you need",style: TextStyle(color: primaryColor),),
+                      SizedBox(height: 8,),
+                      Text("Order Now",style: TextStyle(color: primaryColor,fontSize: 20,fontWeight: FontWeight.bold),),
+
+                    ],)
+                  ],
+                ),
+                  SizedBox(height: 20,),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: Get.width *0.08,vertical: Get.width*0.05),
+                    child: InkWell(
+                      onTap: () async {
+                        dashboardProvider.orderType=1;
+
+
+                        showProgress();
+                        bool status=await ApiServices.getVehicleServices();
+                        dismissDialogue();
+                        if(status){
+                          showServiceType();
+                          // vehicleServicesFromJson
+                        }
+
+
+                      },
+                      child: Container(
+                        height: 55,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                          Text("Center Inspection Order",style: TextStyle(
+                              color: primaryColor,
+                              fontWeight: FontWeight.bold,fontSize: 17),),
+                          SizedBox(width: 10,),
+                              Icon(Icons.receipt_long,color: primaryColor,),
+
+                            ],
+                          ),
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(width: 1,color: primaryColor)
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: Get.width *0.08,vertical: Get.width*0.05),
+                    child: InkWell(
+                      onTap: () async {
+                        dashboardProvider.orderType=2;
+                        showProgress();
+                        bool status=await ApiServices.getVehicleServices();
+                        dismissDialogue();
+                        if(status){
+                          showServiceType();
+                        }
+                      },
+                      child: Container(
+                        height: 55,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "On going Inspection Order",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 17),
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Icon(
+                                Icons.receipt_long,
+                                color: Colors.white,
+                              ),
+                            ],
+                          ),
+                        ),
+                        decoration: BoxDecoration(
+                          color: primaryColor,
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(width: 1,color: primaryColor)
+                        ),
+                      ),
+                    ),
+                  ),
+
+
+
+
+
+                ],
+              ),
+            )
+
+                /*Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 SizedBox(
@@ -202,7 +319,8 @@ class _OrderStartHomeScreenState extends State<OrderStartHomeScreen> {
                         ),
                 )
               ],
-            ))
+            )*/
+                )
           ],
         ));
   }

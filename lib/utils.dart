@@ -6,12 +6,13 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:kashif/apis_services/api_services.dart';
+import 'package:kashif/model_classes/GetUserResponse.dart';
 import 'package:kashif/model_classes/get_vehicle_services.dart';
 import 'package:kashif/providers/dashboard_provider.dart';
 import 'package:kashif/screens/order_taking_screens/center_inspection_ui.dart';
 import 'package:kashif/screens/order_taking_screens/goolemap_for_center_inspection.dart';
 import 'package:kashif/screens/order_taking_screens/ongoing_inspection.dart';
-import 'package:kashif/search_page.dart';
+import 'package:kashif/screens/services/search_page.dart';
 import 'package:logger/logger.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
@@ -20,10 +21,12 @@ final storage = GetStorage();
 final dashboardProvider = Provider.of<DashboardProvider>(Get.context, listen: false);
 String userToken = 'USER_TOKEN';
 String isUserLoggedIn = 'IS_USER_LOGGED_IN';
+String COMPLETE_USER = 'COMPLETE_USER';
 
 ///
 const primaryColor = Color(0xFFFF203840);
 Color grey = const Color(0x0ffb8b8b);
+Color yellowLight = const Color(0x0ffEDD593);
 const primaryBlueColor = 0xFF304FFE;
 const colorGrey = Colors.grey;
 var barColor = Colors.black.withOpacity(0.2);
@@ -31,20 +34,13 @@ double progressBarPersent = 0.0; // should be > 1
 
 var logger = Logger();
 
-///bar///
-///
-///
-///
-Widget lineBar() => Padding(
+Widget lineBar({double height:1}) => Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15.0),
       child: Container(
-        height: 1,
+        height: height,
         color: barColor,
       ),
     );
-
-/// pickup Address///
-///
 
 Widget pickupAddress(DashboardProvider data) {
   return Container(
@@ -95,10 +91,6 @@ Widget pickupAddress(DashboardProvider data) {
   );
 }
 
-/// Carousal Slider///
-///
-///
-
 Widget carousalSlider() {
   return Padding(
     padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
@@ -106,23 +98,28 @@ Widget carousalSlider() {
         options: CarouselOptions(
           onPageChanged: (index, reason) {},
           viewportFraction: 1,
-          height: Get.height * .22,
+          height: Get.height * .18,
           autoPlay: true,
         ),
         items: List.generate(
             5,
             (index) => Stack(
                   children: [
-                    SizedBox(
+                    Container(
                         width: Get.width * .9,
-                        child: Image.asset(
-                          "assets/card.jpeg",
-                          fit: BoxFit.fill,
-                        )),
-                    // Text(
-                    //   "Index $index",
-                    //   style: const TextStyle(color: Colors.red, fontSize: 20),
-                    // )
+                      decoration: BoxDecoration(color: primaryColor,
+                        borderRadius: BorderRadius.circular(15)
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(children: [
+                        Icon(Icons.circle,color: yellowLight),
+                        SizedBox(width: 5,),
+                        Text("08/08/2022",style: TextStyle(fontSize: 17,color: Colors.white),)
+                      ],),
+                    )
+
                   ],
                 ))),
   );
@@ -411,11 +408,22 @@ Future bottomSheetStartOrder() {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       InkWell(
-                        onTap: () {
+                        onTap: () async {
                           // Get.back();
                           Get.back();
                           dashboardProvider.orderType=1;
-                          Get.to(() => const OngoingInspectionUi());
+
+
+                          showProgress();
+                          bool status=await ApiServices.getVehicleServices();
+                          dismissDialogue();
+                          if(status){
+                            showServiceType();
+                            // vehicleServicesFromJson
+                          }
+
+
+
 
                           // Get.to(const OngoingInspectionUi());
                         },
@@ -428,15 +436,13 @@ Future bottomSheetStartOrder() {
                       InkWell(
                         onTap: ()async {
                           Get.back();
-                          showProgress();
                           dashboardProvider.orderType=2;
-                          // bool status=await ApiServices.getVehicleServices();
+                          showProgress();
+                          bool status=await ApiServices.getVehicleServices();
                           dismissDialogue();
-                          // if(status){
+                          if(status){
                           showServiceType();
-                          // vehicleServicesFromJson
-                        // }
-
+                          }
 
 
                         },
@@ -511,7 +517,9 @@ getSearchItem(SingleService service) {
     onTap: (){
       print(service.price);
       dashboardProvider.serviceTyoeId=getServiceName(dashboardProvider,service.name);
-      print(dashboardProvider.serviceTyoeId);
+      dashboardProvider.vat_percentage=dashboardProvider.vehicleServicesFromJson.vat_percentage.toString();
+      dashboardProvider.vatValue=service.vat_value.toString();
+
       Get.back();
       Get.to(() => const OngoingInspectionUi());
 
@@ -813,3 +821,6 @@ dismissDialogue() {
     Get.back();
   }
 }
+
+
+GetUserResponse getUser() => getUserResponseFromJson(storage.read(COMPLETE_USER));

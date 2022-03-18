@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:kashif/apis_services/api_services.dart';
 import 'package:kashif/model_classes/GetLifters.dart';
 import 'package:kashif/providers/dashboard_provider.dart';
-import 'package:kashif/screens/order_taking_screens/car_brand_scan_ui.dart';
+import 'package:kashif/screens/my_cars/car_brand_scan_ui.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:provider/provider.dart';
 import '../../utils.dart';

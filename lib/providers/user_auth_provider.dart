@@ -42,7 +42,7 @@ class UserAuthProvider extends ChangeNotifier {
         logger.e("verificationCompleted");
       },
       verificationFailed: (FirebaseAuthException e) {
-        logger.e("verificationFailed");
+        logger.e("verificationFailed   $e");
 
       },
       codeSent: (String verificationId, int? resendToken) async{
@@ -50,12 +50,12 @@ class UserAuthProvider extends ChangeNotifier {
 
         // await Future.delayed(Duration(seconds: 2),);
         dismissDialogue();
-        logger.e("codeSent");
-        showMessage("codeSent");
+        // logger.e("codeSent");
+        showMessage("Code Sent.");
 
       },
       codeAutoRetrievalTimeout: (String verificationId) {
-        logger.e("codeAutoRetrievalTimeout");
+        // logger.e("codeAutoRetrievalTimeout");
 
       },
     );
@@ -64,9 +64,8 @@ class UserAuthProvider extends ChangeNotifier {
   }
 
   void verifyOTP(String verificationCode, bool isFromLogin) async {
-       logger.i("OKA");
    if (verificationId == null) {
-     logger.i("NOT OKA");
+     logger.i("NOT OK");
      return;
    }
 

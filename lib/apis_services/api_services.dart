@@ -14,9 +14,10 @@ import 'package:kashif/model_classes/get_vehicle_services.dart';
 import 'package:kashif/providers/dashboard_provider.dart';
 import 'package:kashif/providers/user_auth_provider.dart';
 import 'package:kashif/screens/order_taking_screens/stepper_ui.dart';
+import 'package:kashif/screens/web_view/web_view.dart';
 import 'package:provider/provider.dart';
 
-import '../dashboardscreen.dart';
+import '../screens/boarding/dashboardscreen.dart';
 import '../utils.dart';
 
 class ApiServices   {
@@ -70,7 +71,7 @@ class ApiServices   {
     http.Response response = await http.get(parse, headers: headers);
 
     if (response.statusCode == 200) {
-      logger.i(response.body);
+      // logger.i(response.body);
 
       return response.body;
     } else {
@@ -96,6 +97,7 @@ class ApiServices   {
         ///ok
         await storage.write(userToken, decode['access_token']);
         await storage.write(isUserLoggedIn, true);
+        await storage.write(COMPLETE_USER, value);
 
         Get.offAll(DashBoardScreen());
       }
@@ -123,6 +125,7 @@ class ApiServices   {
         ///ok
         await storage.write(userToken, decode['access_token']);
         await storage.write(isUserLoggedIn, true);
+        await storage.write(COMPLETE_USER, value);
         Get.offAll(DashBoardScreen());
       }
       else {
@@ -226,7 +229,7 @@ class ApiServices   {
       int cardId = decoded['data']['id'];
       dismissDialogue();
       logger.wtf(cardId);
-      showInvoice(body.toString());
+      showInvoice(decoded['data']['invoice_link'],cardId);
 
 
 
@@ -245,10 +248,12 @@ class ApiServices   {
 
   }
 
- static showInvoice(decoded){
+ static showInvoice(String link, int cardId,)async{
 
+    if(link==null) return;
 
-   Get.to(() => StepperUi(cardId:cardId));
+   await Get.to(() => InvoiceWebView(link,"Invoice"));
+   await Get.to(() => StepperUi(cardId:cardId));
 
  }
 

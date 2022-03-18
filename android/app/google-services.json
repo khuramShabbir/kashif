@@ -1,33 +1,41 @@
 {
   "project_info": {
-    "project_number": "831710394729",
-    "project_id": "cashif-bfd08",
-    "storage_bucket": "cashif-bfd08.appspot.com"
+    "project_number": "561864504673",
+    "project_id": "cashif-994c5",
+    "storage_bucket": "cashif-994c5.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:831710394729:android:f6ea9e98fb7e181fbea5f8",
+        "mobilesdk_app_id": "1:561864504673:android:cb0e5c13a8a1234ae48120",
         "android_client_info": {
           "package_name": "com.example.kashif"
         }
       },
       "oauth_client": [
         {
-          "client_id": "831710394729-jhria7na42jv5f78g48jldeo1s254no5.apps.googleusercontent.com",
+          "client_id": "561864504673-22sja1njjn7gp9t5c15k99gua2csvvjr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.kashif",
+            "certificate_hash": "694255d8f37de791cbf4e67be1ed9f9c759b3baf"
+          }
+        },
+        {
+          "client_id": "561864504673-otg7nogudfia9gko0p4uc9tivkqra75c.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBg_jbXpgZDQjg37YFrh23HZCpBRG7sjmA"
+          "current_key": "AIzaSyDoCQEP2NfgCAwzximxRmeOg_d4dvMcVcY"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "831710394729-jhria7na42jv5f78g48jldeo1s254no5.apps.googleusercontent.com",
+              "client_id": "561864504673-otg7nogudfia9gko0p4uc9tivkqra75c.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
