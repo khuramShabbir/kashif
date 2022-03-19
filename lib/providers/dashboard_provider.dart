@@ -35,6 +35,7 @@ class DashboardProvider extends ChangeNotifier{
   int orderType=1;
   int notificationNumber=0;
 
+  int initialScreen = 0;
 
   setVehicleMakers(bool isVehicleMakerLoaded,GetVehicleMaker getVehicleMaker ){
     this.getVehicleMaker=getVehicleMaker;

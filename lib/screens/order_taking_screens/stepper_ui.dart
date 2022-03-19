@@ -32,8 +32,7 @@ class StepperUi extends StatefulWidget {
 }
 
 class _StepperUiState extends State<StepperUi> {
-  var dashboardProvider =
-      Provider.of<DashboardProvider>(Get.context, listen: false);
+  var dashboardProvider =Provider.of<DashboardProvider>(Get.context, listen: false);
 
   @override
   void initState() {
@@ -80,9 +79,14 @@ class _StepperUiState extends State<StepperUi> {
               ),
             ),
             actions: [
-              Padding(
-                padding: const EdgeInsets.only(right: 15.0),
-                child: SvgPicture.asset('assets/menu.svg'),
+              InkWell(
+                onTap: (){
+                  _showPopupCamera(data);
+                },
+                child: Padding(
+                  padding: const EdgeInsets.only(right: 15.0),
+                  child: Icon(Icons.camera_alt_outlined,color: primaryColor,),
+                ),
               )
             ],
             title: LinearPercentIndicator(
@@ -191,15 +195,18 @@ class _StepperUiState extends State<StepperUi> {
                                     Align(
                                       alignment: Alignment.centerRight,
                                       child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
                                         children: [
                                           Image.asset(
-                                            'assets/carPng.png',
-                                            height: Get.height * .2,
+                                            'assets/svg/sedan_car.png',
+                                            height: Get.height * 0.09,
                                           ),
+
                                           Text(
                                             "${data.cardInfoByCardIdFromJson.data.card.startTime} - ${data.cardInfoByCardIdFromJson.data.card.endTime}",
                                             style: TextStyle(fontSize: 13),
-                                          )
+                                          ),
+                                          SizedBox(height: Get.height * 0.01,)
                                         ],
                                       ),
                                     )
@@ -240,40 +247,24 @@ class _StepperUiState extends State<StepperUi> {
                                                 null
                                             ? stepper.StepState.complete
                                             : stepper.StepState.indexed,
-                                        title: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              "The Vehicle Arrived at the center",
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 15,
-                                                  color: Colors.grey),
-                                            ),
-                                            Text(
-                                              data.cardInfoByCardIdFromJson.data
-                                                      .card.inspectionStart ??
-                                                  "",
-                                              style:
-                                                  TextStyle(color: Colors.grey),
-                                            ),
-                                          ],
+                                        title: Text(
+                                          "The Vehicle Arrived at the center\n${data.cardInfoByCardIdFromJson.data.card.inspectionStart??""}",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 15,
+                                              color: Colors.grey),
                                         ),
-                                        content: Row(
+                                        content:
+
+                                        Row(
                                           children: [
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  right: 10),
-                                              child: Icon(
-                                                  Icons.camera_alt_outlined),
-                                            ),
+
                                             Column(
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 Text(
-                                                  "Vehicle checking in progress",
+                                                  "",
                                                   style: TextStyle(
                                                       fontWeight:
                                                           FontWeight.bold,
@@ -281,14 +272,16 @@ class _StepperUiState extends State<StepperUi> {
                                                       color: Colors.grey),
                                                 ),
                                                 Text(
-                                                  "in progress",
+                                                  "",
                                                   style: TextStyle(
                                                       color: Colors.grey),
                                                 ),
                                               ],
                                             )
                                           ],
-                                        )),
+                                        )
+
+                                    ),
                                     stepper.Step(
                                         state: data.cardInfoByCardIdFromJson
                                                         .data.card.card_step !=
@@ -391,10 +384,6 @@ class _StepperUiState extends State<StepperUi> {
                                                         .card_step
                                                         .toString()) >
                                                     7
-                                            // int.parse(data.cardInfoByCardIdFromJson.data.card.card_step.toString())>=8
-                                            // &&
-                                            // int.parse(data.cardInfoByCardIdFromJson.data.card.card_step.toString())==8
-
                                             ? stepper.StepState.complete
                                             : stepper.StepState.indexed,
                                         title: Text("Attaching Pictures"),
@@ -583,6 +572,69 @@ class _StepperUiState extends State<StepperUi> {
         ));
       }
     }
+  }
+  void _showPopupCamera(DashboardProvider data) async {
+    await Future.delayed(Duration.zero);
+
+
+        while (Get.isBottomSheetOpen) {
+          Get.back();
+        }
+
+        Get.bottomSheet(Material(
+          color: Colors.transparent,
+          child: Container(
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(10),
+                  topLeft: Radius.circular(10),
+                )),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                SizedBox(
+                  height: 10,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Text(
+                    "Live Camera".tr,
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+
+                Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Text(
+                    "The live camera service will be available so soon",
+                    style: TextStyle(color: Colors.black,fontSize: 18),
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                customButton(
+                    onClick: () {
+                      Get.back();
+                    },
+                    buttonWidget: Center(
+                        child: Text(
+                      "OK",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold),
+                    ))),
+                SizedBox(height: 25),
+              ],
+            ),
+          ),
+        ));
+
   }
 }
 

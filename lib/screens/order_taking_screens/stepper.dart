@@ -373,11 +373,16 @@ class _StepperState extends State<Stepper> with TickerProviderStateMixin {
         return Icon(
           Icons.check,
           // color: primaryColor,
-          color: !isDarkActive ? _kCircleActiveDark : _kCircleActiveLight,
+          color:  widget.steps[index].state == StepState.complete ?Colors.white : Colors.transparent,
           size: 18.0,
         );
       case StepState.error:
-        return const Text('!', style: _kStepStyle);
+        return Icon(
+          Icons.error,
+          // color: primaryColor,
+          color:  /*widget.steps[index].state == StepState.complete ?Colors.white :*/ Colors.transparent,
+          size: 18.0,
+        );
     }
   }
 
@@ -399,9 +404,9 @@ class _StepperState extends State<Stepper> with TickerProviderStateMixin {
         curve: Curves.fastOutSlowIn,
         duration: kThemeAnimationDuration,
         decoration: BoxDecoration(
-          color: Colors.white,
+          color:  widget.steps[index].state == StepState.complete ? Colors.green  : widget.steps[index].state == StepState.error ? Colors.red:Colors.transparent,
           shape: BoxShape.circle,
-          border: Border.all(width: 2,color: primaryColor)
+          border: Border.all(width: 2,color: widget.steps[index].state == StepState.complete ? Colors.green : widget.steps[index].state == StepState.error ? Colors.red: _kCircleActiveDark)
         ),
         child: Center(
           child: _buildCircleChild(index, oldState && widget.steps[index].state == StepState.error),
@@ -448,7 +453,7 @@ class _StepperState extends State<Stepper> with TickerProviderStateMixin {
       if (widget.steps[index].state != StepState.error)
         return _buildCircle(index, false);
       else
-        return _buildTriangle(index, false);
+        return _buildCircle(index, false);
     }
   }
 

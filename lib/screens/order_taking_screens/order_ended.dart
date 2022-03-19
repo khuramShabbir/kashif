@@ -42,14 +42,14 @@ class _OrderEndedState extends State<OrderEnded> {
             ),
           ),
           actions: [
-            Padding(
-              padding:  EdgeInsets.only(right: 15.0),
-              child: InkWell(
-                  onTap: () {
-                    Get.to(() =>  LinkUi());
-                  },
-                  child: SvgPicture.asset('assets/menu.svg')),
-            )
+            // Padding(
+            //   padding:  EdgeInsets.only(right: 15.0),
+            //   child: InkWell(
+            //       onTap: () {
+            //         Get.to(() =>  LinkUi());
+            //       },
+            //       child: SvgPicture.asset('assets/menu.svg')),
+            // )
           ],
           title: LinearPercentIndicator(
             alignment: MainAxisAlignment.center,
@@ -236,6 +236,10 @@ class _OrderEndedState extends State<OrderEnded> {
                                 onClick: () async {
 
                                   if(dashboardProvider.cardInfoByCardIdFromJson.data.report==null) return;
+
+
+                                  Get.back();
+                                  Get.back();
                                   Get.to(ReportScreen());
 
                                   },

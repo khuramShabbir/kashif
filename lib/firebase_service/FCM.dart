@@ -1,25 +1,18 @@
 //@dart=2.9
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
+import 'package:kashif/apis_services/api_services.dart';
 import 'package:kashif/providers/dashboard_provider.dart';
+import 'package:kashif/screens/order_taking_screens/stepper_ui.dart';
 import 'package:kashif/utils.dart';
 import 'package:provider/provider.dart';
 
 
 
-/// Define a top-level named handler which background/terminated messages will
-/// call.
-///
-/// To verify things are working, check out the native platform logs.
-///
-
-
-
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage event) async {
-  listenFcm(event);
+
 
 
 }
@@ -32,15 +25,7 @@ class FCM {
 
   FCM() {
     try{
-      FlutterLocalNotificationsPlugin fltrNotification;
 
-      var androidInitilize = new AndroidInitializationSettings('logo');
-      var iOSinitilize = new IOSInitializationSettings();
-      var initilizationsSettings = new InitializationSettings(
-          android: androidInitilize, iOS: iOSinitilize);
-      fltrNotification = new FlutterLocalNotificationsPlugin();
-      fltrNotification.initialize(initilizationsSettings,
-          onSelectNotification: _openScreenForNotifications);
       Firebase.initializeApp().then((fbr)async {
         await _messaging.subscribeToTopic("AllUsers").then((value) => null);
         await FirebaseMessaging.instance.subscribeToTopic(getUser().user.id.toString());
@@ -55,19 +40,15 @@ class FCM {
 
 
         if (settings.authorizationStatus == AuthorizationStatus.authorized) {
-          /// call when app is in BG
+
           await Firebase.initializeApp();
 
-          /// will call when user click on notification created by OS it self or using FCM when app was in BG
           FirebaseMessaging.onMessageOpenedApp.listen((event) {
             _openScreenForNotifications(event.data);
           });
-
-          /// generate notification your self
           FirebaseMessaging.onMessage.listen((event) {
-            listenFcm(event);
-            // logger.e(getUser().user.id.toString());
-
+            listenForgroundFcm(event);
+            _openScreenForNotifications(event.data,isOpenScreenRequired: false);
           });
         }
       });
@@ -88,22 +69,37 @@ class FCM {
 }
 
 
-_openScreenForNotifications(payload) {
+_openScreenForNotifications(Map<String, dynamic> payload,{bool isOpenScreenRequired=true}) {
 
-  // if(payload.runtimeType == String){
-  //   logger.e("STRING");
-  // } else if(payload.runtimeType == Map)
-  // {
-  //   logger.e("MAP");
-  // }
-  // else{
-    logger.e(payload.runtimeType);
-  // }
+  logger.e(payload);
+  if(payload==null) return;
+  if(payload['type'].toString().contains("card_updated")){
+
+    if(Get.currentRoute.toString().contains("StepperUi")){
+      Future.delayed(Duration.zero, () {
+        var dashboardProvider =Provider.of<DashboardProvider>(Get.context, listen: false);
+
+        dashboardProvider.setCardInformation(null, false);
+        ApiServices.getCardInfoByCardId(int.parse(payload['table_id'].toString()));
+      });
+    }
+    else{
+    if(isOpenScreenRequired){
+      Get.to(()=> StepperUi(cardId: int.parse(payload['table_id'].toString())));
+    }
+    }
+
+
+
+  }
+
 
 }
-void listenFcm(RemoteMessage event) async{
 
-  logger.e(event.data);
+
+void listenForgroundFcm(RemoteMessage event) async{
+
+  // logger.e(event.data);
 
   var dashboardProvider;
   if(Get.context!=null){
@@ -125,10 +121,9 @@ void listenFcm(RemoteMessage event) async{
   var iOSinitilize = new IOSInitializationSettings();
   var initilizationsSettings = new InitializationSettings(android: androidInitilize, iOS: iOSinitilize);
   fltrNotification = new FlutterLocalNotificationsPlugin();
-  fltrNotification.initialize(initilizationsSettings,onSelectNotification:_openScreenForNotifications );
-
-  // logger.i("event.notification != null ${event.notification} ");
-
+  fltrNotification.initialize(initilizationsSettings,onSelectNotification:(v){
+    _openScreenForNotifications(event.data);
+  } );
 
   await fltrNotification.show(
       dashboardProvider!=null ? dashboardProvider.notificationNumber: 0,

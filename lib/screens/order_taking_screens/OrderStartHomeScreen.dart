@@ -31,22 +31,22 @@ final dashboardProvider= Provider.of<DashboardProvider>(Get.context!,listen: fal
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
-          actions: [
-            Padding(
-              padding: const EdgeInsets.only(right: 15.0),
-              child: InkWell(
-                onTap: () {
-                  Get.to(() => const LinkUi());
-                },
-                child: SvgPicture.asset(
-                  'assets/menu.svg',
-                  color: Colors.black,
-                  width: 25.0,
-                  height: 25.0,
-                ),
-              ),
-            ),
-          ],
+          // actions: [
+          //   Padding(
+          //     padding: const EdgeInsets.only(right: 15.0),
+          //     child: InkWell(
+          //       onTap: () {
+          //         Get.to(() => const LinkUi());
+          //       },
+          //       child: SvgPicture.asset(
+          //         'assets/menu.svg',
+          //         color: Colors.black,
+          //         width: 25.0,
+          //         height: 25.0,
+          //       ),
+          //     ),
+          //   ),
+          // ],
         ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -102,7 +102,7 @@ final dashboardProvider= Provider.of<DashboardProvider>(Get.context!,listen: fal
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(Icons.receipt_long,color: primaryColor,size: 55,),
+                    Image.asset("assets/svg/check 1.png"),
                     SizedBox(width: 20,),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -140,15 +140,16 @@ final dashboardProvider= Provider.of<DashboardProvider>(Get.context!,listen: fal
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                           Text("Center Inspection Order",style: TextStyle(
-                              color: primaryColor,
+                              color: Colors.white,
                               fontWeight: FontWeight.bold,fontSize: 17),),
                           SizedBox(width: 10,),
-                              Icon(Icons.receipt_long,color: primaryColor,),
+                              Image.asset("assets/svg/icons8-car-64 1.png",color: Colors.white,),
 
                             ],
                           ),
                         ),
                         decoration: BoxDecoration(
+                          color: primaryColor,
                           borderRadius: BorderRadius.circular(10),
                           border: Border.all(width: 1,color: primaryColor)
                         ),
@@ -184,10 +185,7 @@ final dashboardProvider= Provider.of<DashboardProvider>(Get.context!,listen: fal
                               SizedBox(
                                 width: 10,
                               ),
-                              Icon(
-                                Icons.receipt_long,
-                                color: Colors.white,
-                              ),
+                              Image.asset("assets/svg/icons8-car-64 (1) 1.png",color: Colors.white,)
                             ],
                           ),
                         ),
@@ -199,15 +197,9 @@ final dashboardProvider= Provider.of<DashboardProvider>(Get.context!,listen: fal
                       ),
                     ),
                   ),
-
-
-
-
-
                 ],
               ),
             )
-
                 /*Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
@@ -320,7 +312,7 @@ final dashboardProvider= Provider.of<DashboardProvider>(Get.context!,listen: fal
                 )
               ],
             )*/
-                )
+            )
           ],
         ));
   }

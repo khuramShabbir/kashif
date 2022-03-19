@@ -45,12 +45,12 @@ class _VehiclesState extends State<Vehicles> {
           elevation: 0,
           // leading: const Icon(Icons.arrow_back, color: Colors.black),
           title: const Text(
-            'Order',
+            'Vehicles',
             style: TextStyle(color: Colors.black),
           ),
-          actions: [
-            Image.asset("assets/notification.png"),
-          ],
+          // actions: [
+          //   Image.asset("assets/notification.png"),
+          // ],
         ),
         body: Consumer<DashboardProvider>(builder: (build,data,child){
           return data.isVehiclesLoaded

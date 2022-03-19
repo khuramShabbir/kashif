@@ -29,11 +29,11 @@ class _ProfileState extends State<Profile> {
               centerTitle: true,
               backgroundColor: Colors.white,
               leading: null,
-              actions: [Padding(
-                padding: const EdgeInsets.only(right: 20.0),
-                child: SvgPicture.asset('assets/bell-ringing.svg'),
-              )
-              ],
+              // actions: [Padding(
+              //   padding: const EdgeInsets.only(right: 20.0),
+              //   child: SvgPicture.asset('assets/bell-ringing.svg'),
+              // )
+              // ],
               title: const Text(
                 'Profile',
                 style: TextStyle(color: Colors.black),

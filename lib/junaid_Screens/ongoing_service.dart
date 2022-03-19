@@ -49,21 +49,21 @@ class _OnGoingServicesUiState extends State<OnGoingServicesUi> {
             ),
           ),
           title: const Text(
-            'Ongoing Service',
+            'Order Records',
             style: TextStyle(color: Colors.black),
           ),
           actions: [
-            Padding(
-              padding: const EdgeInsets.only(right: 15.0),
-              child: InkWell(
-                child: SvgPicture.asset(
-                  'assets/BellIcon.svg',
-                  color: Colors.black,
-                  width: 25.0,
-                  height: 25.0,
-                ),
-              ),
-            ),
+            // Padding(
+            //   padding: const EdgeInsets.only(right: 15.0),
+            //   child: InkWell(
+            //     child: SvgPicture.asset(
+            //       'assets/BellIcon.svg',
+            //       color: Colors.black,
+            //       width: 25.0,
+            //       height: 25.0,
+            //     ),
+            //   ),
+            // ),
           ],
         ),
         body: SizedBox(
@@ -259,24 +259,24 @@ class _OnGoingServicesUiState extends State<OnGoingServicesUi> {
                 height: Get.height * .08,
               ),
               /// 5star ratting
-              Row(
-                children: [
-                  RatingBar.builder(
-                    initialRating: 0,
-                    itemSize: 18,
-                    minRating: recodsData.rating==null ? 0 : double.parse(recodsData.rating.toString()),
-                    direction: Axis.horizontal,
-                    allowHalfRating: true,
-                    itemCount: 5,
-                    itemPadding: const EdgeInsets.symmetric(horizontal: 1.0),
-                    itemBuilder: (context, _) => const Icon(
-                      Icons.star,
-                      color: Colors.amber,
-                    ),
-                    onRatingUpdate: (rating) {},
-                  ),
-                ],
-              ),
+              // Row(
+              //   children: [
+              //     RatingBar.builder(
+              //       initialRating: 0,
+              //       itemSize: 18,
+              //       minRating: recodsData.rating==null ? 0 : double.parse(recodsData.rating.toString()),
+              //       direction: Axis.horizontal,
+              //       allowHalfRating: true,
+              //       itemCount: 5,
+              //       itemPadding: const EdgeInsets.symmetric(horizontal: 1.0),
+              //       itemBuilder: (context, _) => const Icon(
+              //         Icons.star,
+              //         color: Colors.amber,
+              //       ),
+              //       onRatingUpdate: (rating) {},
+              //     ),
+              //   ],
+              // ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -480,13 +480,16 @@ class _OnGoingServicesUiState extends State<OnGoingServicesUi> {
               ),
             ),
           ),
-          Align(
-              alignment: Alignment.centerRight,
-              child: Image.asset(
-                'assets/car_model.png',
-                height: Get.width * .3,
-                width: Get.width * .4,
-              ))
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Align(
+                alignment: Alignment.centerRight,
+                child: Image.asset(
+                  'assets/svg/sedan_car.png',
+                  height: Get.width * .3,
+                  width: Get.width * .4,
+                )),
+          )
         ],
       ),
     );

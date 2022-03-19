@@ -16,9 +16,11 @@ import 'package:kashif/screens/services/search_page.dart';
 import 'package:logger/logger.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
+
 ///
 final storage = GetStorage();
-final dashboardProvider = Provider.of<DashboardProvider>(Get.context, listen: false);
+final dashboardProvider =
+    Provider.of<DashboardProvider>(Get.context, listen: false);
 String userToken = 'USER_TOKEN';
 String isUserLoggedIn = 'IS_USER_LOGGED_IN';
 String COMPLETE_USER = 'COMPLETE_USER';
@@ -34,7 +36,7 @@ double progressBarPersent = 0.0; // should be > 1
 
 var logger = Logger();
 
-Widget lineBar({double height:1}) => Padding(
+Widget lineBar({double height: 1}) => Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15.0),
       child: Container(
         height: height,
@@ -62,14 +64,14 @@ Widget pickupAddress(DashboardProvider data) {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
-            children:  [
+            children: [
               Text(
                 'Pick-up Address',
                 style:
                     TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
               ),
               Text(
-                data.address==null ? "": data.address.addressLine,
+                data.address == null ? "" : data.address.addressLine,
                 style: TextStyle(color: Colors.black, fontSize: 10),
               ),
             ],
@@ -99,27 +101,90 @@ Widget carousalSlider() {
           onPageChanged: (index, reason) {},
           viewportFraction: 1,
           height: Get.height * .18,
-          autoPlay: true,
+          autoPlay: false,
         ),
         items: List.generate(
-            5,
+            1,
             (index) => Stack(
                   children: [
                     Container(
-                        width: Get.width * .9,
-                      decoration: BoxDecoration(color: primaryColor,
-                        borderRadius: BorderRadius.circular(15)
-                      ),
+                      width: Get.width * .9,
+                      decoration: BoxDecoration(
+                          color: primaryColor,
+                          borderRadius: BorderRadius.circular(15)),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Row(children: [
-                        Icon(Icons.circle,color: yellowLight),
-                        SizedBox(width: 5,),
-                        Text("08/08/2022",style: TextStyle(fontSize: 17,color: Colors.white),)
-                      ],),
-                    )
+                      child: Row(
+                        children: [
+                          Icon(Icons.circle, color: yellowLight),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Text(
+                            "08/08/2022",
+                            style: TextStyle(fontSize: 17, color: Colors.white),
+                          )
+                        ],
+                      ),
+                    ),
+                    Center(
+                      child: Column(
+                        children: [
+                          Expanded(child: Container()),
+                          Expanded(
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 15),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
 
+                                  Text(
+                                    "%40",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: Get.height * 0.06,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+
+                                  Text(
+                                    " خصم",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: Get.height * 0.035,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+
+                                  SizedBox(
+                                    width: 25,
+                                  )
+
+                                ],
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 15),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "للطلب من التطبيق",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: Get.height * 0.035,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
                   ],
                 ))),
   );
@@ -360,7 +425,6 @@ Widget confirmedOrder({
   );
 }
 
-
 Future bottomSheetStartOrder() {
   return Get.bottomSheet(Container(
     height: Get.height / 2,
@@ -411,19 +475,15 @@ Future bottomSheetStartOrder() {
                         onTap: () async {
                           // Get.back();
                           Get.back();
-                          dashboardProvider.orderType=1;
-
+                          dashboardProvider.orderType = 1;
 
                           showProgress();
-                          bool status=await ApiServices.getVehicleServices();
+                          bool status = await ApiServices.getVehicleServices();
                           dismissDialogue();
-                          if(status){
+                          if (status) {
                             showServiceType();
                             // vehicleServicesFromJson
                           }
-
-
-
 
                           // Get.to(const OngoingInspectionUi());
                         },
@@ -434,17 +494,15 @@ Future bottomSheetStartOrder() {
                             height: Get.height * .1),
                       ),
                       InkWell(
-                        onTap: ()async {
+                        onTap: () async {
                           Get.back();
-                          dashboardProvider.orderType=2;
+                          dashboardProvider.orderType = 2;
                           showProgress();
-                          bool status=await ApiServices.getVehicleServices();
+                          bool status = await ApiServices.getVehicleServices();
                           dismissDialogue();
-                          if(status){
-                          showServiceType();
+                          if (status) {
+                            showServiceType();
                           }
-
-
                         },
                         child: customDetailBar(
                             showImageAddress: "assets/centerInspection.png",
@@ -478,7 +536,6 @@ Future bottomSheetStartOrder() {
   ));
 }
 
-
 class Person {
   final String name, surname;
   final num age;
@@ -486,17 +543,19 @@ class Person {
   Person(this.name, this.surname, this.age);
 }
 
-
-void showServiceType() async{
-
+void showServiceType() async {
   showSearch(
     context: Get.context,
     delegate: SearchPage<SingleService>(
       items: dashboardProvider.vehicleServicesFromJson.data,
       searchLabel: 'Search here',
       suggestion: SingleChildScrollView(
-        child: Column(children: List.generate(dashboardProvider.vehicleServicesFromJson.data.length,
-                (index) => getSearchItem(dashboardProvider.vehicleServicesFromJson.data[index])),),
+        child: Column(
+          children: List.generate(
+              dashboardProvider.vehicleServicesFromJson.data.length,
+              (index) => getSearchItem(
+                  dashboardProvider.vehicleServicesFromJson.data[index])),
+        ),
       ),
       failure: Center(
         child: Text('Nothing found :('),
@@ -507,27 +566,29 @@ void showServiceType() async{
         // person.age.toString(),
       ],
       builder: (person) => getSearchItem(person),
-
     ),
   );
 }
 
 getSearchItem(SingleService service) {
   return InkWell(
-    onTap: (){
+    onTap: () {
       print(service.price);
-      dashboardProvider.serviceTyoeId=getServiceName(dashboardProvider,service.name);
-      dashboardProvider.vat_percentage=dashboardProvider.vehicleServicesFromJson.vat_percentage.toString();
-      dashboardProvider.vatValue=service.vat_value.toString();
+      dashboardProvider.serviceTyoeId =
+          getServiceName(dashboardProvider, service.name);
+      dashboardProvider.vat_percentage =
+          dashboardProvider.vehicleServicesFromJson.vat_percentage.toString();
+      dashboardProvider.vatValue = service.vat_value.toString();
 
       Get.back();
       Get.to(() => const OngoingInspectionUi());
-
     },
     child: Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        decoration: BoxDecoration(border: Border(bottom: BorderSide(color: primaryColor,width: 0.5))),
+        decoration: BoxDecoration(
+            border:
+                Border(bottom: BorderSide(color: primaryColor, width: 0.5))),
         child: ListTile(
           title: Text(service.name),
           subtitle: Text("${service.price.toString()}"),
@@ -538,22 +599,20 @@ getSearchItem(SingleService service) {
   );
 }
 
-
 String getServiceName(DashboardProvider data, String name) {
-  String id='';
-  for(int i= 0;i<data.vehicleServicesFromJson.data.length ; i++){
-    if(data.vehicleServicesFromJson.data[i].name.toLowerCase()==name.toLowerCase()){
-      id= data.vehicleServicesFromJson.data[i].id.toString();
+  String id = '';
+  for (int i = 0; i < data.vehicleServicesFromJson.data.length; i++) {
+    if (data.vehicleServicesFromJson.data[i].name.toLowerCase() ==
+        name.toLowerCase()) {
+      id = data.vehicleServicesFromJson.data[i].id.toString();
     }
   }
   return id;
-
 }
+
 StringPicture carDoor = 'assets/CarDoor.png' as StringPicture;
 
 bool value = true;
-
-
 
 Widget customCarCardView() {
   return Stack(
@@ -822,5 +881,5 @@ dismissDialogue() {
   }
 }
 
-
-GetUserResponse getUser() => getUserResponseFromJson(storage.read(COMPLETE_USER));
+GetUserResponse getUser() =>
+    getUserResponseFromJson(storage.read(COMPLETE_USER));

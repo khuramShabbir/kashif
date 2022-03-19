@@ -6,6 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:kashif/model_classes/GetCardInfoByCardID.dart';
 import 'package:kashif/providers/dashboard_provider.dart';
+import 'package:kashif/utils.dart';
 import 'package:provider/provider.dart';
 import 'package:kashif/expansion_tile.dart' as exp;
 import 'package:intl/intl.dart';
@@ -72,30 +73,64 @@ class _ReportScreenState extends State<ReportScreen> {
           body:
           data.isSingleCardLoaded &&
           data.cardInfoByCardIdFromJson.data.report!=null?
-          Container(
-            // height: Get.width * 0.6,
-            // width: Get.width * 0.9,
-            decoration: BoxDecoration(
-              color: Colors.grey,
-              borderRadius: BorderRadius.circular(35),),
-            child:  WebView(
-              javascriptMode: JavascriptMode.unrestricted,
-              initialUrl: data.cardInfoByCardIdFromJson.data.report.report_pdf??"https://www.google.com",
-              gestureNavigationEnabled: true,
-              onWebViewCreated: (WebViewController webViewController) {
+          Stack(
+            children: [
+              Container(
+                // height: Get.width * 0.6,
+                // width: Get.width * 0.9,
+                decoration: BoxDecoration(
+                  color: Colors.grey,
+                  borderRadius: BorderRadius.circular(35),),
+                child:  WebView(
+                  javascriptMode: JavascriptMode.unrestricted,
+                  initialUrl: data.cardInfoByCardIdFromJson.data.report.report_pdf??"https://www.google.com",
+                  gestureNavigationEnabled: true,
+                  onWebViewCreated: (WebViewController webViewController) {
 
-              },
-              onProgress: (int progress) {
-                print('WebView is loading (progress : $progress%)');
-              },
-              onPageStarted: (String url) {
-                print('Page started loading: $url');
-              },
-              onPageFinished: (String url) {
-                print('Page finished loading: $url');
-              },
-            ),
-            // child: ,
+                  },
+                  onProgress: (int progress) {
+                    print('WebView is loading (progress : $progress%)');
+                  },
+                  onPageStarted: (String url) {
+                    print('Page started loading: $url');
+                  },
+                  onPageFinished: (String url) {
+                    print('Page finished loading: $url');
+                  },
+                ),
+                // child: ,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(20),
+                child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child:  customButton(
+                    onClick: () async {
+                      Get.back();
+                      dashboardProvider.initialScreen=0;
+                      dashboardProvider.notifyListeners();
+
+                    },
+                    buttonWidget: Padding(
+                      padding:
+                      const EdgeInsets.symmetric(horizontal: 15.0),
+                      child: Row(
+                        mainAxisAlignment:
+                        MainAxisAlignment.spaceEvenly,
+                        children: const [
+                          Padding(
+                            padding: EdgeInsets.only(right: 15.0),
+                            child: Text(
+                              'Done',
+                              style: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.bold),
+                            ),
+                          ),
+
+                        ],
+                      ),
+                    ))),
+              )
+            ],
           )
               : Container(child: Center(child: CircularProgressIndicator(),),)
 
