@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:kashif/utils.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class InvoiceWebView extends StatefulWidget {
@@ -25,7 +26,9 @@ class _InvoiceWebViewState extends State<InvoiceWebView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: primaryColor,
         leading: Text(""),
+        centerTitle: true,
         title: Text(widget.title),),
       body: Container(
         // height: Get.width * 0.6,
@@ -63,7 +66,7 @@ class _InvoiceWebViewState extends State<InvoiceWebView> {
                     child: Center(child: Text("Status",style: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.bold),)),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            color: Colors.blue),
+                            color: primaryColor),
                         height: 55,
                         width: Get.width * 0.9,
                       ),

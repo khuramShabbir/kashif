@@ -4,26 +4,20 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcbffef9-3b3b-4332-9dfa-79ca0fc78173" name="Default Changelist" comment="Cashif V 0.0.8">
-      <change afterPath="$PROJECT_DIR$/assets/svg/check 1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/svg/icons8-car-64 (1) 1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/svg/icons8-car-64 1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/svg/sedan_car.png" afterDir="false" />
+    <list default="true" id="dcbffef9-3b3b-4332-9dfa-79ca0fc78173" name="Default Changelist" comment="Cashif V 0.0.9">
+      <change afterPath="$PROJECT_DIR$/lib/screens/service_search_screen/ServiceSearchScreen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/anas_screens/profile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/anas_screens/profile.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/firebase_service/FCM.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/firebase_service/FCM.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/junaid_Screens/ongoing_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/junaid_Screens/ongoing_service.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/junaid_Screens/report_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/junaid_Screens/report_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/providers/dashboard_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/providers/dashboard_provider.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/boarding/dashboardscreen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/boarding/dashboardscreen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/order_taking_screens/OrderStartHomeScreen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/order_taking_screens/OrderStartHomeScreen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/order_taking_screens/order_ended.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/order_taking_screens/order_ended.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/order_taking_screens/stepper.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/order_taking_screens/stepper.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.packages" beforeDir="false" afterPath="$PROJECT_DIR$/.packages" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Podfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Podfile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/order_taking_screens/ongoing_inspection.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/order_taking_screens/ongoing_inspection.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/order_taking_screens/ongoing_inspection_pickup_address.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/order_taking_screens/ongoing_inspection_pickup_address.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/screens/order_taking_screens/stepper_ui.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/order_taking_screens/stepper_ui.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/vehicle/vehicles.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/vehicle/vehicles.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/web_view/web_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/web_view/web_view.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/utils.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/utils.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -309,7 +303,14 @@
       <option name="project" value="LOCAL" />
       <updated>1647639373621</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Cashif V 0.0.9">
+      <created>1647721647654</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1647721647654</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -355,7 +356,8 @@
     <MESSAGE value="Cashif V 0.0.6" />
     <MESSAGE value="Cashif V 0.0.7" />
     <MESSAGE value="Cashif V 0.0.8" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cashif V 0.0.8" />
+    <MESSAGE value="Cashif V 0.0.9" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cashif V 0.0.9" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -372,7 +374,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
           <url>file://$PROJECT_DIR$/lib/utils.dart</url>
-          <line>506</line>
+          <line>507</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="Dart">

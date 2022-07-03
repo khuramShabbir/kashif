@@ -549,12 +549,9 @@ class _StepperUiState extends State<StepperUi> {
                 customButton(
                     onClick: () {
                       Get.back();
-                      var latitude = double.parse(data
-                          .cardInfoByCardIdFromJson.data.card.latitude
-                          .toString());
-                      var longitude = double.parse(data
-                          .cardInfoByCardIdFromJson.data.card.longitude
-                          .toString());
+                      logger.e(data.cardInfoByCardIdFromJson.data.card.latitude+"\n"+data.cardInfoByCardIdFromJson.data.card.longitude);
+                      var latitude = double.parse(data.cardInfoByCardIdFromJson.data.card.latitude??"0");
+                      var longitude = double.parse(data.cardInfoByCardIdFromJson.data.card.longitude??"0");
                       showMap(latitude, longitude, title: "Cashif");
                     },
                     buttonWidget: Center(

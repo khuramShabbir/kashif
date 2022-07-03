@@ -12,6 +12,7 @@ import 'package:kashif/providers/dashboard_provider.dart';
 import 'package:kashif/screens/order_taking_screens/center_inspection_ui.dart';
 import 'package:kashif/screens/order_taking_screens/goolemap_for_center_inspection.dart';
 import 'package:kashif/screens/order_taking_screens/ongoing_inspection.dart';
+import 'package:kashif/screens/service_search_screen/ServiceSearchScreen.dart';
 import 'package:kashif/screens/services/search_page.dart';
 import 'package:logger/logger.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -544,71 +545,36 @@ class Person {
 }
 
 void showServiceType() async {
-  showSearch(
-    context: Get.context,
-    delegate: SearchPage<SingleService>(
-      items: dashboardProvider.vehicleServicesFromJson.data,
-      searchLabel: 'Search here',
-      suggestion: SingleChildScrollView(
-        child: Column(
-          children: List.generate(
-              dashboardProvider.vehicleServicesFromJson.data.length,
-              (index) => getSearchItem(
-                  dashboardProvider.vehicleServicesFromJson.data[index])),
-        ),
-      ),
-      failure: Center(
-        child: Text('Nothing found :('),
-      ),
-      filter: (person) => [
-        person.name,
-        // person.id,
-        // person.age.toString(),
-      ],
-      builder: (person) => getSearchItem(person),
-    ),
-  );
+  Get.to(()=>ServiceSearchScreen());
+
+  // showSearch(
+  //   context: Get.context,
+  //   delegate: SearchPage<SingleService>(
+  //     barTheme: ThemeData(backgroundColor: Colors.white),searchStyle: TextStyle(color: Colors.transparent),
+  //     items: dashboardProvider.vehicleServicesFromJson.data,
+  //     searchLabel: 'Search here',
+  //     suggestion: SingleChildScrollView(
+  //       child: Column(
+  //         children: List.generate(
+  //             dashboardProvider.vehicleServicesFromJson.data.length,
+  //             (index) => getSearchItem(
+  //                 dashboardProvider.vehicleServicesFromJson.data[index])),
+  //       ),
+  //     ),
+  //     failure: Center(
+  //       child: Text('Nothing found :('),
+  //     ),
+  //     filter: (person) => [
+  //       person.name,
+  //       // person.id,
+  //       // person.age.toString(),
+  //     ],
+  //     builder: (person) => getSearchItem(person),
+  //   ),
+  // );
 }
 
-getSearchItem(SingleService service) {
-  return InkWell(
-    onTap: () {
-      print(service.price);
-      dashboardProvider.serviceTyoeId =
-          getServiceName(dashboardProvider, service.name);
-      dashboardProvider.vat_percentage =
-          dashboardProvider.vehicleServicesFromJson.vat_percentage.toString();
-      dashboardProvider.vatValue = service.vat_value.toString();
 
-      Get.back();
-      Get.to(() => const OngoingInspectionUi());
-    },
-    child: Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Container(
-        decoration: BoxDecoration(
-            border:
-                Border(bottom: BorderSide(color: primaryColor, width: 0.5))),
-        child: ListTile(
-          title: Text(service.name),
-          subtitle: Text("${service.price.toString()}"),
-          trailing: Text('${service.detailsService}'),
-        ),
-      ),
-    ),
-  );
-}
-
-String getServiceName(DashboardProvider data, String name) {
-  String id = '';
-  for (int i = 0; i < data.vehicleServicesFromJson.data.length; i++) {
-    if (data.vehicleServicesFromJson.data[i].name.toLowerCase() ==
-        name.toLowerCase()) {
-      id = data.vehicleServicesFromJson.data[i].id.toString();
-    }
-  }
-  return id;
-}
 
 StringPicture carDoor = 'assets/CarDoor.png' as StringPicture;
 

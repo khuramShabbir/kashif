@@ -48,14 +48,14 @@ int index=-1;
             ),
           ),
           actions: [
-            Padding(
-              padding: const EdgeInsets.only(right: 15.0),
-              child: InkWell(
-                  onTap: () {
-                    Get.to(() => const LinkUi());
-                  },
-                  child: SvgPicture.asset('assets/menu.svg')),
-            )
+            // Padding(
+            //   padding: const EdgeInsets.only(right: 15.0),
+            //   child: InkWell(
+            //       onTap: () {
+            //         Get.to(() => const LinkUi());
+            //       },
+            //       child: SvgPicture.asset('assets/menu.svg')),
+            // )
           ],
           title: LinearPercentIndicator(
             alignment: MainAxisAlignment.center,
